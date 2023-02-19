@@ -248,6 +248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 706565054}
   - component: {fileID: 706565055}
+  - component: {fileID: 706565056}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -323,6 +324,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &706565056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706565053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9d33a08521745eb8b7129097a9637b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gun: {fileID: 706565054}
+  bulletSpeed: 1500
+  shootPoint: {fileID: 1913543016}
+  bullet: {fileID: 1270241803033572308, guid: 5598e8b00c9d54341810c5548f937b3e, type: 3}
+  fireRate: 4
 --- !u!1 &1055450939
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,7 +601,6 @@ GameObject:
   - component: {fileID: 1890009408}
   - component: {fileID: 1890009412}
   - component: {fileID: 1890009413}
-  - component: {fileID: 1890009414}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -741,24 +758,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1890009414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1890009407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df9d33a08521745eb8b7129097a9637b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gun: {fileID: 706565054}
-  bulletSpeed: 1500
-  shootPoint: {fileID: 1913543016}
-  bullet: {fileID: 1270241803033572308, guid: 5598e8b00c9d54341810c5548f937b3e, type: 3}
-  fireRate: 4
-  spriteRenderer: {fileID: 706565055}
 --- !u!1 &1913543015
 GameObject:
   m_ObjectHideFlags: 0

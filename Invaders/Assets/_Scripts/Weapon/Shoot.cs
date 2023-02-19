@@ -29,9 +29,9 @@ public class Shoot : MonoBehaviour
     int dirMultiplier;
 
 
+private    SpriteRenderer spriteRenderer;
 
-    [SerializeField]
-    private SpriteRenderer spriteRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,19 +42,28 @@ public class Shoot : MonoBehaviour
     void Update()
     {
         //MousePos - Relative to whole screen, Direction - Relative to Player
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        direction = mousePos - (Vector2)gun.position;
-        direction2 = mousePos - (Vector2)shootPoint.position;
+        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+      //  direction = mousePos - (Vector2)gun.position;
+       // direction2 = mousePos - (Vector2)shootPoint.position;
 
-        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+          //  FaceMouse();
 
-            FaceMouse();
+transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
+
+if(transform.eulerAngles.z < 89 && transform.eulerAngles.z > -89){
+Debug.Log("right");
+spriteRenderer.flipY = false;
+}
+else {
+Debug.Log("left");
+spriteRenderer.flipY = true;
+spriteRenderer.flipX = true;
+
+}
 
 
-
-
-
-        // FaceMouse();
+//float horizontalInput = Input.GetAxis("Horizontal");
 
 
 
@@ -71,14 +80,17 @@ public class Shoot : MonoBehaviour
     {
         if (transform.localScale == Vector3.one)
         {
-            dirMultiplier = 1;
-            gun.transform.right = dirMultiplier * direction;
+//Debug.Log("right");
+                        dirMultiplier = -1;
+            transform.right = dirMultiplier * direction;
         }
         else
         {
-            dirMultiplier = -1;
-            gun.transform.right = dirMultiplier * direction;
-        }
+      //      Debug.Log("left");
+
+           dirMultiplier = 1;
+            transform.right = dirMultiplier * direction;
+}
     }
 
     void ShootGun()

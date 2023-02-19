@@ -29,10 +29,13 @@ public class Movement : MonoBehaviour
         //Flip player when changing direction
         if (horizontalInput > 0.01f)
         {
+            Debug.Log("right");
             transform.localScale = Vector3.one;
         }
         else if (horizontalInput < -0.01f)
         {
+                        Debug.Log("left");
+
             transform.localScale = new Vector3(-1, 1, 1);
         }
 
