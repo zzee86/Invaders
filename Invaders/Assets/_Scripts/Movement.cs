@@ -26,7 +26,6 @@ public class Movement : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal"); //Store horizontal Input (-1, 0 ,1)
 
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
-
         //Flip player when changing direction
         if (horizontalInput > 0.01f)
         {
