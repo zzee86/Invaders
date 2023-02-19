@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
+    public string target;
     [SerializeField]
     private Transform gun;
     // Vector2 direction;
@@ -92,6 +93,10 @@ public class Shoot : MonoBehaviour
     {
         GameObject bullets = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
         bullets.GetComponent<Rigidbody2D>().AddForce(bullets.transform.right * bulletSpeed);
-        Destroy(bullets, 2);
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+Debug.Log("tester");
+    }
+ 
 }
