@@ -6,8 +6,8 @@ public class Shoot : MonoBehaviour
 {
     [SerializeField]
     private Transform gun;
-    Vector2 direction;
-        Vector2 direction2;
+    // Vector2 direction;
+    // Vector2 direction2;
 
 
     [SerializeField]
@@ -26,10 +26,10 @@ public class Shoot : MonoBehaviour
 
     private float readyForNextShot;
 
-    int dirMultiplier;
+    //int dir;
 
 
-private    SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
 
 
     // Start is called before the first frame update
@@ -43,28 +43,23 @@ private    SpriteRenderer spriteRenderer;
     {
         //MousePos - Relative to whole screen, Direction - Relative to Player
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-      //  direction = mousePos - (Vector2)gun.position;
-       // direction2 = mousePos - (Vector2)shootPoint.position;
+        //  direction = mousePos - (Vector2)gun.position;
+        // direction2 = mousePos - (Vector2)shootPoint.position;
 
         float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-          //  FaceMouse();
+        transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
 
-transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
+        if (rotZ < 89 && rotZ > -89)
+        {
+            spriteRenderer.flipY = false;
+            spriteRenderer.flipX = false;
 
-if(rotZ < 89 && rotZ > -89){
-spriteRenderer.flipY = false;
-spriteRenderer.flipX = false;
-
-}
-else {
-spriteRenderer.flipY = true;
-spriteRenderer.flipX = true;
-}
-
-
-//float horizontalInput = Input.GetAxis("Horizontal");
-
-
+        }
+        else
+        {
+            spriteRenderer.flipY = true;
+            spriteRenderer.flipX = true;
+        }
 
         if (Input.GetMouseButton(0))
         {
@@ -75,22 +70,23 @@ spriteRenderer.flipX = true;
             }
         }
     }
-    void FaceMouse()
-    {
-        if (transform.localScale == Vector3.one)
-        {
-//Debug.Log("right");
-                        dirMultiplier = -1;
-            transform.right = dirMultiplier * direction;
-        }
-        else
-        {
-      //      Debug.Log("left");
+    // Unused Method
+    // void FaceMouse()
+    // {
+    //     if (transform.localScale == Vector3.one)
+    //     {
+    //         //Debug.Log("right");
+    //         dir = -1;
+    //         transform.right = dir * direction;
+    //     }
+    //     else
+    //     {
+    //         //      Debug.Log("left");
 
-           dirMultiplier = 1;
-            transform.right = dirMultiplier * direction;
-}
-    }
+    //         dir = 1;
+    //         transform.right = dir * direction;
+    //     }
+    // }
 
     void ShootGun()
     {
