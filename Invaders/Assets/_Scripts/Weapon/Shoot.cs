@@ -51,15 +51,14 @@ private    SpriteRenderer spriteRenderer;
 
 transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
 
-if(transform.eulerAngles.z < 89 && transform.eulerAngles.z > -89){
-Debug.Log("right");
+if(rotZ < 89 && rotZ > -89){
 spriteRenderer.flipY = false;
+spriteRenderer.flipX = false;
+
 }
 else {
-Debug.Log("left");
 spriteRenderer.flipY = true;
 spriteRenderer.flipX = true;
-
 }
 
 

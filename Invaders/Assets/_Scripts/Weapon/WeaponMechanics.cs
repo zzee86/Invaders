@@ -41,6 +41,7 @@ public class WeaponMechanics : MonoBehaviour
                 guns[currentWeaponIndex].SetActive(false);
                 currentWeaponIndex += 1;
                 guns[currentWeaponIndex].SetActive(true);
+                currentGun = guns[currentWeaponIndex];
             }
         }
         if (Input.GetKeyDown(KeyCode.Q))
@@ -50,6 +51,7 @@ public class WeaponMechanics : MonoBehaviour
                 guns[currentWeaponIndex].SetActive(false);
                 currentWeaponIndex -= 1;
                 guns[currentWeaponIndex].SetActive(true);
+                currentGun = guns[currentWeaponIndex];
             }
         }
     }
