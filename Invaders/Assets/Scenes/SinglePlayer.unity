@@ -340,7 +340,7 @@ MonoBehaviour:
   bulletSpeed: 1500
   shootPoint: {fileID: 1913543016}
   bullet: {fileID: 1270241803033572308, guid: 5598e8b00c9d54341810c5548f937b3e, type: 3}
-  fireRate: 4
+  fireRate: 2
 --- !u!1 &1856065285
 GameObject:
   m_ObjectHideFlags: 0
