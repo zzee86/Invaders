@@ -94,9 +94,4 @@ public class Shoot : MonoBehaviour
         GameObject bullets = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
         bullets.GetComponent<Rigidbody2D>().AddForce(bullets.transform.right * bulletSpeed);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-Debug.Log("tester");
-    }
- 
 }

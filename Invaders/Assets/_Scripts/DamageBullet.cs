@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class DamageBullet : MonoBehaviour
 {
+    [SerializeField] private float damageAmount;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-Destroy(gameObject);
+    if(collision.gameObject.TryGetComponent<Enemy>(out Enemy enemyComponent)){
+        enemyComponent.TakeDamage(damageAmount);
+    }
+        Destroy(gameObject);
+
     }
 }
