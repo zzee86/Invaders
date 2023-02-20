@@ -45,7 +45,9 @@ public class Shoot : MonoBehaviour
         //MousePos - Relative to whole screen, Direction - Relative to Player
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         //  direction = mousePos - (Vector2)gun.position;
-        // direction2 = mousePos - (Vector2)shootPoint.position;
+        //      Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        // Vector2 direction2 = mousePos - (Vector2)shootPoint.position;
 
         float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
@@ -54,7 +56,6 @@ public class Shoot : MonoBehaviour
         {
             spriteRenderer.flipY = false;
             spriteRenderer.flipX = false;
-
         }
         else
         {
@@ -93,5 +94,9 @@ public class Shoot : MonoBehaviour
     {
         GameObject bullets = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
         bullets.GetComponent<Rigidbody2D>().AddForce(bullets.transform.right * bulletSpeed);
+        Physics2D.IgnoreLayerCollision(3, 6);
+
+        Destroy(bullets, 2);
+
     }
 }

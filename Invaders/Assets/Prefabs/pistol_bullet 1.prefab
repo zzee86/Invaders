@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 6124508307421853434}
   - component: {fileID: 4709585173502952347}
   - component: {fileID: 8470185523346836503}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pistol_bullet 1
-  m_TagString: Untagged
+  m_TagString: Bullets
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,4 +283,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 1
-  damagePopup: {fileID: 6497484752689238589, guid: cfb2581d284d44ac0abd53b18af1671e, type: 3}

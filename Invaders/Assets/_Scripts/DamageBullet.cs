@@ -13,6 +13,5 @@ public class DamageBullet : MonoBehaviour
 
         }
         Destroy(gameObject);
-
     }
 }
