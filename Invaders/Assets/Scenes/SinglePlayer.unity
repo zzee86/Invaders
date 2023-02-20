@@ -376,6 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   maxHealth: 3
+  damagePopup: {fileID: 6497484752689238589, guid: cfb2581d284d44ac0abd53b18af1671e, type: 3}
 --- !u!212 &913243272
 SpriteRenderer:
   m_ObjectHideFlags: 0

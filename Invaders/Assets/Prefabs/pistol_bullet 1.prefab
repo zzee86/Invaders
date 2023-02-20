@@ -283,3 +283,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 1
+  damagePopup: {fileID: 6497484752689238589, guid: cfb2581d284d44ac0abd53b18af1671e, type: 3}

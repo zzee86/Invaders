@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] float health, maxHealth = 3f;
+    [SerializeField] private GameObject damagePopup;
 
     void Start()
     {
@@ -18,5 +19,11 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        GameObject points = Instantiate(damagePopup, transform.position, Quaternion.identity);
+        points.transform.localPosition += new Vector3(0, 1, 0);
+
+        points.GetComponent<TextMesh>().text = "" + damageAmount;
+
+        Destroy(points, 0.5f);
     }
 }
