@@ -70,5 +70,8 @@ public class Movement : MonoBehaviour
         if(collision.gameObject.tag == "Enemy"){
             Debug.Log("Enemy contact");
         }
+                if(collision.gameObject.tag == "EditorOnly"){
+        Physics2D.IgnoreLayerCollision(3, 7);
+        }
     }
 }
