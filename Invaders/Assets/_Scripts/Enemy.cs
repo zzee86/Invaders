@@ -5,14 +5,13 @@ using TMPro;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] float health, maxHealth = 3f;
+
     [SerializeField] private GameObject damagePopup;
-
-    private float disappearTimer;
-
     void Start()
     {
         health = maxHealth;
     }
+    
     public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
@@ -23,8 +22,9 @@ public class Enemy : MonoBehaviour
         GameObject points = Instantiate(damagePopup, transform.position, Quaternion.identity);
         points.transform.localPosition += new Vector3(0, 1, 0);
 
-        points.GetComponent<TextMeshPro>().text = "" + damageAmount;
+        points.GetComponentInChildren<TextMeshPro>().SetText(damageAmount.ToString());
 
-        Destroy(points, 0.5f);
+        // Not needed because of animation
+        //Destroy(points, 0.5f);
     }
 }

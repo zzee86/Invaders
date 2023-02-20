@@ -72,23 +72,6 @@ public class Shoot : MonoBehaviour
             }
         }
     }
-    // Unused Method
-    // void FaceMouse()
-    // {
-    //     if (transform.localScale == Vector3.one)
-    //     {
-    //         //Debug.Log("right");
-    //         dir = -1;
-    //         transform.right = dir * direction;
-    //     }
-    //     else
-    //     {
-    //         //      Debug.Log("left");
-
-    //         dir = 1;
-    //         transform.right = dir * direction;
-    //     }
-    // }
 
     void ShootGun()
     {
