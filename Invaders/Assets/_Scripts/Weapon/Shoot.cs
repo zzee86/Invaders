@@ -55,14 +55,11 @@ public class Shoot : MonoBehaviour
         if (rotZ < 89 && rotZ > -89)
         {
             spriteRenderer.flipY = false;
-            spriteRenderer.flipX = false;
         }
-        
+
         else
         {
             spriteRenderer.flipY = true;
-            spriteRenderer.flipX = true;
-
 
         }
 

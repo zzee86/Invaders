@@ -14,6 +14,8 @@ public class Movement : MonoBehaviour
 
     [SerializeField] private float jumpPower;
 
+    bool facingRight = true;
+
     // Start is called before the first frame update
 
     private void Awake()
@@ -50,7 +52,25 @@ public class Movement : MonoBehaviour
 
         anim.SetBool("Run", horizontalInput != 0);
         anim.SetBool("Grounded", grounded);
+
+
+
+
+Vector3 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+
+if(mousePos.x <transform.position.x && facingRight){
+    flip();
+} else if(mousePos.x > transform.position.x && !facingRight){
+    flip();
+}
+
     }
+    void flip(){
+        facingRight = !facingRight;
+        transform.Rotate(0f, 180f,0f);
+    }
+
+
     private void Jump()
     {
         body.velocity = new Vector2(body.velocity.x, speed);
