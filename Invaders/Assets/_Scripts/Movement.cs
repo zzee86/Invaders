@@ -75,7 +75,7 @@ public class Movement : MonoBehaviour
 
     private void Jump()
     {
-        body.velocity = new Vector2(body.velocity.x, speed);
+        body.velocity = new Vector2(body.velocity.x, jumpPower);
         anim.SetTrigger("Jump");
         jumpCount -= 1;
         grounded = false;
