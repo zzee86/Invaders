@@ -14,12 +14,14 @@ public class Movement : MonoBehaviour
 
     [SerializeField] private float jumpPower;
 
+    // Start is called before the first frame update
+
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>(); //Gets component from game object from inspector tab
         anim = GetComponent<Animator>();
         jumpCount = maxJumps;
-            Physics2D.IgnoreLayerCollision(3, 7);
+        Physics2D.IgnoreLayerCollision(3, 7);
 
     }
     private void Update()
@@ -48,7 +50,6 @@ public class Movement : MonoBehaviour
 
         anim.SetBool("Run", horizontalInput != 0);
         anim.SetBool("Grounded", grounded);
-
     }
     private void Jump()
     {
@@ -57,7 +58,6 @@ public class Movement : MonoBehaviour
         jumpCount -= 1;
         grounded = false;
     }
-
 
     //When player collides with Ground, reset number of jumps
     void OnCollisionEnter2D(Collision2D collision)

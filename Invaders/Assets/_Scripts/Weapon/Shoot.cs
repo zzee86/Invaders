@@ -57,10 +57,13 @@ public class Shoot : MonoBehaviour
             spriteRenderer.flipY = false;
             spriteRenderer.flipX = false;
         }
+        
         else
         {
             spriteRenderer.flipY = true;
             spriteRenderer.flipX = true;
+
+
         }
 
         if (Input.GetMouseButton(0))
@@ -72,6 +75,7 @@ public class Shoot : MonoBehaviour
             }
         }
     }
+
 
     void ShootGun()
     {
