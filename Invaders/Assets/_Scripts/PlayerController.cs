@@ -13,15 +13,19 @@ public class PlayerController : MonoBehaviour
     public HealthBarSystem healthBarSystem;
 
     bool isAlive = true;
+
+    private SpawnPlayer spawnPlayer;
+    //[SerializeField] private Vector2 spawnpoint;
+
     void Start()
     {
         health = maxHealth;
         healthBarSystem.SetHealth(health, maxHealth);
-
         //   slider.maxValue = maxHealth;
         //   slider.value = health;
         //   slider.fillRect.GetComponentInChildren<Image>().color = Color.Lerp(low, High, slider.normalizedValue);
 
+        spawnPlayer = GetComponentInParent<SpawnPlayer>();
     }
     // void Update(){
 
@@ -39,6 +43,11 @@ public class PlayerController : MonoBehaviour
         if (isAlive == false)
         {
             Debug.Log("Restart the Game");
+
+            Vector2 spawnPoint = gameObject.transform.position - new  Vector3(3f, 2f, 0f);
+            spawnPlayer.Spawn(spawnPoint);
+
+            
         }
     }
 
@@ -62,16 +71,14 @@ public class PlayerController : MonoBehaviour
         points.GetComponentInChildren<TextMeshPro>().SetText(damageAmount.ToString());
 
         // Not needed because of animation
-        //Destroy(points, 0.5f);
+        // Destroy(points, 0.5f);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
         if (collision.gameObject.tag == "Natural Damage")
         {
             TakeDamage(5);
         }
     }
-
 
 }

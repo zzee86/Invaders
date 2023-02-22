@@ -7,9 +7,19 @@ public class SpawnPlayer : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private Vector2 spawnPoint;
 
+
+    //[SerializeField] private GameObject eObject;
+
     void Start()
     {
-        Instantiate(player, spawnPoint, Quaternion.identity);
+        Spawn(spawnPoint);
     }
 
+
+    public void Spawn(Vector2 spawnPoint)
+    {
+        this.spawnPoint = spawnPoint;
+        GameObject temp = Instantiate(player,spawnPoint, Quaternion.identity);
+        temp.transform.parent = gameObject.transform;
+    }
 }
