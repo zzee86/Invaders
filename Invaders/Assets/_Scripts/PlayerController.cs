@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Restart the Game");
 
-            Vector2 spawnPoint = gameObject.transform.position - new  Vector3(3f, 2f, 0f);
+            Vector2 spawnPoint = gameObject.transform.position - new  Vector3(3f, 0f, 0f);
             spawnPlayer.Spawn(spawnPoint);
 
             
