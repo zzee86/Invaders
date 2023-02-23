@@ -42,12 +42,11 @@ public class PlayerController : MonoBehaviour
 
         if (isAlive == false)
         {
-            Debug.Log("Restart the Game");
-
-            Vector2 spawnPoint = gameObject.transform.position - new  Vector3(3f, 0f, 0f);
-            spawnPlayer.Spawn(spawnPoint);
-
-            
+            // Debug.Log("Restart the Game");
+            // Vector2 spawnPoint = gameObject.transform.position - new Vector3(3f, 0f, 0f);
+            Debug.Log("respawn");
+            spawnPlayer.Spawn(new Vector2(-17f, -3.399f));
+            isAlive = true;
         }
     }
 
@@ -79,6 +78,37 @@ public class PlayerController : MonoBehaviour
         {
             TakeDamage(5);
         }
+        else if (collision.gameObject.tag == "Instant Death")
+        {
+
+            death();
+            //   TakeDamage(50);
+
+
+        }
+
+
+    }
+
+    private IEnumerator Delayer()
+    {
+        yield return new WaitForSeconds(1.2f);
+        isAlive = false;
+        Destroy(gameObject, 1.2f);
+
+    }
+    void miniJump()
+    {
+        gameObject.GetComponent<Collider2D>().enabled = false;
+        Vector2 other = gameObject.transform.position + new Vector3(0f, 2f, 0f);
+        transform.position = other;
+    }
+    void death()
+    {
+        miniJump();
+        gameObject.GetComponent<Movement>().enabled = false;
+        StartCoroutine(Delayer());
+
     }
 
 }
