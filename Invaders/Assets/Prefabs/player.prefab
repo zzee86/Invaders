@@ -455,8 +455,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d1ad7a2277af4d63ad7d7d048a21968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {x: 10, y: 10}
-  player: {fileID: 4481475307069569854}
   health: 0
   maxHealth: 200
   damagePopup: {fileID: 5702730977154166128, guid: 55de394916764482585b8cffc86ac332, type: 3}

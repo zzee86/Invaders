@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
         //   slider.fillRect.GetComponentInChildren<Image>().color = Color.Lerp(low, High, slider.normalizedValue);
 
         spawnPlayer = GetComponentInParent<SpawnPlayer>();
+
     }
     // void Update(){
 
@@ -83,10 +84,7 @@ public class PlayerController : MonoBehaviour
 
             death();
             //   TakeDamage(50);
-
-
         }
-
 
     }
 
