@@ -19,7 +19,7 @@ public class Movement : MonoBehaviour
 
 
     private bool isWallSliding;
-    private float wallSlideSpeed = 0.1f;
+    private float wallSlideSpeed = 4;
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
 
@@ -34,6 +34,7 @@ public class Movement : MonoBehaviour
     private float wallJumpingDuration = 0.4f;
     private Vector2 wallJumpingPower = new Vector2(8f, 16f);
 
+    private Shoot shootGun;
 
     // Start is called before the first frame update
     private void Awake()
@@ -113,7 +114,7 @@ public class Movement : MonoBehaviour
         grounded = false;
     }
 
-    private bool isWalled()
+    public bool isWalled()
     {
         return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
     }
@@ -123,6 +124,8 @@ public class Movement : MonoBehaviour
         {
             isWallSliding = true;
             body.velocity = new Vector2(body.velocity.x, Mathf.Clamp(body.velocity.y, -wallSlideSpeed, float.MaxValue));
+
+            //  shootGun.enabled = false;
         }
         else
         {
@@ -135,7 +138,8 @@ public class Movement : MonoBehaviour
         if (isWallSliding)
         {
             isWallJump = false;
-            wallJumpingDirection = -transform.localScale.x;
+            wallJumpingDirection = -transform.rotation.x;
+
             wallJumpingCounter = wallJumpingTime;
             CancelInvoke(nameof(StopWallJumping));
 
@@ -176,7 +180,7 @@ public class Movement : MonoBehaviour
             grounded = true;
         }
         jumpCount = maxJumps;
-
+        Debug.Log(collision.gameObject.layer);
     }
 
 }

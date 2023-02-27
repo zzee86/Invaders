@@ -4910,12 +4910,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9d33a08521745eb8b7129097a9637b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: 
   gun: {fileID: 4481475306358237631}
   bulletSpeed: 1500
   shootPoint: {fileID: 4481475307030307689}
   bullet: {fileID: 4033888093599330519, guid: b849dcc8f96864f4d8d9ff5db3870aa4, type: 3}
   fireRate: 2
+  shakeCamera: {fileID: 0}
 --- !u!1 &4481475306558630975
 GameObject:
   m_ObjectHideFlags: 0
@@ -5076,12 +5076,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9d33a08521745eb8b7129097a9637b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: 
   gun: {fileID: 4481475307056048618}
   bulletSpeed: 1500
   shootPoint: {fileID: 4481475306558630974}
   bullet: {fileID: 4033888093599330519, guid: b849dcc8f96864f4d8d9ff5db3870aa4, type: 3}
   fireRate: 4
+  shakeCamera: {fileID: 0}
 --- !u!1 &4481475307069569854
 GameObject:
   m_ObjectHideFlags: 0
@@ -5184,11 +5184,11 @@ BoxCollider2D:
   m_GameObject: {fileID: 4481475307069569854}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 78c73dbb9020b4db68296876ab48cc3e, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.14656782, y: -0.55441034}
+  m_Offset: {x: -0.14656782, y: -0.53}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5749,7 +5749,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5517673181678908136}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.74, y: -0.24, z: 0}
+  m_LocalPosition: {x: 0.361, y: -0.24, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

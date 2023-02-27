@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
-    public string target;
     [SerializeField]
     private Transform gun;
     // Vector2 direction;
     // Vector2 direction2;
 
-
+    private Movement movement;
     [SerializeField]
     private float bulletSpeed;
 
@@ -33,6 +32,7 @@ public class Shoot : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
 
+    [SerializeField] private ShakeCamera shakeCamera;
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +65,7 @@ public class Shoot : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
+
             if (Time.time > readyForNextShot)
             {
                 readyForNextShot = Time.time + 1 / fireRate;
@@ -74,13 +75,13 @@ public class Shoot : MonoBehaviour
     }
 
 
+
     void ShootGun()
     {
         GameObject bullets = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
         bullets.GetComponent<Rigidbody2D>().AddForce(bullets.transform.right * bulletSpeed);
         Physics2D.IgnoreLayerCollision(3, 6);
-
         Destroy(bullets, 2);
-
+      //  shakeCamera.Shake();
     }
 }
