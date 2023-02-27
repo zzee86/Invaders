@@ -18,6 +18,7 @@ public class Movement : MonoBehaviour
 
     // Start is called before the first frame update
 
+
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>(); //Gets component from game object from inspector tab
@@ -32,14 +33,14 @@ public class Movement : MonoBehaviour
 
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
         //Flip player when changing direction
-        // if (horizontalInput > 0.01f)
-        // {
-        //     transform.localScale = Vector3.one;
-        // }
-        // else if (horizontalInput < -0.01f)
-        // {
-        //     transform.localScale = new Vector3(-1, 1, 1);
-        // }
+        if (horizontalInput > 0.01f && !facingRight)
+        {
+            flip();
+        }
+        else if (horizontalInput < -0.01f && facingRight)
+        {
+            flip();
+        }
 
         //Jump - GetKeyDown used to only register the initial click, not holding the space bar
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
@@ -47,24 +48,27 @@ public class Movement : MonoBehaviour
             if (jumpCount > 0)
             {
                 Jump();
+
             }
         }
 
         anim.SetBool("Run", horizontalInput != 0);
         anim.SetBool("Grounded", grounded);
 
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        /*
+                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
 
-        if (mousePos.x < transform.position.x && facingRight)
-        {
-            flip();
-        }
-        else if (mousePos.x > transform.position.x && !facingRight)
-        {
-            flip();
-        }
-
+                if (mousePos.x < transform.position.x && facingRight)
+                {
+                    flip();
+                }
+                else if (mousePos.x > transform.position.x && !facingRight)
+                {
+                    flip();
+                }
+        */
     }
     void flip()
     {

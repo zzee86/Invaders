@@ -21,5 +21,6 @@ public class SpawnPlayer : MonoBehaviour
         this.spawnPoint = spawnPoint;
         GameObject temp = Instantiate(player, spawnPoint, Quaternion.identity);
         temp.transform.parent = gameObject.transform;
+        
     }
 }

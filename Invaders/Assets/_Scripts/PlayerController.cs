@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private SpawnPlayer spawnPlayer;
     //[SerializeField] private Vector2 spawnpoint;
 
+
     void Start()
     {
         health = maxHealth;
@@ -48,7 +49,9 @@ public class PlayerController : MonoBehaviour
             Debug.Log("respawn");
             spawnPlayer.Spawn(new Vector2(-17f, -3.399f));
             isAlive = true;
+
         }
+
     }
 
     public void TakeDamage(float damageAmount)

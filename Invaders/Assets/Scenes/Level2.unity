@@ -777,7 +777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &167415200
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -858,7 +858,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 167415199}
   serializedVersion: 8
-  lengthInSec: 0.1
+  lengthInSec: 5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -1684,7 +1684,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 20
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1787,66 +1787,8 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    m_BurstCount: 1
-    m_Bursts:
-    - serializedVersion: 2
-      time: 0
-      countCurve:
-        serializedVersion: 2
-        minMaxState: 0
-        scalar: 30
-        minScalar: 30
-        maxCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        minCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-      cycleCount: 1
-      repeatInterval: 0.01
-      probability: 1
+    m_BurstCount: 0
+    m_Bursts: []
   SizeModule:
     enabled: 1
     curve:
@@ -10280,6 +10222,67 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 850494254}
   parallaxEffect: 0.5
+--- !u!1001 &1654955754919971931
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1654955755938991540, guid: 8487a674db7a442729468976f2114925, type: 3}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654955755938991540, guid: 8487a674db7a442729468976f2114925, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.078572996
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654955755938991540, guid: 8487a674db7a442729468976f2114925, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.2064093
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654955755938991540, guid: 8487a674db7a442729468976f2114925, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.4636345
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654955755938991540, guid: 8487a674db7a442729468976f2114925, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654955755938991540, guid: 8487a674db7a442729468976f2114925, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654955755938991540, guid: 8487a674db7a442729468976f2114925, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654955755938991540, guid: 8487a674db7a442729468976f2114925, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654955755938991540, guid: 8487a674db7a442729468976f2114925, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654955755938991540, guid: 8487a674db7a442729468976f2114925, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654955755938991540, guid: 8487a674db7a442729468976f2114925, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654955755938991543, guid: 8487a674db7a442729468976f2114925, type: 3}
+      propertyPath: m_Name
+      value: Smarks
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654955755938991543, guid: 8487a674db7a442729468976f2114925, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8487a674db7a442729468976f2114925, type: 3}
 --- !u!1001 &6643650636165229802
 PrefabInstance:
   m_ObjectHideFlags: 0
