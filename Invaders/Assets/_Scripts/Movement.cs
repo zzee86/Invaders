@@ -15,8 +15,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float jumpPower;
 
     bool facingRight = true;
-
-
+    [SerializeField] private ParticleSystem jumpDust;
 
 
     private bool isWallSliding;
@@ -37,27 +36,6 @@ public class Movement : MonoBehaviour
 
 
     // Start is called before the first frame update
-
-    private bool isWalled()
-    {
-        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
-    }
-    private void wallSlide()
-    {
-        if (isWalled() && !grounded)
-        {
-            isWallSliding = true;
-            body.velocity = new Vector2(body.velocity.x, Mathf.Clamp(body.velocity.y, -wallSlideSpeed, float.MaxValue));
-        }
-        else
-        {
-            isWallSliding = false;
-        }
-
-    }
-
-
-
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>(); //Gets component from game object from inspector tab
@@ -104,8 +82,6 @@ public class Movement : MonoBehaviour
         // }
 
 
-
-
         /*
                 Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -125,14 +101,34 @@ public class Movement : MonoBehaviour
     {
         facingRight = !facingRight;
         transform.Rotate(0f, 180f, 0f);
+        generateDust();
     }
 
     private void Jump()
     {
         body.velocity = new Vector2(body.velocity.x, jumpPower);
         anim.SetTrigger("Jump");
+        generateDust();
         jumpCount -= 1;
         grounded = false;
+    }
+
+    private bool isWalled()
+    {
+        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
+    }
+    private void wallSlide()
+    {
+        if (isWalled() && !grounded)
+        {
+            isWallSliding = true;
+            body.velocity = new Vector2(body.velocity.x, Mathf.Clamp(body.velocity.y, -wallSlideSpeed, float.MaxValue));
+        }
+        else
+        {
+            isWallSliding = false;
+        }
+
     }
     private void wallJump()
     {
@@ -154,10 +150,11 @@ public class Movement : MonoBehaviour
             isWallJump = true;
             body.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
             wallJumpingCounter = 0f;
+            generateDust();
 
             if (transform.localScale.x != wallJumpingDirection)
             {
-              flip();
+                flip();
             }
             Invoke(nameof(StopWallJumping), wallJumpingDuration);
         }
@@ -167,6 +164,10 @@ public class Movement : MonoBehaviour
         isWallJump = false;
     }
 
+    private void generateDust()
+    {
+        jumpDust.Play();
+    }
     //When player collides with Ground, reset number of jumps
     void OnCollisionEnter2D(Collision2D collision)
     {
