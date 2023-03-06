@@ -16,10 +16,8 @@ public class Orb : MonoBehaviour
         //Get the integer representation of the "Player" layer
         playerLayer = LayerMask.NameToLayer("Player");
 
-        /* Not yet
-                //Register this orb with the game manager
-                GameManager.RegisterOrb(this);
-            */
+		GameManager.RegisterOrb(this);
+
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -33,13 +31,10 @@ public class Orb : MonoBehaviour
         //at this location and rotation
         Instantiate(explosionVFXPrefab, transform.position, transform.rotation);
 
-        /* Not yet		
-                //Tell audio manager to play orb collection audio
-                AudioManager.PlayOrbCollectionAudio();
 
-                //Tell the game manager that this orb was collected
-                GameManager.PlayerGrabbedOrb(this);
-        */
+        //Tell the game manager that this orb was collected
+        GameManager.PlayerGrabbedOrb(this);
+
         //Deactivate this orb to hide it and prevent further collection
         gameObject.SetActive(false);
     }

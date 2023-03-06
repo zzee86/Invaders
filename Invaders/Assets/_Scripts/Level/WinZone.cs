@@ -22,7 +22,6 @@ public class WinZone : MonoBehaviour
 
 		//Write "Player Won" to the console and tell the Game Manager that the player
 		//won
-		Debug.Log("Player Won!");
-	//	GameManager.PlayerWon();
+		GameManager.PlayerWon();
 	}
 }

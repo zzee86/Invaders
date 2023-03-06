@@ -37,7 +37,6 @@ public class PlayerController : MonoBehaviour
 
 
     int groundLayer;
-    int trapLayer;
 
     [SerializeField] private ParticleSystem deathParticles;
 
@@ -50,11 +49,16 @@ public class PlayerController : MonoBehaviour
         Physics2D.IgnoreLayerCollision(3, 7);
 
         groundLayer = LayerMask.NameToLayer("Ground");
-        trapLayer = LayerMask.NameToLayer("Trap");
 
     }
     private void Update()
     {
+
+    
+    	if (GameManager.IsGameOver())
+		    return;
+
+
         float horizontalInput = Input.GetAxis("Horizontal"); //Store horizontal Input (-1, 0 ,1)
 
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
@@ -164,11 +168,6 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.layer == groundLayer)
         {
             grounded = true;
-        }
-        else if (collision.gameObject.layer == trapLayer)
-        {
-            Destroy(gameObject);
-            Instantiate(deathParticles, transform.position, Quaternion.identity);
         }
         jumpCount = maxJumps;
     }

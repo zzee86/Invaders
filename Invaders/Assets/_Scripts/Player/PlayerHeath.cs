@@ -17,13 +17,15 @@ public class PlayerHeath : MonoBehaviour
     private SpawnPlayer spawnPlayer;
     [SerializeField] private ParticleSystem deathParticles;
 
-public Vector2 testing;
+    int trapLayer;
+
+
+
     void Start()
     {
         health = maxHealth;
         healthBarSystem.SetHealth(health, maxHealth);
-
-        spawnPlayer = GetComponentInParent<SpawnPlayer>();
+        trapLayer = LayerMask.NameToLayer("Trap");
 
     }
 
@@ -37,10 +39,11 @@ public Vector2 testing;
         if (isAlive == false)
         {
             Debug.Log("respawn");
-            spawnPlayer.Spawn(new Vector2(-17f, -3.399f));
             isAlive = true;
-
         }
+
+
+
 
     }
 
@@ -51,12 +54,11 @@ public Vector2 testing;
 
         if (health <= 0)
         {
-            Destroy(gameObject);
             isAlive = false;
-            Instantiate(deathParticles, transform.position, Quaternion.identity);
+
+            playerDeath();
 
         }
-
         GameObject points = Instantiate(damagePopup, transform.position, Quaternion.identity);
         points.transform.localPosition += new Vector3(0, 1.5f, 0);
 
@@ -64,11 +66,27 @@ public Vector2 testing;
 
         // Not needed because of animation
         // Destroy(points, 0.5f);
-    }
 
-    public void death()
+
+    }
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject);
+        if (collision.gameObject.layer == trapLayer)
+        {
+            Instantiate(deathParticles, transform.position, Quaternion.identity);
+
+            playerDeath();
+        }
     }
 
+    void playerDeath()
+    {
+        Instantiate(deathParticles, transform.position, Quaternion.identity);
+
+        gameObject.SetActive(false);
+
+        //Tell the Game Manager that the player died and tell the Audio Manager to play
+        //the death audio
+        GameManager.PlayerDied();
+    }
 }

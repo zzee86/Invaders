@@ -8,160 +8,146 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
-	//This class holds a static reference to itself to ensure that there will only be
-	//one in existence. This is often referred to as a "singleton" design pattern. Other
-	//scripts access this one through its public static methods
-	static GameManager current;
+    //This class holds a static reference to itself to ensure that there will only be
+    //one in existence. This is often referred to as a "singleton" design pattern. Other
+    //scripts access this one through its public static methods
+    static GameManager current;
 
-	public float deathSequenceDuration = 1.5f;	//How long player death takes before restarting
+    public float deathSequenceDuration = 1.5f;  //How long player death takes before restarting
 
-	List<Orb> orbs;								//The collection of scene orbs
-	Door lockedDoor;							//The scene door
-	SceneFader sceneFader;						//The scene fader
-
-	int numberOfDeaths;							//Number of times player has died
-	float totalGameTime;						//Length of the total game time
-	bool isGameOver;							//Is the game currently over?
+    public List<Orb> orbs = new List<Orb>();                                //The collection of scene orbs
+    Door lockedDoor;                            //The scene door
+    int numberOfDeaths;                         //Number of times player has died
+    float totalGameTime;                        //Length of the total game time
+    bool isGameOver;                            //Is the game currently over?
 
 
-	void Awake()
-	{
-		//If a Game Manager exists and this isn't it...
-		if (current != null && current != this)
-		{
-			//...destroy this and exit. There can only be one Game Manager
-			Destroy(gameObject);
-			return;
-		}
+    void Awake()
+    {
+        //If a Game Manager exists and this isn't it...
+        if (current != null && current != this)
+        {
+            //...destroy this and exit. There can only be one Game Manager
+            Destroy(gameObject);
+            return;
+        }
 
-		//Set this as the current game manager
-		current = this;
+        //Set this as the current game manager
+        current = this;
 
-		//Create out collection to hold the orbs
-		orbs = new List<Orb>();
+        //Create out collection to hold the orbs
+        //	orbs = new List<Orb>();
 
-		//Persis this object between scene reloads
-		DontDestroyOnLoad(gameObject);
-	}
+        //Persis this object between scene reloads
+        DontDestroyOnLoad(gameObject);
+    }
 
-	void Update()
-	{
-		//If the game is over, exit
-		if (isGameOver)
-			return;
+    void Update()
+    {
+        //If the game is over, exit
+        if (current.isGameOver == true)
+            return;
 
-		//Update the total game time and tell the UI Manager to update
-		totalGameTime += Time.deltaTime;
-		UIManager.UpdateTimeUI(totalGameTime);
-	}
+        //Update the total game time and tell the UI Manager to update
+        totalGameTime += Time.deltaTime;
 
-	public static bool IsGameOver()
-	{
-		//If there is no current Game Manager, return false
-		if (current == null)
-			return false;
+    }
 
-		//Return the state of the game
-		return current.isGameOver;
-	}
+    public static bool IsGameOver()
+    {
+        //If there is no current Game Manager, return false
+        if (current == null)
+            return false;
 
-	public static void RegisterSceneFader(SceneFader fader)
-	{
-		//If there is no current Game Manager, exit
-		if (current == null)
-			return;
+        //Return the state of the game
+        return current.isGameOver;
+    }
 
-		//Record the scene fader reference
-		current.sceneFader = fader;
-	}
 
-	public static void RegisterDoor(Door door)
-	{
-		//If there is no current Game Manager, exit
-		if (current == null)
-			return;
 
-		//Record the door reference
-		current.lockedDoor = door;
-	}
+    public static void RegisterDoor(Door door)
+    {
+        //If there is no current Game Manager, exit
+        if (current == null)
+            return;
 
-	public static void RegisterOrb(Orb orb)
-	{
-		//If there is no current Game Manager, exit
-		if (current == null)
-			return;
+        //Record the door reference
+        current.lockedDoor = door;
 
-		//If the orb collection doesn't already contain this orb, add it
-		if (!current.orbs.Contains(orb))
-			current.orbs.Add(orb);
+    }
 
-		//Tell the UIManager to update the orb text
-		UIManager.UpdateOrbUI(current.orbs.Count);
-	}
+    public static void RegisterOrb(Orb orb)
+    {
+        //If there is no current Game Manager, exit
+        if (current == null)
+            return;
 
-	public static void PlayerGrabbedOrb(Orb orb)
-	{
-		//If there is no current Game Manager, exit
-		if (current == null)
-			return;
+        //If the orb collection doesn't already contain this orb, add it
+        if (!current.orbs.Contains(orb))
+            current.orbs.Add(orb);
 
-		//If the orbs collection doesn't have this orb, exit
-		if (!current.orbs.Contains(orb))
-			return;
+    }
 
-		//Remove the collected orb
-		current.orbs.Remove(orb);
+    public static void PlayerGrabbedOrb(Orb orb)
+    {
+        //If there is no current Game Manager, exit
+        if (current == null)
+            return;
 
-		//If there are no more orbs, tell the door to open
-		if (current.orbs.Count == 0)
-			current.lockedDoor.Open();
+        //If the orbs collection doesn't have this orb, exit
+        if (!current.orbs.Contains(orb))
+            return;
 
-		//Tell the UIManager to update the orb text
-		UIManager.UpdateOrbUI(current.orbs.Count);
-	}
+        //Remove the collected orb
+        current.orbs.Remove(orb);
 
-	public static void PlayerDied()
-	{
-		//If there is no current Game Manager, exit
-		if (current == null)
-			return;
+        //If there are no more orbs, tell the door to open
+        if (current.orbs.Count == 0)
+            current.lockedDoor.Open();
 
-		//Increment the number of player deaths and tell the UIManager
-		current.numberOfDeaths++;
-		UIManager.UpdateDeathUI(current.numberOfDeaths);
+        //Tell the UIManager to update the orb text
 
-		//If we have a scene fader, tell it to fade the scene out
-		if(current.sceneFader != null)
-			current.sceneFader.FadeSceneOut();
+    }
 
-		//Invoke the RestartScene() method after a delay
-		current.Invoke("RestartScene", current.deathSequenceDuration);
-	}
+    public static void PlayerDied()
+    {
+        //If there is no current Game Manager, exit
+        if (current == null)
+            return;
 
-	public static void PlayerWon()
-	{
-		//If there is no current Game Manager, exit
-		if (current == null)
-			return;
+        //Increment the number of player deaths and tell the UIManager
+        current.numberOfDeaths++;
 
-		//The game is now over
-		current.isGameOver = true;
+        //If we have a scene fader, tell it to fade the scene out
 
-		//Tell UI Manager to show the game over text and tell the Audio Manager to play
-		//game over audio
-		UIManager.DisplayGameOverText();
-		AudioManager.PlayWonAudio();
-	}
+        //Invoke the RestartScene() method after a delay
+        current.Invoke("RestartScene", current.deathSequenceDuration);
+    }
 
-	void RestartScene()
-	{
-		//Clear the current list of orbs
-		orbs.Clear();
+    public static void PlayerWon()
+    {
+        //If there is no current Game Manager, exit
+        if (current == null)
+            return;
 
-		//Play the scene restart audio
-		AudioManager.PlaySceneRestartAudio();
+        //The game is now over
+        current.isGameOver = true;
+		Debug.Log("finished");
 
-		//Reload the current scene
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); 
-	}
+        //Tell UI Manager to show the game over text and tell the Audio Manager to play
+        //game over audio
+        //	AudioManager.PlayWonAudio();
+    }
+
+    void RestartScene()
+    {
+        //Clear the current list of orbs
+        orbs.Clear();
+
+        //Play the scene restart audio
+        //AudioManager.PlaySceneRestartAudio();
+
+        //Reload the current scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
