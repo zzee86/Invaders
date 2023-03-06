@@ -5,6 +5,8 @@ using UnityEngine;
 public class DamageBullet : MonoBehaviour
 {
     [SerializeField] private float damageAmount;
+
+    [SerializeField] private GameObject particles;
     void Start()
     {
         Physics2D.IgnoreLayerCollision(6, 7);
@@ -17,6 +19,7 @@ public class DamageBullet : MonoBehaviour
             enemyComponent.TakeDamage(damageAmount);
 
         }
+        Instantiate(particles, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }
