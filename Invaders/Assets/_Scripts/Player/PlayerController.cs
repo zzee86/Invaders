@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
 
     private Rigidbody2D body;
@@ -11,7 +11,6 @@ public class Movement : MonoBehaviour
     private bool grounded = true;
     [SerializeField] int maxJumps;
     private int jumpCount;
-
     [SerializeField] private float jumpPower;
 
     bool facingRight = true;
@@ -36,6 +35,12 @@ public class Movement : MonoBehaviour
 
     private Shoot shootGun;
 
+
+    int groundLayer;
+    int trapLayer;
+
+    [SerializeField] private ParticleSystem deathParticles;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -43,6 +48,9 @@ public class Movement : MonoBehaviour
         anim = GetComponent<Animator>();
         jumpCount = maxJumps;
         Physics2D.IgnoreLayerCollision(3, 7);
+
+        groundLayer = LayerMask.NameToLayer("Ground");
+        trapLayer = LayerMask.NameToLayer("Trap");
 
     }
     private void Update()
@@ -73,30 +81,8 @@ public class Movement : MonoBehaviour
         anim.SetBool("Run", horizontalInput != 0);
         anim.SetBool("Grounded", grounded);
 
-
         wallSlide();
         wallJump();
-
-        // if (!isWallJump)
-        // {
-        //     flip();
-        // }
-
-
-        /*
-                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-
-                if (mousePos.x < transform.position.x && facingRight)
-                {
-                    flip();
-                }
-                else if (mousePos.x > transform.position.x && !facingRight)
-                {
-                    flip();
-                }
-        */
-
     }
     void flip()
     {
@@ -175,12 +161,15 @@ public class Movement : MonoBehaviour
     //When player collides with Ground, reset number of jumps
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.layer == groundLayer)
         {
             grounded = true;
         }
+        else if (collision.gameObject.layer == trapLayer)
+        {
+            Destroy(gameObject);
+            Instantiate(deathParticles, transform.position, Quaternion.identity);
+        }
         jumpCount = maxJumps;
-        Debug.Log(collision.gameObject.layer);
     }
-
 }

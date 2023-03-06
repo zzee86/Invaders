@@ -9,7 +9,7 @@ public class Shoot : MonoBehaviour
     // Vector2 direction;
     // Vector2 direction2;
 
-    private Movement movement;
+    private PlayerController movement;
     [SerializeField]
     private float bulletSpeed;
 

@@ -15,13 +15,13 @@ public class FollowPlayerController : MonoBehaviour
 
     void Update()
     {
-        if (FindObjectOfType<Movement>() == null)
+        if (FindObjectOfType<PlayerController>() == null)
         {
 
         }
         else
         {
-            vCamera.m_Follow = FindObjectOfType<Movement>().transform;
+            vCamera.m_Follow = FindObjectOfType<PlayerController>().transform;
         }
     }
 }
