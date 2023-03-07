@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
 
         //Update the total game time and tell the UI Manager to update
         totalGameTime += Time.deltaTime;
-        //UIManager.UpdateTimeUI(totalGameTime);
+        UIManager.UpdateTimeUI(totalGameTime);
     }
 
     public static bool IsGameOver()
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
             current.orbs.Add(orb);
 
         //Tell the UIManager to update the orb text
-        //	UIManager.UpdateOrbUI(current.orbs.Count);
+        	UIManager.UpdateOrbUI(current.orbs.Count);
     }
 
     public static void PlayerGrabbedOrb(Orb orb)
@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
             current.lockedDoor.Open();
 
         //Tell the UIManager to update the orb text
-        //	UIManager.UpdateOrbUI(current.orbs.Count);
+        	UIManager.UpdateOrbUI(current.orbs.Count);
     }
 
     public static void PlayerDied()
@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
 
         //Increment the number of player deaths and tell the UIManager
         current.numberOfDeaths++;
-        //UIManager.UpdateDeathUI(current.numberOfDeaths);
+        UIManager.UpdateDeathUI(current.numberOfDeaths);
 
         //If we have a scene fader, tell it to fade the scene out
         if (current.sceneFader != null)
@@ -151,7 +151,7 @@ public class GameManager : MonoBehaviour
 
         //Tell UI Manager to show the game over text and tell the Audio Manager to play
         //game over audio
-        //UIManager.DisplayGameOverText();
+        UIManager.DisplayGameOverText();
         //AudioManager.PlayWonAudio();
     }
 
