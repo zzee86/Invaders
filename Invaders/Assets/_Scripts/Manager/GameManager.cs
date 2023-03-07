@@ -174,4 +174,18 @@ public class GameManager : MonoBehaviour
         //Reload the current scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadSceneAsync(sceneName);
+
+    }
+    public void ResumeScene()
+    {
+        isPaused = true;
+        Time.timeScale = 1;
+        pauseMenu.SetActive(false);
+
+        Debug.Log(isPaused);
+    }
 }
