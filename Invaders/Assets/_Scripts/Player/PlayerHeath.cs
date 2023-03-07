@@ -15,7 +15,6 @@ public class PlayerHeath : MonoBehaviour
 
     bool isAlive = true;
 
-    private SpawnPlayer spawnPlayer;
     [SerializeField] private ParticleSystem deathParticles;
 
     int trapLayer;

@@ -5097,6 +5097,7 @@ GameObject:
   - component: {fileID: 4481475307069569861}
   - component: {fileID: 4481475307069569860}
   - component: {fileID: 4481475307069569863}
+  - component: {fileID: 356228687765485950}
   m_Layer: 3
   m_Name: player
   m_TagString: Player
@@ -5112,7 +5113,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4481475307069569854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.21, y: -1.57, z: 0}
+  m_LocalPosition: {x: -14.64, y: -1.647, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5280,7 +5281,28 @@ MonoBehaviour:
   damagePopup: {fileID: 5702730977154166128, guid: 55de394916764482585b8cffc86ac332, type: 3}
   healthBarSystem: {fileID: 4481475307121399451}
   deathParticles: {fileID: 198010156955401246, guid: aa9ea8a48bb27441597c8a4a55e18999, type: 3}
-  testing: {x: 0, y: 0}
+--- !u!66 &356228687765485950
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4481475307069569854}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 78c73dbb9020b4db68296876ab48cc3e, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths: []
+  m_CompositePaths:
+    m_Paths: []
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
 --- !u!1 &4481475307121399448
 GameObject:
   m_ObjectHideFlags: 0

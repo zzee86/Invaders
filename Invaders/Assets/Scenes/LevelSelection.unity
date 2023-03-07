@@ -1365,7 +1365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1924c3648dd3e4012a4f1a37c545195b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unlocked: 0
+  unlocked: 1
   unlockImage: {fileID: 1925605381}
 --- !u!1 &1912396251
 GameObject:

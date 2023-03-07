@@ -22,8 +22,7 @@ public class GameManager : MonoBehaviour
     int numberOfDeaths;                         //Number of times player has died
     float totalGameTime;                        //Length of the total game time
     bool isGameOver;                            //Is the game currently over?
-
-
+    
     void Awake()
     {
         //If a Game Manager exists and this isn't it...
@@ -135,8 +134,8 @@ public class GameManager : MonoBehaviour
         if (current.sceneFader != null)
             current.sceneFader.FadeSceneOut();
 
-        
-    
+
+
         //Invoke the RestartScene() method after a delay
         current.Invoke("RestartScene", current.deathSequenceDuration);
     }
