@@ -31,6 +31,8 @@ public class Orb : MonoBehaviour
         //at this location and rotation
         Instantiate(explosionVFXPrefab, transform.position, transform.rotation);
 
+		AudioManager.PlayOrbCollectionAudio();
+
 
         //Tell the game manager that this orb was collected
         GameManager.PlayerGrabbedOrb(this);

@@ -18,12 +18,13 @@ public class GameManager : MonoBehaviour
     List<Orb> orbs;                             //The collection of scene orbs
     Door lockedDoor;                            //The scene door
     SceneFader sceneFader;                      //The scene fader
+    public PauseMenu pauseMenu;
 
     int numberOfDeaths;                         //Number of times player has died
     float totalGameTime;                        //Length of the total game time
     bool isGameOver;                            //Is the game currently over?
     bool isPaused;
-    [SerializeField] private GameObject pauseMenu;
+
     void Awake()
     {
         //If a Game Manager exists and this isn't it...
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
         //Persis this object between scene reloads
         DontDestroyOnLoad(gameObject);
 
+
     }
 
     void Update()
@@ -55,12 +57,6 @@ public class GameManager : MonoBehaviour
         totalGameTime += Time.deltaTime;
         UIManager.UpdateTimeUI(totalGameTime);
 
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            isPaused = !isPaused;
-            Time.timeScale = isPaused ? 0 : 1;
-            pauseMenu.SetActive(isPaused);
-        }
     }
 
     public static bool IsGameOver()
@@ -81,6 +77,16 @@ public class GameManager : MonoBehaviour
 
         //Record the scene fader reference
         current.sceneFader = fader;
+    }
+    public static void RegisterPauseMenu(PauseMenu pause)
+    {
+        //If there is no current Game Manager, exit
+        if (current == null)
+            return;
+
+        //Record the scene fader reference
+        current.pauseMenu = pause;
+
     }
 
     public static void RegisterDoor(Door door)
@@ -106,6 +112,7 @@ public class GameManager : MonoBehaviour
         //Tell the UIManager to update the orb text
         UIManager.UpdateOrbUI(current.orbs.Count);
     }
+
 
     public static void PlayerGrabbedOrb(Orb orb)
     {
@@ -160,7 +167,7 @@ public class GameManager : MonoBehaviour
         //Tell UI Manager to show the game over text and tell the Audio Manager to play
         //game over audio
         UIManager.DisplayGameOverText();
-        //AudioManager.PlayWonAudio();
+        AudioManager.PlayWonAudio();
     }
 
     void RestartScene()
@@ -169,7 +176,7 @@ public class GameManager : MonoBehaviour
         orbs.Clear();
 
         //Play the scene restart audio
-        //	AudioManager.PlaySceneRestartAudio();
+        AudioManager.PlaySceneRestartAudio();
 
         //Reload the current scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -179,13 +186,5 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadSceneAsync(sceneName);
 
-    }
-    public void ResumeScene()
-    {
-        isPaused = true;
-        Time.timeScale = 1;
-        pauseMenu.SetActive(false);
-
-        Debug.Log(isPaused);
     }
 }

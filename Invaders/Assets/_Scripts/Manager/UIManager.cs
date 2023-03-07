@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
 	public TextMeshProUGUI orbText;			//Text element showing number of orbs
 	public TextMeshProUGUI timeText;		//Text element showing amount of time
 	public TextMeshProUGUI deathText;		//Text element showing number or deaths
-	public TextMeshProUGUI gameOverText;	//Text element showing the Game Over message
+	public GameObject gameOverCanvas;	//Text element showing the Game Over message
 
 
 	void Awake()
@@ -73,6 +73,6 @@ public class UIManager : MonoBehaviour
 			return;
 
 		//Show the game over text
-		current.gameOverText.enabled = true;
+		current.gameOverCanvas.SetActive(true);
 	}
 }
