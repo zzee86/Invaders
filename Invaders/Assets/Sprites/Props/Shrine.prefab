@@ -13979,7 +13979,7 @@ GameObject:
   - component: {fileID: 4324071311801414}
   - component: {fileID: 61439923041099976}
   - component: {fileID: 212397358105785492}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Shrine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19004,8 +19004,8 @@ MonoBehaviour:
     m_ImpulseType: 3
     m_DissipationRate: 0.25
     m_RawSignal: {fileID: 11400000, guid: 86f19195d8afa83448c31596ef830811, type: 2}
-    m_AmplitudeGain: 1
-    m_FrequencyGain: 110
+    m_AmplitudeGain: 0.3
+    m_FrequencyGain: 100
     m_RepeatMode: 0
     m_Randomize: 1
     m_TimeEnvelope:

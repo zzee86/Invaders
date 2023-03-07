@@ -135,6 +135,8 @@ public class GameManager : MonoBehaviour
         if (current.sceneFader != null)
             current.sceneFader.FadeSceneOut();
 
+        
+    
         //Invoke the RestartScene() method after a delay
         current.Invoke("RestartScene", current.deathSequenceDuration);
     }

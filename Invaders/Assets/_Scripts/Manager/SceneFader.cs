@@ -13,16 +13,12 @@ public class SceneFader : MonoBehaviour
 		//Get reference to Animator component
 		anim = GetComponent<Animator>();
 
-		//Get the integer hash of the "Fade" parameter.
-		fadeParamID = Animator.StringToHash("Fader");
-
-		//Register this Scene Fader with the Game Manager
-		//GameManager.RegisterSceneFader(this);
 	}
 
 	public void FadeSceneOut()
 	{
 		//Play the animation that fades the UI
-		anim.SetTrigger(fadeParamID);
+		anim.SetTrigger("FadeOut");
+
 	}
 }
