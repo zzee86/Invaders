@@ -22,7 +22,8 @@ public class GameManager : MonoBehaviour
     int numberOfDeaths;                         //Number of times player has died
     float totalGameTime;                        //Length of the total game time
     bool isGameOver;                            //Is the game currently over?
-    
+    bool isPaused;
+    [SerializeField] private GameObject pauseMenu;
     void Awake()
     {
         //If a Game Manager exists and this isn't it...
@@ -53,6 +54,13 @@ public class GameManager : MonoBehaviour
         //Update the total game time and tell the UI Manager to update
         totalGameTime += Time.deltaTime;
         UIManager.UpdateTimeUI(totalGameTime);
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            isPaused = !isPaused;
+            Time.timeScale = isPaused ? 0 : 1;
+            pauseMenu.SetActive(isPaused);
+        }
     }
 
     public static bool IsGameOver()
@@ -96,7 +104,7 @@ public class GameManager : MonoBehaviour
             current.orbs.Add(orb);
 
         //Tell the UIManager to update the orb text
-        	UIManager.UpdateOrbUI(current.orbs.Count);
+        UIManager.UpdateOrbUI(current.orbs.Count);
     }
 
     public static void PlayerGrabbedOrb(Orb orb)
@@ -117,7 +125,7 @@ public class GameManager : MonoBehaviour
             current.lockedDoor.Open();
 
         //Tell the UIManager to update the orb text
-        	UIManager.UpdateOrbUI(current.orbs.Count);
+        UIManager.UpdateOrbUI(current.orbs.Count);
     }
 
     public static void PlayerDied()
