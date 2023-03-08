@@ -5,8 +5,6 @@ public class SwingAxe : MonoBehaviour
 	public AnimationCurve swingPattern;
 	public float halfArcPerSecond = 25f;
 	public float angleForAudio = 2f;
-
-	AudioSource audioSource;
 	float timeModifier;
 	float elapsedTime;
 	float swingSize;
@@ -15,7 +13,6 @@ public class SwingAxe : MonoBehaviour
 
 	void Start ()
 	{
-		audioSource = GetComponent<AudioSource>();
 
 		float currentAngle = transform.rotation.eulerAngles.z;
 
@@ -37,8 +34,6 @@ public class SwingAxe : MonoBehaviour
 
 		float angle = swingPattern.Evaluate(elapsedTime) * swingSize * direction;
 
-		if (angle < angleForAudio && angle > -angleForAudio)
-			audioSource.Play();
 
 		Vector3 rot = transform.rotation.eulerAngles;
 		rot.z = angle;
