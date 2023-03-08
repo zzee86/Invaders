@@ -2,22 +2,13 @@
 
 public class FallingBlock : MonoBehaviour
 {
-    Animator anim;
-    BoxCollider2D box;
-    AudioSource audioSource;
-    int playerLayer;
+    [SerializeField] private GameObject dustParticles;
+    [SerializeField] private Vector3 Offset;
 
-    public GameObject shadow;
-
-    void Start()
+    void OnCollisionEnter2D(Collision2D collision)
     {
 
-        playerLayer = LayerMask.NameToLayer("Player");
-    }
-
-
-    public void Fall()
-    {
-        Debug.Log("done");
+        AudioManager.PlayRockCrunch();
+        Instantiate(dustParticles, transform.position + Offset, Quaternion.identity);
     }
 }
