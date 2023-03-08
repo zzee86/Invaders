@@ -12,6 +12,7 @@ TagManager:
   - Instant Death
   - Finish Level
   - Climb Wall
+  - FallingBlock
   layers:
   - Default
   - TransparentFX

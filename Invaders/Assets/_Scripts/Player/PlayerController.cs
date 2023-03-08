@@ -54,9 +54,9 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
 
-    
-    	if (GameManager.IsGameOver())
-		    return;
+
+        if (GameManager.IsGameOver())
+            return;
 
 
         float horizontalInput = Input.GetAxis("Horizontal"); //Store horizontal Input (-1, 0 ,1)
@@ -170,5 +170,10 @@ public class PlayerController : MonoBehaviour
             grounded = true;
         }
         jumpCount = maxJumps;
+
+        if (collision.gameObject.tag == "FallingBlock")
+        {
+            //FallingBlock.Fall();
+        }
     }
 }
