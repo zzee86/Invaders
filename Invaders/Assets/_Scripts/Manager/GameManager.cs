@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour
         //Persis this object between scene reloads
         DontDestroyOnLoad(gameObject);
 
-
     }
 
     void Update()
