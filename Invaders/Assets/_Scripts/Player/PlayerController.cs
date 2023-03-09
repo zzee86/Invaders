@@ -170,10 +170,5 @@ public class PlayerController : MonoBehaviour
             grounded = true;
         }
         jumpCount = maxJumps;
-
-        if (collision.gameObject.tag == "FallingBlock")
-        {
-            //FallingBlock.Fall();
-        }
     }
 }
