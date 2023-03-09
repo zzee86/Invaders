@@ -9,12 +9,12 @@ using UnityEngine.UI;
 
 public class PlayfabManager : MonoBehaviour
 {
-    public Text messageText;
-    public InputField RegisterEmailInput;
-    public InputField RegisterPasswordInput;
-    public InputField RegisterUsernameInput;
-    public InputField LoginEmailInput;
-    public InputField LoginPasswordInput;
+    public TextMeshProUGUI messageText;
+    public TMP_InputField RegisterEmailInput;
+    public TMP_InputField RegisterPasswordInput;
+    public TMP_InputField RegisterUsernameInput;
+    public TMP_InputField LoginEmailInput;
+    public TMP_InputField LoginPasswordInput;
 
     void OnError(PlayFabError error)
     {
@@ -125,7 +125,7 @@ public class PlayfabManager : MonoBehaviour
 */
     void StartGame()
     {
-        SceneManager.LoadScene("ConnectLobby");
+        SceneManager.LoadScene("MainMenu");
     }
 
 }
