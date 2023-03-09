@@ -10,13 +10,13 @@ public class Orb : MonoBehaviour
 
     int playerLayer;                        //The layer the player game object is on
 
-
     void Start()
     {
         //Get the integer representation of the "Player" layer
         playerLayer = LayerMask.NameToLayer("Player");
 
-		GameManager.RegisterOrb(this);
+        GameManager.RegisterOrb(this);
+
 
     }
 
@@ -31,7 +31,7 @@ public class Orb : MonoBehaviour
         //at this location and rotation
         Instantiate(explosionVFXPrefab, transform.position, transform.rotation);
 
-		AudioManager.PlayOrbCollectionAudio();
+        AudioManager.PlayOrbCollectionAudio();
 
 
         //Tell the game manager that this orb was collected
