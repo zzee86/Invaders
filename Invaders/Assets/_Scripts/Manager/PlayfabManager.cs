@@ -18,7 +18,7 @@ public class PlayfabManager : MonoBehaviour
 
     void OnError(PlayFabError error)
     {
-        messageText.text = error.ErrorMessage; 
+        messageText.text = error.ErrorMessage;
         Debug.Log("Error while logging in/creating account");
         Debug.Log(error.GenerateErrorReport());
     }
@@ -29,9 +29,10 @@ public class PlayfabManager : MonoBehaviour
         {
             messageText.text = "Password too short (Minimum 6 Characters)";
             return;
-        } else if (RegisterUsernameInput.text.Length < 4)
+        }
+        else if (RegisterUsernameInput.text.Length < 4)
         {
-            messageText.text = "Username too short (Minimum 4 characters)"; 
+            messageText.text = "Username too short (Minimum 4 characters)";
         }
 
         var request = new RegisterPlayFabUserRequest
@@ -49,8 +50,8 @@ public class PlayfabManager : MonoBehaviour
         var nameRequest = new UpdateUserTitleDisplayNameRequest
         {
             DisplayName = RegisterUsernameInput.text
-            
-    };
+
+        };
         PlayerPrefs.SetString("PlayerName", RegisterUsernameInput.text);
         PlayFabClientAPI.UpdateUserTitleDisplayName(nameRequest, OnDisplaNameUpdate, OnError); PlayFabClientAPI.UpdateUserTitleDisplayName(nameRequest, OnDisplaNameUpdate, OnError);
         GetPlayerProfile(result.PlayFabId);
@@ -101,31 +102,31 @@ public class PlayfabManager : MonoBehaviour
 
     }
 
-/*
-    public void SendLeaderboard(int wins)
-    {
-        var request = new UpdatePlayerStatisticsRequest
+    /*
+        public void SendLeaderboard(int wins)
         {
-            Statistics = new List<StatisticUpdate>
+            var request = new UpdatePlayerStatisticsRequest
             {
-                new StatisticUpdate
+                Statistics = new List<StatisticUpdate>
                 {
-                    StatisticName = "Total-Wins",
-                    Value = wins
+                    new StatisticUpdate
+                    {
+                        StatisticName = "Total-Wins",
+                        Value = wins
+                    }
                 }
-            }
-        };
-        PlayFabClientAPI.UpdatePlayerStatistics(request, OnLeaderboardUpdate , OnError); 
-    }
+            };
+            PlayFabClientAPI.UpdatePlayerStatistics(request, OnLeaderboardUpdate , OnError); 
+        }
 
-    void OnLeaderboardUpdate(UpdatePlayerStatisticsResult result)
-    {
-        Debug.Log("Successful leaderboard sent");
-    }
-*/
+        void OnLeaderboardUpdate(UpdatePlayerStatisticsResult result)
+        {
+            Debug.Log("Successful leaderboard sent");
+        }
+    */
     void StartGame()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Lobby");
     }
 
 }
