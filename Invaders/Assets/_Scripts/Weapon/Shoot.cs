@@ -32,10 +32,16 @@ public class Shoot : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    PhotonView PV;
 
-   // [SerializeField] private ShakeCamera shakeCamera;
+    // [SerializeField] private ShakeCamera shakeCamera;
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        PV = GetComponent<PhotonView>();
+
+    }
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -45,6 +51,7 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
             //MousePos - Relative to whole screen, Direction - Relative to Player
             Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             //  direction = mousePos - (Vector2)gun.position;
@@ -74,7 +81,8 @@ public class Shoot : MonoBehaviour
                     readyForNextShot = Time.time + 1 / fireRate;
                     ShootGun();
                 }
-        }
+            }
+        
     }
 
 
