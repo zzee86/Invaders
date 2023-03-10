@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class ShootMultiplayer : MonoBehaviourPunCallbacks, IPunObservable
+public class ShootMultiplayer : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     private Transform gun;
@@ -44,75 +44,53 @@ public class ShootMultiplayer : MonoBehaviourPunCallbacks, IPunObservable
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        AddObservable();
     }
 
-    private void AddObservable()
-    {
-        if (!PV.ObservedComponents.Contains(this))
-        {
-            PV.ObservedComponents.Add(this);
-        }
-    }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(spriteRenderer.flipY);
-        }
-        else
-        {
-            spriteRenderer.flipX = (bool)stream.ReceiveNext();
-        }
-    }
     // Update is called once per frame
     void Update()
     {
 
-        if (PV.IsMine)
+        //MousePos - Relative to whole screen, Direction - Relative to Player
+        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        //  direction = mousePos - (Vector2)gun.position;
+        //      Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        // Vector2 direction2 = mousePos - (Vector2)shootPoint.position;
+
+        float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
+
+        // Only flip the weapon
+        if (rotZ < 89 && rotZ > -89)
         {
-            //MousePos - Relative to whole screen, Direction - Relative to Player
-            Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            //  direction = mousePos - (Vector2)gun.position;
-            //      Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            spriteRenderer.flipY = false;
+        }
 
-            // Vector2 direction2 = mousePos - (Vector2)shootPoint.position;
+        else
+        {
+            spriteRenderer.flipY = true;
 
-            float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
+        }
 
-            // Only flip the weapon
-            if (rotZ < 89 && rotZ > -89)
+        if (Input.GetMouseButton(0))
+        {
+
+            if (Time.time > readyForNextShot)
             {
-                spriteRenderer.flipY = false;
-            }
-
-            else
-            {
-                spriteRenderer.flipY = true;
-
-            }
-
-            if (Input.GetMouseButton(0))
-            {
-
-                if (Time.time > readyForNextShot)
-                {
-                    readyForNextShot = Time.time + 1 / fireRate;
-                    ShootGun();
-                }
+                readyForNextShot = Time.time + 1 / fireRate;
+                ShootGun();
             }
         }
+
     }
 
 
 
     void ShootGun()
     {
-        GameObject bullets = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
+        GameObject bullets = PhotonNetwork.Instantiate(bullet.name, shootPoint.position, shootPoint.rotation);
         bullets.GetComponent<Rigidbody2D>().AddForce(bullets.transform.right * bulletSpeed);
-        Physics2D.IgnoreLayerCollision(3, 6);
         Destroy(bullets, 2);
         // May add later
         //  shakeCamera.Shake();

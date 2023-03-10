@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-
-public class PlayerControllerMultiplayer : MonoBehaviour
+using UnityEngine.UI;
+public class PlayerControllerMultiplayer : MonoBehaviourPun, Damageable
 {
 
     private Rigidbody2D body;
@@ -41,7 +41,14 @@ public class PlayerControllerMultiplayer : MonoBehaviour
 
     [SerializeField] private ParticleSystem deathParticles;
 
+
+
     PhotonView PV;
+    [SerializeField] Slider slider;
+    [SerializeField] private float maxHealth = 100;
+    [SerializeField] private float health = 100;
+
+
 
     // Start is called before the first frame update
     private void Awake()
@@ -53,11 +60,21 @@ public class PlayerControllerMultiplayer : MonoBehaviour
 
         groundLayer = LayerMask.NameToLayer("Ground");
         PV = GetComponent<PhotonView>();
-
+        health = maxHealth;
     }
     private void Update()
     {
-
+        if (PV.IsMine)
+        {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                TakeDamage(20f);
+            }
+        }
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
 
         if (GameManager.IsGameOver())
             return;
@@ -177,5 +194,19 @@ public class PlayerControllerMultiplayer : MonoBehaviour
             grounded = true;
         }
         jumpCount = maxJumps;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        PV.RPC("RPC_TakeDamage", RpcTarget.All, damage);
+    }
+
+    [PunRPC]
+    void RPC_TakeDamage(float damage)
+    {
+        health -= damage;
+        slider.value = 1 - (health / maxHealth);
+        Debug.Log("rpc: " + health);
+
     }
 }

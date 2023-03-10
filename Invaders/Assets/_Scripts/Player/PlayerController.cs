@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
+using ExitGames.Client.Photon;
+using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviourPunCallbacks, Damageable
 {
     private Rigidbody2D body;
     [SerializeField] private float speed;
@@ -32,6 +33,22 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private ParticleSystem deathParticles;
 
+
+
+    private const float maxHealth = 100;
+    public float health;
+    PhotonView PV;
+    public void TakeDamage(float damage)
+    {
+        PV.RPC("RPC_TakeDamage", RpcTarget.All, damage);
+    }
+
+    [PunRPC]
+    void RPC_TakeDamage(float damage)
+    {
+        health -= damage;
+        Debug.Log("health: " + health);
+    }
     // Start is called before the first frame update
     private void Awake()
     {
@@ -41,7 +58,7 @@ public class PlayerController : MonoBehaviour
         Physics2D.IgnoreLayerCollision(3, 7);
 
         groundLayer = LayerMask.NameToLayer("Ground");
-
+        PV = GetComponent<PhotonView>();
     }
     private void Update()
     {
