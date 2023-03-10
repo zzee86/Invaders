@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class ShootMultiplayer : MonoBehaviour
+public class ShootMultiplayer : MonoBehaviourPunCallbacks, IPunObservable
 {
     [SerializeField]
     private Transform gun;
     // Vector2 direction;
     // Vector2 direction2;
 
-    private PlayerController movement;
     [SerializeField]
     private float bulletSpeed;
 
@@ -27,14 +26,13 @@ public class ShootMultiplayer : MonoBehaviour
 
     private float readyForNextShot;
 
-    //int dir;
-
-
     private SpriteRenderer spriteRenderer;
 
     PhotonView PV;
 
     // [SerializeField] private ShakeCamera shakeCamera;
+
+
 
     // Start is called before the first frame update
     private void Awake()
@@ -46,12 +44,34 @@ public class ShootMultiplayer : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
+        AddObservable();
     }
 
+    private void AddObservable()
+    {
+        if (!PV.ObservedComponents.Contains(this))
+        {
+            PV.ObservedComponents.Add(this);
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(spriteRenderer.flipY);
+        }
+        else
+        {
+            spriteRenderer.flipX = (bool)stream.ReceiveNext();
+        }
+    }
     // Update is called once per frame
     void Update()
     {
 
+        if (PV.IsMine)
+        {
             //MousePos - Relative to whole screen, Direction - Relative to Player
             Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             //  direction = mousePos - (Vector2)gun.position;
@@ -62,6 +82,7 @@ public class ShootMultiplayer : MonoBehaviour
             float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
 
+            // Only flip the weapon
             if (rotZ < 89 && rotZ > -89)
             {
                 spriteRenderer.flipY = false;
@@ -82,7 +103,7 @@ public class ShootMultiplayer : MonoBehaviour
                     ShootGun();
                 }
             }
-        
+        }
     }
 
 
@@ -93,6 +114,7 @@ public class ShootMultiplayer : MonoBehaviour
         bullets.GetComponent<Rigidbody2D>().AddForce(bullets.transform.right * bulletSpeed);
         Physics2D.IgnoreLayerCollision(3, 6);
         Destroy(bullets, 2);
+        // May add later
         //  shakeCamera.Shake();
     }
 }

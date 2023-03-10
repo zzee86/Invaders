@@ -444,7 +444,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1895585484812287969}
   - component: {fileID: 1895585484812287975}
-  - component: {fileID: 1895585484812287974}
+  - component: {fileID: 1534726725187490395}
+  - component: {fileID: 1853659475633815086}
+  - component: {fileID: 1264929370537918609}
   m_Layer: 0
   m_Name: AK47
   m_TagString: Untagged
@@ -520,7 +522,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1895585484812287974
+--- !u!114 &1534726725187490395
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -529,7 +531,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1895585484812287968}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df9d33a08521745eb8b7129097a9637b, type: 3}
+  m_Script: {fileID: 11500000, guid: 97ecc0e5fb9254c4fbfc1442d9a46ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 1895585484812287969}
@@ -537,6 +539,45 @@ MonoBehaviour:
   shootPoint: {fileID: 1895585486299298357}
   bullet: {fileID: 4033888093599330519, guid: b849dcc8f96864f4d8d9ff5db3870aa4, type: 3}
   fireRate: 4
+--- !u!114 &1853659475633815086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895585484812287968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 1264929370537918609}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &1264929370537918609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895585484812287968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+  m_UseLocal: 1
 --- !u!1 &1895585484823306829
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,7 +959,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1895585486235713460}
   - component: {fileID: 1895585486235713461}
-  - component: {fileID: 1895585486235713482}
+  - component: {fileID: 4045170740958110369}
+  - component: {fileID: 6026412936420505773}
+  - component: {fileID: 4670264920422308143}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -994,7 +1037,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1895585486235713482
+--- !u!114 &4045170740958110369
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1003,7 +1046,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1895585486235713463}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df9d33a08521745eb8b7129097a9637b, type: 3}
+  m_Script: {fileID: 11500000, guid: 97ecc0e5fb9254c4fbfc1442d9a46ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 1895585486235713460}
@@ -1011,6 +1054,45 @@ MonoBehaviour:
   shootPoint: {fileID: 1895585484758070626}
   bullet: {fileID: 4033888093599330519, guid: b849dcc8f96864f4d8d9ff5db3870aa4, type: 3}
   fireRate: 2
+--- !u!114 &6026412936420505773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895585486235713463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 4670264920422308143}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &4670264920422308143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895585486235713463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+  m_UseLocal: 1
 --- !u!1 &1895585486299298356
 GameObject:
   m_ObjectHideFlags: 0
