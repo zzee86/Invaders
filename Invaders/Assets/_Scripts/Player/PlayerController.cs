@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class PlayerController : MonoBehaviour
 {
@@ -40,6 +41,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private ParticleSystem deathParticles;
 
+    PhotonView PV;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -49,6 +52,7 @@ public class PlayerController : MonoBehaviour
         Physics2D.IgnoreLayerCollision(3, 7);
 
         groundLayer = LayerMask.NameToLayer("Ground");
+        PV = GetComponent<PhotonView>();
 
     }
     private void Update()
@@ -59,34 +63,37 @@ public class PlayerController : MonoBehaviour
             return;
 
 
-        float horizontalInput = Input.GetAxis("Horizontal"); //Store horizontal Input (-1, 0 ,1)
+        if (PV.IsMine)
+        {
+            float horizontalInput = Input.GetAxis("Horizontal"); //Store horizontal Input (-1, 0 ,1)
 
-        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
-        //Flip player when changing direction
-        if (horizontalInput > 0.01f && !facingRight)
-        {
-            flip();
-        }
-        else if (horizontalInput < -0.01f && facingRight)
-        {
-            flip();
-        }
-
-        //Jump - GetKeyDown used to only register the initial click, not holding the space bar
-        if (Input.GetKeyDown(KeyCode.Space) && grounded)
-        {
-            if (jumpCount > 0)
+            body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+            //Flip player when changing direction
+            if (horizontalInput > 0.01f && !facingRight)
             {
-                Jump();
-
+                flip();
             }
+            else if (horizontalInput < -0.01f && facingRight)
+            {
+                flip();
+            }
+
+            //Jump - GetKeyDown used to only register the initial click, not holding the space bar
+            if (Input.GetKeyDown(KeyCode.Space) && grounded)
+            {
+                if (jumpCount > 0)
+                {
+                    Jump();
+
+                }
+            }
+
+            anim.SetBool("Run", horizontalInput != 0);
+            anim.SetBool("Grounded", grounded);
+
+            wallSlide();
+            wallJump();
         }
-
-        anim.SetBool("Run", horizontalInput != 0);
-        anim.SetBool("Grounded", grounded);
-
-        wallSlide();
-        wallJump();
     }
     void flip()
     {
