@@ -7,34 +7,29 @@ using System.IO;
 using Photon.Realtime;
 using UnityEngine.UI;
 
-public class WeaponMechanics : MonoBehaviourPunCallbacks, IPunObservable
+public class WeaponMechanics : MonoBehaviour
 {
-    [SerializeField] private GameObject ItemHolder;
-    [SerializeField] private Transform Gun;
-    [SerializeField] private Transform ShootPoint;
-    [SerializeField] GameObject[] items;
+    [SerializeField] private GameObject gunHolder;
+    [SerializeField] private Transform gunPoint;
+    [SerializeField] GameObject[] guns;
 
-    private int itemIndex = 0;
-    private int previousItemIndex = -1;
+    private int gunIndex = 0;
+    private int previousGunIndex = -1;
 
-    PhotonView PV;
 
-    void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(Gun.transform.rotation);
-        }
-        else if (stream.IsReading)
-        {
-            Gun.transform.rotation = (Quaternion)stream.ReceiveNext();
-        }
-    }
 
+    // Start is called before the first frame update
     void Start()
     {
-        PV = GetComponent<PhotonView>();
+        guns[0].SetActive(true);
+
+        for (int i = 1; i < guns.Length; i++)
+        {
+            guns[i].SetActive(false);
+        }
+
     }
+
 
 
     // Update is called once per frame
@@ -44,61 +39,50 @@ public class WeaponMechanics : MonoBehaviourPunCallbacks, IPunObservable
         //Switch to next/previous gun
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (itemIndex == -1)
-                itemIndex = 0;
-            else if (itemIndex + 1 > items.Length - 1)
-                itemIndex = 0;
+            if (gunIndex == -1)
+                gunIndex = 0;
+            else if (gunIndex + 1 > guns.Length - 1)
+                gunIndex = 0;
             else
-                itemIndex += 1;
+                gunIndex += 1;
 
-            EquipItem(itemIndex);
+            EquipItem(gunIndex);
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (itemIndex == -1)
-                itemIndex = 0;
-            else if (itemIndex - 1 < 0)
-                itemIndex = items.Length - 1;
+            if (gunIndex == -1)
+                gunIndex = 0;
+            else if (gunIndex - 1 < 0)
+                gunIndex = guns.Length - 1;
             else
-                itemIndex -= 1;
+                gunIndex -= 1;
 
-            EquipItem(itemIndex);
+            EquipItem(gunIndex);
         }
     }
-    public void EquipItem(int _index)
+    public void EquipItem(int index)
     {
         //If the player is trying to switch to the weapon already equipped return
-        if (_index == previousItemIndex)
+        if (index == previousGunIndex)
             return;
 
-        itemIndex = _index;
+        gunIndex = index;
 
-        ShowItem(itemIndex, true);
+        ShowItem(gunIndex, true);
 
         //If the previous item is showing, hide the gameObject
-        if (previousItemIndex != -1)
+        if (previousGunIndex != -1)
         {
-            ShowItem(previousItemIndex, false);
+            ShowItem(previousGunIndex, false);
         }
-
-
-        previousItemIndex = itemIndex;
-
-        Debug.Log("Current index");
+        previousGunIndex = gunIndex;
     }
 
     public void ShowItem(int index, bool show)
     {
-        PV.RPC("RPC_ShowItem", RpcTarget.All, index, show);
+        guns[index].SetActive(show);
     }
-
-    [PunRPC]
-    void RPC_ShowItem(int index, bool show)
-    {
-        items[index].SetActive(show);
-    }
-
 }
 
 

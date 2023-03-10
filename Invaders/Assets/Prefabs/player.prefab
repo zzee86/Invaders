@@ -103,7 +103,6 @@ MonoBehaviour:
   shootPoint: {fileID: 4481475307030307689}
   bullet: {fileID: 4033888093599330519, guid: b849dcc8f96864f4d8d9ff5db3870aa4, type: 3}
   fireRate: 2
-  shakeCamera: {fileID: 0}
 --- !u!1 &4481475306558630975
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +268,6 @@ MonoBehaviour:
   shootPoint: {fileID: 4481475306558630974}
   bullet: {fileID: 4033888093599330519, guid: b849dcc8f96864f4d8d9ff5db3870aa4, type: 3}
   fireRate: 4
-  shakeCamera: {fileID: 0}
 --- !u!1 &4481475307069569854
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,6 +283,7 @@ GameObject:
   - component: {fileID: 4481475307069569861}
   - component: {fileID: 4481475307069569860}
   - component: {fileID: 4481475307069569863}
+  - component: {fileID: 8261935535567408380}
   m_Layer: 3
   m_Name: player
   m_TagString: Player
@@ -468,6 +467,24 @@ MonoBehaviour:
   damagePopup: {fileID: 5702730977154166128, guid: 55de394916764482585b8cffc86ac332, type: 3}
   healthBarSystem: {fileID: 4481475307121399451}
   deathParticles: {fileID: 198010156955401246, guid: aa9ea8a48bb27441597c8a4a55e18999, type: 3}
+--- !u!114 &8261935535567408380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4481475307069569854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff8e207eceb34978a956bfbae8b64e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemHolder: {fileID: 4481475307506169092}
+  Gun: {fileID: 4481475307506169095}
+  ShootPoint: {fileID: 4481475307030307689}
+  items:
+  - {fileID: 4481475306358237628}
+  - {fileID: 4481475307056048619}
 --- !u!1 &4481475307121399448
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,7 +725,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4481475307506169095}
-  - component: {fileID: 4481475307506169094}
   m_Layer: 0
   m_Name: GunHolder
   m_TagString: Untagged
@@ -733,22 +749,6 @@ Transform:
   m_Father: {fileID: 4481475307069569858}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4481475307506169094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4481475307506169092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ff8e207eceb34978a956bfbae8b64e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentWeaponIndex: 0
-  guns: []
-  weaponHolder: {fileID: 4481475307506169092}
-  currentGun: {fileID: 0}
 --- !u!1 &4481475307744311842
 GameObject:
   m_ObjectHideFlags: 0

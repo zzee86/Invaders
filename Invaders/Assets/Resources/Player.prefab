@@ -161,13 +161,13 @@ GameObject:
   - component: {fileID: 1895585484798504264}
   - component: {fileID: 1895585484798504267}
   - component: {fileID: 1895585484798504266}
-  - component: {fileID: 1895585484798504270}
   - component: {fileID: 1895585484798504271}
   - component: {fileID: 1895585484798504268}
   - component: {fileID: 5942811612351688053}
   - component: {fileID: 7942057041203238391}
   - component: {fileID: -3994340655093670775}
-  - component: {fileID: 70958242764041521}
+  - component: {fileID: 8604368436768892353}
+  - component: {fileID: 2215548245124127885}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -293,27 +293,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1895585484798504270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1895585484798504245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb31a469f125d4d0186b897cec53cfde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  maxJumps: 1
-  jumpPower: 15
-  jumpDust: {fileID: 731783351702078107}
-  wallCheck: {fileID: 7776066832261488198}
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  deathParticles: {fileID: 198010156955401246, guid: aa9ea8a48bb27441597c8a4a55e18999, type: 3}
 --- !u!95 &1895585484798504271
 Animator:
   serializedVersion: 4
@@ -417,7 +396,7 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
---- !u!114 &70958242764041521
+--- !u!114 &8604368436768892353
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -426,15 +405,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 1895585484798504245}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ff8e207eceb34978a956bfbae8b64e8, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e99bfc18f9f045f3996e92b6b28cc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemHolder: {fileID: 1895585485100360463}
-  Gun: {fileID: 1895585485100360460}
-  ShootPoint: {fileID: 1895585484758070626}
-  items:
+  gunHolder: {fileID: 1895585485100360463}
+  gunPoint: {fileID: 1895585484758070626}
+  guns:
   - {fileID: 1895585486235713463}
   - {fileID: 1895585484812287968}
+--- !u!114 &2215548245124127885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895585484798504245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abee5e55ae11940f282c754f6fe23cf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  maxJumps: 1
+  jumpPower: 15
+  jumpDust: {fileID: 731783351702078107}
+  wallCheck: {fileID: 7776066832261488198}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  deathParticles: {fileID: 198010156955401246, guid: aa9ea8a48bb27441597c8a4a55e18999, type: 3}
 --- !u!1 &1895585484812287968
 GameObject:
   m_ObjectHideFlags: 0

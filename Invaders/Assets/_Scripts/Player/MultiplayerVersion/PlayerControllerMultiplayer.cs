@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class PlayerController : MonoBehaviour
+public class PlayerControllerMultiplayer : MonoBehaviour
 {
+
     private Rigidbody2D body;
     [SerializeField] private float speed;
     private Animator anim;
@@ -12,14 +13,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int maxJumps;
     private int jumpCount;
     [SerializeField] private float jumpPower;
+
     bool facingRight = true;
     [SerializeField] private ParticleSystem jumpDust;
 
-    // Wall Sliding
+
     private bool isWallSliding;
     private float wallSlideSpeed = 4;
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
+
+
+
 
     // Jumping from walls
     private bool isWallJump;
@@ -28,9 +33,15 @@ public class PlayerController : MonoBehaviour
     private float wallJumpingCounter;
     private float wallJumpingDuration = 0.4f;
     private Vector2 wallJumpingPower = new Vector2(8f, 16f);
+
+    private Shoot shootGun;
+
+
     int groundLayer;
 
     [SerializeField] private ParticleSystem deathParticles;
+
+    PhotonView PV;
 
     // Start is called before the first frame update
     private void Awake()
@@ -41,6 +52,7 @@ public class PlayerController : MonoBehaviour
         Physics2D.IgnoreLayerCollision(3, 7);
 
         groundLayer = LayerMask.NameToLayer("Ground");
+        PV = GetComponent<PhotonView>();
 
     }
     private void Update()
@@ -50,36 +62,39 @@ public class PlayerController : MonoBehaviour
         if (GameManager.IsGameOver())
             return;
 
-        float horizontalInput = Input.GetAxis("Horizontal"); //Store horizontal Input (-1, 0 ,1)
 
-        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
-        //Flip player when changing direction
-        if (horizontalInput > 0.01f && !facingRight)
+        if (PV.IsMine)
         {
-            flip();
-        }
-        else if (horizontalInput < -0.01f && facingRight)
-        {
-            flip();
-        }
+            float horizontalInput = Input.GetAxis("Horizontal"); //Store horizontal Input (-1, 0 ,1)
 
-        //Jump - GetKeyDown used to only register the initial click, not holding the space bar
-        if (Input.GetKeyDown(KeyCode.Space) && grounded)
-        {
-            if (jumpCount > 0)
+            body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+            //Flip player when changing direction
+            if (horizontalInput > 0.01f && !facingRight)
             {
-                Jump();
-
+                flip();
             }
+            else if (horizontalInput < -0.01f && facingRight)
+            {
+                flip();
+            }
+
+            //Jump - GetKeyDown used to only register the initial click, not holding the space bar
+            if (Input.GetKeyDown(KeyCode.Space) && grounded)
+            {
+                if (jumpCount > 0)
+                {
+                    Jump();
+
+                }
+            }
+
+            anim.SetBool("Run", horizontalInput != 0);
+            anim.SetBool("Grounded", grounded);
+
+            wallSlide();
+            wallJump();
         }
-
-        anim.SetBool("Run", horizontalInput != 0);
-        anim.SetBool("Grounded", grounded);
-
-        wallSlide();
-        wallJump();
     }
-
     void flip()
     {
         facingRight = !facingRight;
