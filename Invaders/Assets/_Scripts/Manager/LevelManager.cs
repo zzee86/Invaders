@@ -12,7 +12,12 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Slider slider;
 
 
+    [SerializeField] private TextMeshProUGUI welcome;
 
+    void Start()
+    {
+        welcome.text = "Welcome " + PlayerPrefs.GetString("PlayerName");
+    }
     public void LoadLevel(string sceneName)
     {
         StartCoroutine(LoadAsynchronously(sceneName));
@@ -31,6 +36,17 @@ public class LevelManager : MonoBehaviour
 
         }
 
+    }
+    public void LoadMultiplayer()
+    {
+        if (PlayerPrefs.GetString("PlayerName") == "")
+        {
+            SceneManager.LoadScene("Login");
+        }
+        else
+        {
+            SceneManager.LoadScene("Lobby");
+        }
     }
 }
 
