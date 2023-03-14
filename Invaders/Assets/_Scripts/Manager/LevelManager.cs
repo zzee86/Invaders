@@ -4,17 +4,19 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
+
 public class LevelManager : MonoBehaviour
 {
 
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private Slider slider;
 
-    [SerializeField] private TextMeshProUGUI welcomeText;
+
+    [SerializeField] private TextMeshProUGUI welcome;
 
     void Start()
     {
-        welcomeText.text = "Welcome " + PlayerPrefs.GetString("PlayerName");
+        welcome.text = "Welcome " + PlayerPrefs.GetString("PlayerName");
     }
     public void LoadLevel(string sceneName)
     {
@@ -44,7 +46,6 @@ public class LevelManager : MonoBehaviour
         else
         {
             SceneManager.LoadScene("Lobby");
-
         }
     }
 }

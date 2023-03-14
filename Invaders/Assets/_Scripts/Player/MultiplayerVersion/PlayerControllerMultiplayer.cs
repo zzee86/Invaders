@@ -1,11 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-using Photon.Realtime;
-using ExitGames.Client.Photon;
 using UnityEngine.UI;
-
-public class PlayerController : MonoBehaviourPunCallbacks, Damageable
+public class PlayerControllerMultiplayer : MonoBehaviourPun, Damageable
 {
+
     private Rigidbody2D body;
     [SerializeField] private float speed;
     private Animator anim;
@@ -13,14 +13,18 @@ public class PlayerController : MonoBehaviourPunCallbacks, Damageable
     [SerializeField] int maxJumps;
     private int jumpCount;
     [SerializeField] private float jumpPower;
+
     bool facingRight = true;
     [SerializeField] private ParticleSystem jumpDust;
 
-    // Wall Sliding
+
     private bool isWallSliding;
     private float wallSlideSpeed = 4;
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
+
+
+
 
     // Jumping from walls
     private bool isWallJump;
@@ -29,26 +33,23 @@ public class PlayerController : MonoBehaviourPunCallbacks, Damageable
     private float wallJumpingCounter;
     private float wallJumpingDuration = 0.4f;
     private Vector2 wallJumpingPower = new Vector2(8f, 16f);
+
+    private Shoot shootGun;
+
+
     int groundLayer;
 
     [SerializeField] private ParticleSystem deathParticles;
 
 
 
-    private const float maxHealth = 100;
-    public float health;
     PhotonView PV;
-    public void TakeDamage(float damage)
-    {
-        PV.RPC("RPC_TakeDamage", RpcTarget.All, damage);
-    }
+    [SerializeField] Slider slider;
+    [SerializeField] private float maxHealth = 100;
+    [SerializeField] private float health = 100;
 
-    [PunRPC]
-    void RPC_TakeDamage(float damage)
-    {
-        health -= damage;
-        Debug.Log("health: " + health);
-    }
+
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -59,44 +60,58 @@ public class PlayerController : MonoBehaviourPunCallbacks, Damageable
 
         groundLayer = LayerMask.NameToLayer("Ground");
         PV = GetComponent<PhotonView>();
+        health = maxHealth;
     }
     private void Update()
     {
-
+        if (PV.IsMine)
+        {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                TakeDamage(20f);
+            }
+        }
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
 
         if (GameManager.IsGameOver())
             return;
 
-        float horizontalInput = Input.GetAxis("Horizontal"); //Store horizontal Input (-1, 0 ,1)
 
-        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
-        //Flip player when changing direction
-        if (horizontalInput > 0.01f && !facingRight)
+        if (PV.IsMine)
         {
-            flip();
-        }
-        else if (horizontalInput < -0.01f && facingRight)
-        {
-            flip();
-        }
+            float horizontalInput = Input.GetAxis("Horizontal"); //Store horizontal Input (-1, 0 ,1)
 
-        //Jump - GetKeyDown used to only register the initial click, not holding the space bar
-        if (Input.GetKeyDown(KeyCode.Space) && grounded)
-        {
-            if (jumpCount > 0)
+            body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+            //Flip player when changing direction
+            if (horizontalInput > 0.01f && !facingRight)
             {
-                Jump();
-
+                flip();
             }
+            else if (horizontalInput < -0.01f && facingRight)
+            {
+                flip();
+            }
+
+            //Jump - GetKeyDown used to only register the initial click, not holding the space bar
+            if (Input.GetKeyDown(KeyCode.Space) && grounded)
+            {
+                if (jumpCount > 0)
+                {
+                    Jump();
+
+                }
+            }
+
+            anim.SetBool("Run", horizontalInput != 0);
+            anim.SetBool("Grounded", grounded);
+
+            wallSlide();
+            wallJump();
         }
-
-        anim.SetBool("Run", horizontalInput != 0);
-        anim.SetBool("Grounded", grounded);
-
-        wallSlide();
-        wallJump();
     }
-
     void flip()
     {
         facingRight = !facingRight;
@@ -179,5 +194,19 @@ public class PlayerController : MonoBehaviourPunCallbacks, Damageable
             grounded = true;
         }
         jumpCount = maxJumps;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        PV.RPC("RPC_TakeDamage", RpcTarget.All, damage);
+    }
+
+    [PunRPC]
+    void RPC_TakeDamage(float damage)
+    {
+        health -= damage;
+        slider.value = 1 - (health / maxHealth);
+        Debug.Log("rpc: " + health);
+
     }
 }

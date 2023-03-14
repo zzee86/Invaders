@@ -15,7 +15,7 @@ public class ConnectManager : MonoBehaviourPunCallbacks
 
     private const string gameVersion = "1.0";
 
-    private string[] Maps = new string[] {"Multiplayer1"}; 
+    private string[] Maps = new string[] { "Multiplayer1" };
 
     void Awake()
     {
@@ -86,7 +86,7 @@ public class ConnectManager : MonoBehaviourPunCallbacks
     //If Disconnected or no room made/found, take back to Lobby
     public override void OnDisconnected(DisconnectCause cause)
     {
-        ConnectPanel.SetActive(true); 
+        ConnectPanel.SetActive(true);
     }
 
     //When room has been joined
