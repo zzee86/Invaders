@@ -78,7 +78,6 @@ public class PlayfabManager : MonoBehaviour
         PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnError);
 
     }
-
     void OnLoginSuccess(LoginResult result)
     {
         GetPlayerProfile(result.PlayFabId);
@@ -86,6 +85,23 @@ public class PlayfabManager : MonoBehaviour
         Debug.Log("Successful login");
         StartGame();
     }
+
+    public void ResetPasswordButton()
+    {
+        var request = new SendAccountRecoveryEmailRequest
+        {
+            Email = LoginEmailInput.text,
+            TitleId = "47667"
+        };
+        PlayFabClientAPI.SendAccountRecoveryEmail(request, OnPasswordResetSuccess, OnError);
+    }
+    void OnPasswordResetSuccess(SendAccountRecoveryEmailResult result)
+    {
+        messageText.text = "Password reset link has been sent to your email";
+    }
+
+
+
 
     void GetPlayerProfile(string playFabId)
     {

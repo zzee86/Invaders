@@ -10,10 +10,12 @@ public class DamageBullet : MonoBehaviourPunCallbacks
 
     PhotonView PV;
 
+    // Method not being called in multiplayer
+
     void Awake()
     {
         PV = GetComponent<PhotonView>();
-
+        Debug.Log("bullet");
     }
     void Start()
     {
@@ -21,7 +23,8 @@ public class DamageBullet : MonoBehaviourPunCallbacks
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        collision.gameObject.GetComponent<PlayerController>()?.TakeDamage(30f);
+        Debug.Log("oncollision");
+        collision.gameObject.GetComponent<PlayerControllerMultiplayer>()?.TakeDamage(30f);
     }
 
 

@@ -50,8 +50,11 @@ public class ShootMultiplayer : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
+        if (!PV.IsMine)
+            return;
 
-        //MousePos - Relative to whole screen, Direction - Relative to Player
+                //MousePos - Relative to whole screen, Direction - Relative to Player
+        
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         //  direction = mousePos - (Vector2)gun.position;
         //      Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
