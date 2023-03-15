@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1895585484751110295}
   - component: {fileID: 1895585484751110294}
   - component: {fileID: 1207110143216228623}
+  - component: {fileID: 7812788556665456335}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -124,6 +125,22 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &7812788556665456335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895585484751110291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55f34901fef0448de8eca13e583b651f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Slider: {fileID: 1895585485465938990}
+  Low: {r: 0.2838149, g: 1, b: 0, a: 0}
+  High: {r: 1, g: 0, b: 0, a: 0}
+  Offset: {x: 0, y: 1, z: 0}
 --- !u!1 &1895585484758070637
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,6 +191,7 @@ GameObject:
   - component: {fileID: -3994340655093670775}
   - component: {fileID: 8604368436768892353}
   - component: {fileID: 2215548245124127885}
+  - component: {fileID: 5897165730959497748}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -440,9 +458,23 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   deathParticles: {fileID: 198010156955401246, guid: aa9ea8a48bb27441597c8a4a55e18999, type: 3}
-  slider: {fileID: 1895585485465938990}
-  maxHealth: 100
-  health: 0
+--- !u!114 &5897165730959497748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895585484798504245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 979254ca518df4f789bbaa212e989ef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 200
+  maxHealth: 200
+  damagePopup: {fileID: 5702730977154166128, guid: 55de394916764482585b8cffc86ac332, type: 3}
+  healthBarSystem: {fileID: 7812788556665456335}
+  deathParticles: {fileID: 198010156955401246, guid: aa9ea8a48bb27441597c8a4a55e18999, type: 3}
 --- !u!1 &1895585484812287968
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,6 +628,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1895585484823306818}
+  - component: {fileID: 3693393685135949286}
   m_Layer: 5
   m_Name: Fill Area
   m_TagString: Untagged
@@ -624,6 +657,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0.31000042}
   m_SizeDelta: {x: -5.586, y: -4.346}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3693393685135949286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895585484823306829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1895585484972033728
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,6 +690,7 @@ GameObject:
   - component: {fileID: 1895585484972033729}
   - component: {fileID: 1895585484972033735}
   - component: {fileID: 1895585484972033734}
+  - component: {fileID: 3724727414298501590}
   m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
@@ -700,6 +756,28 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3724727414298501590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895585484972033728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1895585485100360463
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,6 +881,7 @@ GameObject:
   - component: {fileID: 1895585485389318539}
   - component: {fileID: 1895585485389318537}
   - component: {fileID: 1895585485389318536}
+  - component: {fileID: 5565889393160832106}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -868,6 +947,28 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5565889393160832106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895585485389318538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1895585485465938985
 GameObject:
   m_ObjectHideFlags: 0

@@ -51,7 +51,7 @@ public class PlayerHeath : MonoBehaviour
     {
         health -= damageAmount;
         healthBarSystem.SetHealth(health, maxHealth);
-Debug.Log("DAMAGE AMOUNT: " + damageAmount + ", CURRENT HEALTH: " + health);
+
         if (health <= 0)
         {
             isAlive = false;

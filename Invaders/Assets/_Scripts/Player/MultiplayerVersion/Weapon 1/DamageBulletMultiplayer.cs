@@ -24,7 +24,7 @@ public class DamageBullet : MonoBehaviourPunCallbacks
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("oncollision");
-        collision.gameObject.GetComponent<PlayerControllerMultiplayer>()?.TakeDamage(30f);
+    //    collision.gameObject.GetComponent<PlayerControllerMultiplayer>()?.TakeDamage(30f);
     }
 
 
