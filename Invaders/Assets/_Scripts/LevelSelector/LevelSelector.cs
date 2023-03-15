@@ -10,14 +10,12 @@ public class LevelSelector : MonoBehaviour
 
     void Start()
     {
-        // PlayerPrefs.DeleteAll();
+         PlayerPrefs.DeleteAll();
     }
     void Update()
     {
         UpdateLevelImage();
         UpdateLevelStatus();
-        //  PlayerPrefs.DeleteAll();
-        //     Debug.Log(PlayerPrefs.GetInt("Lv'" + 1));
         Debug.Log(PlayerPrefs.GetInt("Lv" + 1));
     }
     private void UpdateLevelStatus()

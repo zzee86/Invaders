@@ -13,6 +13,10 @@ public class KeyboardInput : MonoBehaviour
     {
         eventSystem = EventSystem.current;
         firstItem.Select();
+        if (button == null)
+        {
+
+        }
     }
     void Update()
     {
