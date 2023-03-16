@@ -457,7 +457,7 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 256
-  deathParticles: {fileID: 198010156955401246, guid: aa9ea8a48bb27441597c8a4a55e18999, type: 3}
+  deathParticles: {fileID: 7731649764326244016, guid: cbdc6ad7ae961415a9c0e2a66b70efe7, type: 3}
 --- !u!114 &5897165730959497748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,7 +474,7 @@ MonoBehaviour:
   maxHealth: 200
   damagePopup: {fileID: 5702730977154166128, guid: 55de394916764482585b8cffc86ac332, type: 3}
   healthBarSystem: {fileID: 7812788556665456335}
-  deathParticles: {fileID: 198010156955401246, guid: aa9ea8a48bb27441597c8a4a55e18999, type: 3}
+  deathParticles: {fileID: 7731649764326244016, guid: cbdc6ad7ae961415a9c0e2a66b70efe7, type: 3}
 --- !u!1 &1895585484812287968
 GameObject:
   m_ObjectHideFlags: 0

@@ -43,6 +43,7 @@ MonoBehaviour:
   - RPC_ShowItem
   - RPC_TakeDamage
   - RPC_SetHealth
+  - RPC_playerDeath
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

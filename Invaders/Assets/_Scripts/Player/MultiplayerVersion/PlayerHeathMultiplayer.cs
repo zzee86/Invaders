@@ -94,7 +94,13 @@ public class PlayerHeathMultiplayer : MonoBehaviourPunCallbacks
 
     void playerDeath()
     {
-        Instantiate(deathParticles, transform.position, Quaternion.identity);
+        pv.RPC("RPC_playerDeath", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void RPC_playerDeath()
+    {
+        PhotonNetwork.Instantiate(deathParticles.name, transform.position, Quaternion.identity);
 
         gameObject.SetActive(false);
 
@@ -102,4 +108,5 @@ public class PlayerHeathMultiplayer : MonoBehaviourPunCallbacks
         //the death audio
         GameManager.PlayerDied();
     }
+
 }
