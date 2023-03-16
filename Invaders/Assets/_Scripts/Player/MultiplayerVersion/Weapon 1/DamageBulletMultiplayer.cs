@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-public class DamageBullet : MonoBehaviourPunCallbacks
+public class DamageBulletMultiplayer : MonoBehaviourPunCallbacks
 {
     [SerializeField] private float damageAmount;
 
@@ -28,8 +28,15 @@ public class DamageBullet : MonoBehaviourPunCallbacks
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("oncollision");
-        //    collision.gameObject.GetComponent<PlayerControllerMultiplayer>()?.TakeDamage(30f);
+        // Debug.Log("photon bullet");
+        // collision.gameObject.GetComponent<PlayerHeathMultiplayer>()?.TakeDamage(30f);
+        if (collision.gameObject.TryGetComponent<PlayerHeathMultiplayer>(out PlayerHeathMultiplayer enemyComponent))
+        {
+            enemyComponent.TakeDamage(damageAmount);
+
+        }
+        Instantiate(particles, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
 

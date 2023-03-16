@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageBulletMultiplayer : MonoBehaviour
+public class DamageBullet : MonoBehaviour
 {
     [SerializeField] private float damageAmount;
 
