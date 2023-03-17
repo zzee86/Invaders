@@ -18,6 +18,7 @@ public class AgentController : MonoBehaviour
 
     [SerializeField] private PlayerHeath playerHeath;
 
+    private Animator anim;
     private State state;
 
     private enum State
@@ -29,7 +30,7 @@ public class AgentController : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, waypoints[0].position, moveSpeed * Time.deltaTime);
         state = State.Patrolling;
-
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -47,6 +48,7 @@ public class AgentController : MonoBehaviour
     void Patrol()
     {
         FindTarget();
+        anim.SetBool("isMoving", true);
         transform.position = Vector2.MoveTowards(transform.position, waypoints[index].position, moveSpeed * Time.deltaTime);
 
         if (waypoints[index] != null)
@@ -119,6 +121,7 @@ public class AgentController : MonoBehaviour
 
     IEnumerator AttackPlayer()
     {
+        anim.SetTrigger("attack");
         playerHeath.TakeDamage(20);
         yield return new WaitForSeconds(0.5f);
         attackCooldown = true;

@@ -11,41 +11,18 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject damagePopup;
 
     public HealthBarSystem healthBarSystem;
-    // public GameObject testing;
-    //  [SerializeField] Slider slider;
-    // public Color low;
-    // public Color High;
-    // public Vector3 offset;
 
     void Start()
     {
         health = maxHealth;
         healthBarSystem.SetHealth(health, maxHealth);
-        // testing.GetComponent<HealthBarSystem>().SetHealth(health, maxHealth);
-
-        //   slider.maxValue = maxHealth;
-        //   slider.value = health;
-        //   slider.fillRect.GetComponentInChildren<Image>().color = Color.Lerp(low, High, slider.normalizedValue);
 
     }
-    // void Update(){
-
-    //   slider.transform.position = Camera.main.WorldToScreenPoint(transform.parent.position + offset);
-
-    // }
 
     public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
         healthBarSystem.SetHealth(health, maxHealth);
-        // slider.gameObject.SetActive(health < maxHealth);
-        // slider.value = health;
-        // testing.GetComponent<HealthBarSystem>().SetHealth(health, maxHealth);
-        // GameObject twy = Instantiate(testing, transform.position, Quaternion.identity);
-
-        // Destroy(twy, 1f);
-
-
 
         if (health <= 0)
         {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamageBullet : MonoBehaviour
 {
-    [SerializeField] private float damageAmount;
+    [SerializeField] private float damageAmount = 45;
 
     [SerializeField] private GameObject particles;
     void Start()
