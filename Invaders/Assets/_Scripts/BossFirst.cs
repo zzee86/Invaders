@@ -35,9 +35,7 @@ public class BossFirst : MonoBehaviour
     bool attackCooldown = true;
 
     [SerializeField] private PlayerHeath playerHeath;
-
-
-    public Animator anim;
+    private Animator anim;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +52,6 @@ public class BossFirst : MonoBehaviour
         isTouchingDown = Physics2D.OverlapCircle(groundDown.position, groundRadius, groundLayer);
         isTouchingWall = Physics2D.OverlapCircle(groundWall.position, groundRadius, groundLayer);
 
-        //IdleState();
         AttackState();
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -62,7 +59,7 @@ public class BossFirst : MonoBehaviour
         }
         // FlipTowardsPlayer();
     }
-    void IdleState()
+    public void IdleState()
     {
         if (isTouchingUp && goingUp)
         {
@@ -86,7 +83,7 @@ public class BossFirst : MonoBehaviour
 
         body.velocity = idleMoveSpeed * idleMoveDirection;
     }
-    void AttackState()
+    public void AttackState()
     {
         if (isTouchingUp && goingUp)
         {
@@ -108,10 +105,11 @@ public class BossFirst : MonoBehaviour
             }
         }
 
-        body.velocity = attackMoveSpeed * attackMoveDirection;
+        body.velocity = Random.Range(20, 25) * attackMoveDirection;
     }
-    void AttackPlayer()
+    public void AttackPlayer()
     {
+        Debug.Log("ran");
         playerPos = player.position - transform.position;
         playerPos.Normalize();
         body.velocity = playerPos * attackPlayerSpeed;

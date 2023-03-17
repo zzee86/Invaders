@@ -922,7 +922,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   playerHeath: {fileID: 1734963338}
-  anim: {fileID: 0}
 --- !u!114 &156287980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81525,6 +81524,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character (76)
       objectReference: {fileID: 0}
+    - target: {fileID: 3043329476595022016, guid: e4baef5eca788a14aa41d0dd1e9aa338, type: 3}
+      propertyPath: m_TagString
+      value: FloatingEnemey
+      objectReference: {fileID: 0}
     - target: {fileID: 3043329476595022019, guid: e4baef5eca788a14aa41d0dd1e9aa338, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -81614,7 +81617,7 @@ MonoBehaviour:
   attackMoveSpeed: 20
   attackMoveDirection: {x: -1, y: 5}
   attackPlayerSpeed: 25
-  player: {fileID: 569828101}
+  player: {fileID: 1734963336}
   playerPos: {x: 0, y: 0}
   groundUp: {fileID: 2047938613}
   groundDown: {fileID: 181034145}
@@ -81624,7 +81627,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   playerHeath: {fileID: 1734963338}
-  anim: {fileID: 0}
 --- !u!50 &1548605715
 Rigidbody2D:
   serializedVersion: 4

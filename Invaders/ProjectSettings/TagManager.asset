@@ -13,6 +13,7 @@ TagManager:
   - Finish Level
   - Climb Wall
   - FallingBlock
+  - FloatingEnemey
   layers:
   - Default
   - TransparentFX
