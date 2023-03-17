@@ -24,6 +24,11 @@ public class Enemy : MonoBehaviour
         health -= damageAmount;
         healthBarSystem.SetHealth(health, maxHealth);
 
+        if (health <= 200)
+        {
+            GetComponent<Animator>().SetBool("IsEnraged", true);
+        }
+
         if (health <= 0)
         {
             Destroy(gameObject);
