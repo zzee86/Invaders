@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject damagePopup;
 
     public HealthBarSystem healthBarSystem;
+    public bool isInvulnerable = false;
 
     void Start()
     {
@@ -21,10 +22,13 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
+        if (isInvulnerable)
+            return;
+
         health -= damageAmount;
         healthBarSystem.SetHealth(health, maxHealth);
 
-        if (health <= 200)
+        if (health <= 500)
         {
             GetComponent<Animator>().SetBool("IsEnraged", true);
         }
