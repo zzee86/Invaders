@@ -14,20 +14,19 @@ public class PlayerHeathMultiplayer : MonoBehaviourPunCallbacks
 
     public HealthBarSystem1 healthBarSystem;
 
-    bool isAlive = true;
-
     [SerializeField] private ParticleSystem deathParticles;
 
     int trapLayer;
 
     PhotonView pv;
-
+    public PlayerManagerMultiplayer playerManagerMultiplayer;
     void Start()
     {
         health = maxHealth;
         healthBarSystem.SetHealth(health, maxHealth);
         trapLayer = LayerMask.NameToLayer("Trap");
         pv = GetComponent<PhotonView>();
+        playerManagerMultiplayer = PhotonView.Find((int)pv.InstantiationData[0]).GetComponent<PlayerManagerMultiplayer>();
     }
 
     void Update()
@@ -40,16 +39,6 @@ public class PlayerHeathMultiplayer : MonoBehaviourPunCallbacks
             TakeDamage(20);
             Debug.Log("inflicted");
         }
-
-        if (isAlive == false)
-        {
-            Debug.Log("respawn");
-            isAlive = true;
-        }
-
-
-
-
     }
 
     public void TakeDamage(float damageAmount)
@@ -57,29 +46,25 @@ public class PlayerHeathMultiplayer : MonoBehaviourPunCallbacks
 
         // Not needed because of animation
         // Destroy(points, 0.5f);
-        pv.RPC("RPC_TakeDamage", RpcTarget.All, damageAmount);
+        pv.RPC("RPC_TakeDamage", pv.Owner, damageAmount);
     }
     [PunRPC]
-    private void RPC_TakeDamage(float damageAmount)
+    private void RPC_TakeDamage(float damageAmount, PhotonMessageInfo info)
     {
-        if (pv.IsMine)
+
+        health -= damageAmount;
+        healthBarSystem.SetHealth(health, maxHealth);
+
+        if (health <= 0)
         {
-            health -= damageAmount;
-            healthBarSystem.SetHealth(health, maxHealth);
-
-            if (health <= 0)
-            {
-                isAlive = false;
-
-                playerDeath();
-
-            }
-            GameObject points = Instantiate(damagePopup, transform.position, Quaternion.identity);
-            points.transform.localPosition += new Vector3(0, 1.5f, 0);
-
-            points.GetComponentInChildren<TextMeshPro>().SetText(damageAmount.ToString());
-
+            Debug.Log("should use find now");
+            playerDeath();
+            PlayerManagerMultiplayer.Find(info.Sender).GetKill();
         }
+        GameObject points = PhotonNetwork.Instantiate(damagePopup.name, transform.position, Quaternion.identity);
+        points.transform.localPosition += new Vector3(0, 1.5f, 0);
+
+        points.GetComponentInChildren<TextMeshPro>().SetText(damageAmount.ToString());
 
     }
     void OnCollisionEnter2D(Collision2D collision)
@@ -87,26 +72,11 @@ public class PlayerHeathMultiplayer : MonoBehaviourPunCallbacks
         if (collision.gameObject.layer == trapLayer)
         {
             Instantiate(deathParticles, transform.position, Quaternion.identity);
-
-            playerDeath();
         }
     }
 
     void playerDeath()
     {
-        pv.RPC("RPC_playerDeath", RpcTarget.All);
+        playerManagerMultiplayer.playerDeath();
     }
-
-    [PunRPC]
-    void RPC_playerDeath()
-    {
-        PhotonNetwork.Instantiate(deathParticles.name, transform.position, Quaternion.identity);
-
-        gameObject.SetActive(false);
-
-        //Tell the Game Manager that the player died and tell the Audio Manager to play
-        //the death audio
-        GameManager.PlayerDied();
-    }
-
 }

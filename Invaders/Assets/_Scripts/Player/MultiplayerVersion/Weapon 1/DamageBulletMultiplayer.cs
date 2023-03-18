@@ -21,11 +21,6 @@ public class DamageBulletMultiplayer : MonoBehaviourPunCallbacks
     {
         Physics2D.IgnoreLayerCollision(6, 7);
     }
-    void Update()
-    {
-        Debug.Log("Bullet spawned");
-
-    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Debug.Log("photon bullet");

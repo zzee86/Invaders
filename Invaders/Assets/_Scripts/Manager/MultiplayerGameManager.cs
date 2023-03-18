@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Photon.Pun;
-public class MultiplayerGameManager : MonoBehaviour
+using TMPro;
+using Photon.Realtime;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.IO;
+
+public class MultiplayerGameManager : MonoBehaviourPunCallbacks
 {
 
     public static MultiplayerGameManager instance;
+    Transform spawnPoint;
 
-    private Vector3 spawn1 = new Vector3(-19.38f, -4.8f, 0);
-    private Vector3 spawn2 = new Vector3(-15.47f, -4.8f, 0);
-    public GameObject playerMain;
-
+    PhotonView pv;
+    int kills;
     private void Awake()
     {
         //Singleton - If RoomManager exists, delete it
@@ -22,35 +26,27 @@ public class MultiplayerGameManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject); //If only one, make this the manager
         instance = this;
+        pv = GetComponent<PhotonView>();
     }
 
-    void Start()
+
+    public override void OnEnable()
     {
-        PhotonNetwork.Instantiate(playerMain.name, spawn1, Quaternion.identity);
+        base.OnEnable();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        PhotonNetwork.AddCallbackTarget(this);
+    }
+
+    public override void OnDisable()
+    {
+        base.OnDisable();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        PhotonNetwork.RemoveCallbackTarget(this);
     }
 
     //If scene has loaded, Create a new playerManager object for each player - sceneIndex 2 refers to map 1 (sceneIndex is the scene order in build settings)
     void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
-        /*   if (PhotonNetwork.IsMasterClient)
-           {
-               InstantiatePlayer("MasterPlayer1", spawn1, "Player");
-
-               PhotonNetwork.Instantiate(player.name, spawn1, Quaternion.identity, 0);
-           }// scene.buildIndex == 3 && 
-           else if (!PhotonNetwork.IsMasterClient)
-           {
-               InstantiatePlayer("Player1", P2Spawn1, "Player");
-
-               PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerSelector"), new Vector3(0, 0, 0), Quaternion.identity, 0);
-           }
-           */
+        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerManagerMultiplayer"), Vector3.zero, Quaternion.identity, 0);
     }
-
-    private void InstantiatePlayer(string playerName, Vector3 spawn, string playerType)
-    {
-        GameObject player = PhotonNetwork.Instantiate(playerMain.name, spawn, Quaternion.identity);
-        player.name = playerName;
-    }
-
 }

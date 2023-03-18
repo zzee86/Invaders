@@ -185,7 +185,6 @@ GameObject:
   - component: {fileID: 1895585484798504267}
   - component: {fileID: 1895585484798504266}
   - component: {fileID: 1895585484798504271}
-  - component: {fileID: 1895585484798504268}
   - component: {fileID: 5942811612351688053}
   - component: {fileID: 7942057041203238391}
   - component: {fileID: -3994340655093670775}
@@ -337,23 +336,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1895585484798504268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1895585484798504245}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d1ad7a2277af4d63ad7d7d048a21968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  maxHealth: 200
-  damagePopup: {fileID: 5702730977154166128, guid: 55de394916764482585b8cffc86ac332, type: 3}
-  healthBarSystem: {fileID: 0}
-  deathParticles: {fileID: 198010156955401246, guid: aa9ea8a48bb27441597c8a4a55e18999, type: 3}
 --- !u!114 &5942811612351688053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,9 +454,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 200
   maxHealth: 200
-  damagePopup: {fileID: 5702730977154166128, guid: 55de394916764482585b8cffc86ac332, type: 3}
+  damagePopup: {fileID: 2291507450492352498, guid: 45ef3f4f58a5e4581937c09fc41dfdb2, type: 3}
   healthBarSystem: {fileID: 7812788556665456335}
   deathParticles: {fileID: 7731649764326244016, guid: cbdc6ad7ae961415a9c0e2a66b70efe7, type: 3}
+  playerManagerMultiplayer: {fileID: -8970207718439951626, guid: 2af20bf2c96f049cc8d5989a534e9eb2, type: 3}
 --- !u!1 &1895585484812287968
 GameObject:
   m_ObjectHideFlags: 0
