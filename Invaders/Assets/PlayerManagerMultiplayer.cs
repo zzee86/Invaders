@@ -73,6 +73,11 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
         {
             Debug.Log("Winner = " + PhotonNetwork.NickName);
         }
+        else
+        {
+            Debug.Log("Lost = " + PhotonNetwork.NickName);
+
+        }
     }
 
     //Needed for event calls
