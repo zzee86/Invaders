@@ -21,6 +21,7 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
     private const int WINNER = 1;
     private string winner;
 
+    private string message = "";
 
     void Awake()
     {
@@ -33,6 +34,7 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
             CreateController();
         }
     }
+
     void CreateController()
     {
         Transform spawnPoints = SpawnManager.current.getSpawnPoint();
@@ -65,21 +67,32 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
 
     public void OnEvent(EventData photonEvent)
     {
-        object[] data = (object[])photonEvent.CustomData;
-        //  winner = data[1].ToString().Remove(0, 4).Replace("'", "");
 
         //WINNER EVENT - SENT BY LOSING PLAYER
         if (photonEvent.Code == WINNER)
         {
-            Debug.Log("Winner = " + PhotonNetwork.NickName);
-        }
-        else
-        {
-            Debug.Log("Lost = " + PhotonNetwork.NickName);
+            object[] data = (object[])photonEvent.CustomData;
+            winner = data[1].ToString().Remove(0, 4).Replace("'", "");
+            message = data[0].ToString() + " King has been killed!";
 
+            Debug.Log("Winner = " + winner);
+            Debug.Log("PhotonNetwork.Nickname = " + PhotonNetwork.NickName);
+
+            if (winner == PhotonNetwork.NickName)
+                Debug.Log("It matches!");
         }
+
+        Victory();
+
+
     }
-
+    private void Victory()
+    {
+        Debug.Log(winner + " is the winner!");
+        //  MainMenuButton.SetActive(true);
+        //  winSound.Play();
+        // QuitButton.SetActive(true);
+    }
     //Needed for event calls
     public override void OnEnable()
     {

@@ -12,6 +12,7 @@ public class ConnectManager : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject StartGameButton;
     [SerializeField] private TextMeshProUGUI StatusText;
     [SerializeField] private TextMeshProUGUI WelcomeMessage;
+    [SerializeField] private GameObject buttons;
 
     private const string gameVersion = "1.0";
 
@@ -36,7 +37,7 @@ public class ConnectManager : MonoBehaviourPunCallbacks
     //Called when Connect Button is clicked
     public void StartGame()
     {
-        ConnectPanel.SetActive(false);
+        buttons.SetActive(false);
         ShowStatus("Connecting...");
 
         if (PhotonNetwork.IsConnected)
@@ -93,7 +94,7 @@ public class ConnectManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
-        ShowStatus("Joined room - waiting for another player.");
+        ShowStatus("Created room - waiting for another player.");
     }
 
     //Once 2 players in a room, master client changes everyone to the game scene
