@@ -23,6 +23,7 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
 
     private string message = "";
 
+
     void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -75,32 +76,35 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
             winner = data[1].ToString().Remove(0, 4).Replace("'", "");
             message = data[0].ToString() + " King has been killed!";
 
-            for (int i = 0; i < data.Length; i++)
-            {
-                Debug.Log("Data values: " + data.GetValue(i));
-            }
             Debug.Log("onevent Winner = " + winner);
             Debug.Log("message = " + message);
             Debug.Log("PhotonNetwork.Nickname = " + PhotonNetwork.NickName);
 
             if (winner == PhotonNetwork.NickName)
             {
-                Debug.Log("It matches!");
-                Victory();
+                Debug.Log("It matches! " + "winner = " + winner);
+                Victory(winner);
             }
             else
             {
                 Debug.Log(winner + " has lost");
-
             }
         }
     }
-    private void Victory()
+    private void Victory(string name)
     {
-        Debug.Log(winner + " is the winner!");
+        pv.RPC(nameof(RPC_Victory), pv.Owner, name);
         //  MainMenuButton.SetActive(true);
         //  winSound.Play();
         // QuitButton.SetActive(true);
+    }
+
+    [PunRPC]
+    void RPC_Victory(string name)
+    {
+        Debug.Log(winner + " is the winner!");
+        GameOverManager.current.DisplayerWinCanvas(name);
+
     }
     //Needed for event calls
     public override void OnEnable()

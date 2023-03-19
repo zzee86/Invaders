@@ -29,6 +29,11 @@ public class ScoreboardItem : MonoBehaviourPunCallbacks
             if (changedProps.ContainsKey("kills"))
             {
                 UpdateStats();
+                if (killsText.text.Equals("3"))
+                {
+                    object[] winner = new object[] { PhotonNetwork.NickName, PhotonNetwork.PlayerList[0].ToString() };
+                    PhotonNetwork.RaiseEvent(WINNER, winner, raiseEventOptions, SendOptions.SendReliable);
+                }
             }
         }
     }
@@ -39,12 +44,6 @@ public class ScoreboardItem : MonoBehaviourPunCallbacks
             killsText.text = kills.ToString();
 
             Debug.Log("kills " + killsText.text);
-
-            if (killsText.text.Equals("3"))
-            {
-                object[] winner = new object[] { PhotonNetwork.NickName, PhotonNetwork.PlayerListOthers[0].ToString() };
-                PhotonNetwork.RaiseEvent(WINNER, winner, raiseEventOptions, SendOptions.SendReliable);
-            }
         }
     }
 }
