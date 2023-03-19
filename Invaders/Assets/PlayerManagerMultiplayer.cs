@@ -18,7 +18,7 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
 
     int kills;
 
-    private const int WINNER = 1;
+    private const int WINNER = 3;
     private string winner;
 
     private string message = "";
@@ -75,16 +75,25 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
             winner = data[1].ToString().Remove(0, 4).Replace("'", "");
             message = data[0].ToString() + " King has been killed!";
 
-            Debug.Log("Winner = " + winner);
+            for (int i = 0; i < data.Length; i++)
+            {
+                Debug.Log("Data values: " + data.GetValue(i));
+            }
+            Debug.Log("onevent Winner = " + winner);
+            Debug.Log("message = " + message);
             Debug.Log("PhotonNetwork.Nickname = " + PhotonNetwork.NickName);
 
             if (winner == PhotonNetwork.NickName)
+            {
                 Debug.Log("It matches!");
+                Victory();
+            }
+            else
+            {
+                Debug.Log(winner + " has lost");
+
+            }
         }
-
-        Victory();
-
-
     }
     private void Victory()
     {

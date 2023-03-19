@@ -5,13 +5,16 @@ using TMPro;
 using Photon.Realtime;
 using Photon.Pun;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
-
+using ExitGames.Client.Photon;
 public class ScoreboardItem : MonoBehaviourPunCallbacks
 {
     public TextMeshProUGUI usernameText;
     public TextMeshProUGUI killsText;
     public TextMeshProUGUI deathText;
+    RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All }; //Send event to all clients
 
+    private const int WINNER = 3;
+    private string winner;
     Player player;
     public void Initialize(Player player)
     {
@@ -35,18 +38,12 @@ public class ScoreboardItem : MonoBehaviourPunCallbacks
         {
             killsText.text = kills.ToString();
 
-            foreach (Player player in PhotonNetwork.PlayerList)
+            Debug.Log("kills " + killsText.text);
+
+            if (killsText.text.Equals("3"))
             {
-                Debug.Log("player name: " + player.NickName + "kills: " + kills.ToString());
-                Debug.Log("other player name: " + player.NickName + "kills: " + player.CustomProperties.TryGetValue("kills", out object kills2));
-
-
-                if (killsText.text.Equals("3"))
-                {
-                    Debug.Log("winner: " + player.NickName + " kills: " + kills.ToString());
-                    Debug.Log("other winner : " + player.NickName + "kills: " + player.CustomProperties.Values);
-
-                }
+                object[] winner = new object[] { PhotonNetwork.NickName, PhotonNetwork.PlayerListOthers[0].ToString() };
+                PhotonNetwork.RaiseEvent(WINNER, winner, raiseEventOptions, SendOptions.SendReliable);
             }
         }
     }

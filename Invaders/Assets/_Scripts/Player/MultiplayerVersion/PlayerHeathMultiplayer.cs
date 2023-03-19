@@ -24,8 +24,8 @@ public class PlayerHeathMultiplayer : MonoBehaviourPunCallbacks
 
     RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All }; //Send event to all clients
 
-    private const int WINNER = 1;
-    private string winner;
+    // private const int WINNER = 1;
+    // private string winner;
 
 
     void Start()
@@ -67,8 +67,8 @@ public class PlayerHeathMultiplayer : MonoBehaviourPunCallbacks
         {
             playerDeath();
             PlayerManagerMultiplayer.Find(info.Sender).GetKill();
-            object[] winner = new object[] { PhotonNetwork.NickName, PhotonNetwork.PlayerListOthers[0].ToString() };
-            PhotonNetwork.RaiseEvent(WINNER, winner, raiseEventOptions, SendOptions.SendReliable);
+            // object[] winner = new object[] { PhotonNetwork.NickName, PhotonNetwork.PlayerListOthers[0].ToString() };
+            // PhotonNetwork.RaiseEvent(WINNER, winner, raiseEventOptions, SendOptions.SendReliable);
 
         }
         GameObject points = PhotonNetwork.Instantiate(damagePopup.name, transform.position, Quaternion.identity);
