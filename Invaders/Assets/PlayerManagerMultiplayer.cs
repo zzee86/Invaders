@@ -9,13 +9,18 @@ using UnityEngine.SceneManagement;
 using System.IO;
 using System.Linq;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
+using ExitGames.Client.Photon;
 
-public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks
+public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallback
 {
     PhotonView pv;
     GameObject character;
 
     int kills;
+
+    private const int WINNER = 1;
+    private string winner;
+
 
     void Awake()
     {
@@ -58,4 +63,30 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks
         return FindObjectsOfType<PlayerManagerMultiplayer>().SingleOrDefault(x => x.pv.Owner == player);
     }
 
+    public void OnEvent(EventData photonEvent)
+    {
+        object[] data = (object[])photonEvent.CustomData;
+        //  winner = data[1].ToString().Remove(0, 4).Replace("'", "");
+
+        //WINNER EVENT - SENT BY LOSING PLAYER
+        if (photonEvent.Code == WINNER)
+        {
+            Debug.Log("Winner = " + PhotonNetwork.NickName);
+        }
+    }
+
+    //Needed for event calls
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        PhotonNetwork.AddCallbackTarget(this);
+        PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
+    }
+
+    public override void OnDisable()
+    {
+        base.OnDisable();
+        PhotonNetwork.RemoveCallbackTarget(this);
+        PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
+    }
 }

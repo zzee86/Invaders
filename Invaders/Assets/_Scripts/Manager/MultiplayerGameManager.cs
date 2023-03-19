@@ -16,6 +16,7 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
 
     PhotonView pv;
     int kills;
+    PauseMenuMultiplayer pauseMenuMultiplayer;
     private void Awake()
     {
         //Singleton - If RoomManager exists, delete it
@@ -49,4 +50,14 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerManagerMultiplayer"), Vector3.zero, Quaternion.identity, 0);
     }
+        public static void RegisterPauseMenu(PauseMenuMultiplayer pause)
+    {
+        //If there is no current Game Manager, exit
+        if (instance == null)
+            return;
+
+        instance.pauseMenuMultiplayer = pause;
+
+    }
+
 }

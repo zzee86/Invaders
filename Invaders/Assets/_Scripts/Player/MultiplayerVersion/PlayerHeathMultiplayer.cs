@@ -5,7 +5,8 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
-
+using Photon.Realtime;
+using ExitGames.Client.Photon;
 public class PlayerHeathMultiplayer : MonoBehaviourPunCallbacks
 {
     [SerializeField] float health, maxHealth;
@@ -20,6 +21,13 @@ public class PlayerHeathMultiplayer : MonoBehaviourPunCallbacks
 
     PhotonView pv;
     public PlayerManagerMultiplayer playerManagerMultiplayer;
+
+    RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All }; //Send event to all clients
+
+    private const int WINNER = 1;
+    private string winner;
+
+
     void Start()
     {
         health = maxHealth;
@@ -57,9 +65,11 @@ public class PlayerHeathMultiplayer : MonoBehaviourPunCallbacks
 
         if (health <= 0)
         {
-            Debug.Log("should use find now");
             playerDeath();
             PlayerManagerMultiplayer.Find(info.Sender).GetKill();
+            object[] winner = new object[] { PhotonNetwork.NickName, PhotonNetwork.PlayerListOthers[0].ToString() };
+            PhotonNetwork.RaiseEvent(WINNER, winner, raiseEventOptions, SendOptions.SendReliable);
+
         }
         GameObject points = PhotonNetwork.Instantiate(damagePopup.name, transform.position, Quaternion.identity);
         points.transform.localPosition += new Vector3(0, 1.5f, 0);
