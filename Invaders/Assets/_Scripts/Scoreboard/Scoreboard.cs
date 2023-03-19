@@ -5,6 +5,9 @@ using Photon.Pun;
 using Photon.Realtime;
 public class Scoreboard : MonoBehaviourPunCallbacks
 {
+    [SerializeField] CanvasGroup canvasHolder;
+    bool isOpen;
+
     [SerializeField] Transform container;
     [SerializeField] GameObject scoreboardItemPrefab;
 
@@ -35,6 +38,19 @@ public class Scoreboard : MonoBehaviourPunCallbacks
     {
         Destroy(scoreboardItems[player].gameObject);
         scoreboardItems.Remove(player);
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            CheckCanvasHolder();
+        }
+    }
+    void CheckCanvasHolder()
+    {
+        isOpen = !isOpen;
+        canvasHolder.alpha = isOpen ? 1 : 0;
+
     }
 
 }

@@ -15,7 +15,6 @@ public class DamageBulletMultiplayer : MonoBehaviourPunCallbacks
     void Awake()
     {
         PV = GetComponent<PhotonView>();
-        Debug.Log("bullet");
     }
     void Start()
     {

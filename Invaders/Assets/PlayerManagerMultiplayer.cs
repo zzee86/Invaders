@@ -17,6 +17,7 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
     GameObject character;
 
     int kills;
+    int deaths;
 
     private const int WINNER = 3;
     private string winner;
@@ -45,11 +46,15 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
     {
         PhotonNetwork.Destroy(character);
         CreateController();
+
+        deaths++;
+
+        Hashtable hash = new Hashtable();
+        hash.Add("deaths", deaths);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
     }
     public void GetKill()
     {
-        Debug.Log("get kill method");
-
         pv.RPC(nameof(RPC_GetKill), pv.Owner);
     }
     [PunRPC]

@@ -26,7 +26,7 @@ public class ScoreboardItem : MonoBehaviourPunCallbacks
     {
         if (targetPlayer == player)
         {
-            if (changedProps.ContainsKey("kills"))
+            if (changedProps.ContainsKey("kills") || changedProps.ContainsKey("deaths"))
             {
                 UpdateStats();
                 if (killsText.text.Equals("3"))
@@ -42,8 +42,10 @@ public class ScoreboardItem : MonoBehaviourPunCallbacks
         if (player.CustomProperties.TryGetValue("kills", out object kills))
         {
             killsText.text = kills.ToString();
-
-            Debug.Log("kills " + killsText.text);
+        }
+        if (player.CustomProperties.TryGetValue("deaths", out object deaths))
+        {
+            deathText.text = deaths.ToString();
         }
     }
 }

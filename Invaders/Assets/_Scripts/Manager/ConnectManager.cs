@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Realtime;
 using Photon.Pun;
 using TMPro;
-
+using UnityEngine.SceneManagement;
 public class ConnectManager : MonoBehaviourPunCallbacks
 {
 
@@ -110,5 +110,9 @@ public class ConnectManager : MonoBehaviourPunCallbacks
             //LoadScene(scene);
 
         }
+    }
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
