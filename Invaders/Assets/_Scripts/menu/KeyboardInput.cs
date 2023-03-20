@@ -26,13 +26,11 @@ public class KeyboardInput : MonoBehaviour
             if (nextItem != null)
             {
                 nextItem.Select();
-                Debug.Log(nextItem.name);
             }
         }
         else if (Input.GetKeyDown(KeyCode.Return))
         {
             button.onClick.Invoke();
-            Debug.Log("Submitted");
         }
     }
 }

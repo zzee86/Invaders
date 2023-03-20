@@ -24,10 +24,13 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
 
     private string message = "";
 
+    bool leaderboardCall;
+
 
     void Awake()
     {
         pv = GetComponent<PhotonView>();
+
     }
     void Start()
     {
@@ -35,6 +38,9 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
         {
             CreateController();
         }
+
+
+        Debug.Log("Player names: " + PlayerPrefs.GetString("PlayerName"));
     }
 
     void CreateController()
@@ -89,16 +95,29 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
             {
                 Debug.Log("It matches! " + "winner = " + winner);
                 Victory(winner);
-            }
-            else
-            {
-                Debug.Log(winner + " has lost");
+                //      MultiplayerGameManager.instance.updateLeaderboard();
+                CheckLeaderboardCall();
             }
         }
     }
+
+    void CheckLeaderboardCall()
+    {
+
+        if (!leaderboardCall)
+        {
+            MultiplayerGameManager.instance.updateLeaderboard();
+            leaderboardCall = true;
+        }
+        else if (leaderboardCall)
+        {
+            Debug.Log("update leaderboard already called");
+        }
+    }
+
     private void Victory(string name)
     {
-        pv.RPC(nameof(RPC_Victory), pv.Owner, name);
+        pv.RPC(nameof(RPC_Victory), RpcTarget.All, name);
         //  MainMenuButton.SetActive(true);
         //  winSound.Play();
         // QuitButton.SetActive(true);
@@ -108,7 +127,7 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
     void RPC_Victory(string name)
     {
         Debug.Log(winner + " is the winner!");
-        GameOverManager.current.DisplayerWinCanvas(name);
+        MultiplayerGameManager.instance.DisplayerWinCanvas(name);
 
     }
     //Needed for event calls
@@ -125,4 +144,6 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
         PhotonNetwork.RemoveCallbackTarget(this);
         PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
     }
+
+
 }
