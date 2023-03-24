@@ -24,14 +24,13 @@ public class DamageBulletMultiplayer : MonoBehaviourPunCallbacks
     {
         // Debug.Log("photon bullet");
         // collision.gameObject.GetComponent<PlayerHeathMultiplayer>()?.TakeDamage(30f);
+
         if (collision.gameObject.TryGetComponent<PlayerHeathMultiplayer>(out PlayerHeathMultiplayer enemyComponent))
         {
             enemyComponent.TakeDamage(damageAmount);
-
         }
         Instantiate(particles, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
-
-
 }
+

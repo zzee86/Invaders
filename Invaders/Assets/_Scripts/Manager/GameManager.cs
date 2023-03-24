@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     bool isGameOver;                            //Is the game currently over?
     bool isPaused;
 
+    public Vector2 lastCheckPoint;
+
     void Awake()
     {
         //If a Game Manager exists and this isn't it...
@@ -179,11 +181,5 @@ public class GameManager : MonoBehaviour
 
         //Reload the current scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void LoadScene(string sceneName)
-    {
-        SceneManager.LoadSceneAsync(sceneName);
-
     }
 }

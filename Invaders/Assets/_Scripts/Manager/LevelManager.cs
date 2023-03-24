@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         welcome.text = "Welcome " + PlayerPrefs.GetString("PlayerName");
+        Time.timeScale = 1;
     }
     public void LoadLevel(string sceneName)
     {

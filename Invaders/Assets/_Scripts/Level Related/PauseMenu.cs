@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     bool isPaused;
@@ -27,8 +27,13 @@ public class PauseMenu : MonoBehaviour
     }
     public void ResumeScene()
     {
-            isPaused = !isPaused;
-            Time.timeScale = isPaused ? 0 : 1;
-            panel.SetActive(isPaused);
+        isPaused = !isPaused;
+        Time.timeScale = isPaused ? 0 : 1;
+        panel.SetActive(isPaused);
+    }
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+
     }
 }

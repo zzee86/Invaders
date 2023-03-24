@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     [SerializeField] private ParticleSystem deathParticles;
 
+    GameManager gameManager;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -42,6 +44,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
         Physics2D.IgnoreLayerCollision(3, 7);
 
         groundLayer = LayerMask.NameToLayer("Ground");
+    }
+    void Start()
+    {
+        gameManager = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
+        transform.position = gameManager.lastCheckPoint;
     }
     private void Update()
     {
