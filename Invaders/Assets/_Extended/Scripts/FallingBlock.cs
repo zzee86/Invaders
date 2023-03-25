@@ -9,7 +9,8 @@ public class FallingBlock : MonoBehaviour
     private Rigidbody2D body;
 
     int playerLayer;
-
+    
+    [SerializeField] private float destroyTimer = 2f;
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -37,7 +38,7 @@ public class FallingBlock : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         body.isKinematic = false;
-        Destroy(gameObject, 2);
+        Destroy(gameObject, destroyTimer);
     }
 
 }

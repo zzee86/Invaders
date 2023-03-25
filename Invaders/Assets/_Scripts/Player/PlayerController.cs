@@ -3,6 +3,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
 using UnityEngine.UI;
+using System.Collections;
 
 public class PlayerController : MonoBehaviourPunCallbacks
 {
@@ -16,24 +17,29 @@ public class PlayerController : MonoBehaviourPunCallbacks
     bool facingRight = true;
     [SerializeField] private ParticleSystem jumpDust;
 
-    // Wall Sliding
+
+    [Header("Wall Slide")]
     private bool isWallSliding;
     private float wallSlideSpeed = 4;
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
 
-    // Jumping from walls
+
+    [Header("Wall Jump")]
     private bool isWallJump;
     private float wallJumpingDirection;
     private float wallJumpingTime = 0.2f;
     private float wallJumpingCounter;
     private float wallJumpingDuration = 0.4f;
     private Vector2 wallJumpingPower = new Vector2(8f, 16f);
-    int groundLayer;
 
+
+    int groundLayer;
     [SerializeField] private ParticleSystem deathParticles;
 
     GameManager gameManager;
+
+
 
     // Start is called before the first frame update
     private void Awake()
@@ -86,6 +92,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
         wallSlide();
         wallJump();
     }
+
+
 
     void flip()
     {
