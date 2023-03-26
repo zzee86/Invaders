@@ -15,6 +15,7 @@ TagManager:
   - FallingBlock
   - FloatingEnemey
   - GM
+  - Belt
   layers:
   - Default
   - TransparentFX
