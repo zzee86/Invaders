@@ -30475,6 +30475,7 @@ GameObject:
   - component: {fileID: 446801770}
   - component: {fileID: 446801771}
   - component: {fileID: 446801772}
+  - component: {fileID: 446801773}
   m_Layer: 0
   m_Name: Door Red
   m_TagString: Untagged
@@ -30511,7 +30512,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.4519072, y: -0.6400249}
+  m_Offset: {x: -1.1372242, y: -0.6400249}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -30522,7 +30523,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1303768, y: 2.2800498}
+  m_Size: {x: 1.7597427, y: 2.2800498}
   m_EdgeRadius: 0
 --- !u!114 &446801772
 MonoBehaviour:
@@ -30537,6 +30538,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyType: 0
+--- !u!95 &446801773
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446801769}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9488f95bbec6645a78a03aa4e19f7c70, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &452372404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69527,7 +69548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1850333154831128, guid: 159db259f1e9c4148b0ce8a18c25dae9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4402701895925244, guid: 159db259f1e9c4148b0ce8a18c25dae9, type: 3}
       propertyPath: m_RootOrder
@@ -119921,7 +119942,7 @@ GameObject:
   - component: {fileID: 1682357932}
   - component: {fileID: 1682357933}
   m_Layer: 0
-  m_Name: Door
+  m_Name: Door Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119935,8 +119956,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682357930}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.8, y: -0.63, z: -0.100097984}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.8, y: -0.5583, z: -0.100098}
+  m_LocalScale: {x: 1, y: 0.689556, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 446801770}
@@ -119982,7 +120003,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: c0c628fda844d2948b03d65f27dfca33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

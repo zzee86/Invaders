@@ -12,7 +12,6 @@ public class KeyHolder : MonoBehaviour
     }
     public void AddKey(Key.KeyType keyType)
     {
-        Debug.Log("key grabbed");
         keyList.Add(keyType);
     }
     public void RemoveKey(Key.KeyType keyType)

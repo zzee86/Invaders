@@ -5,6 +5,12 @@ using UnityEngine;
 public class KeyDoor : MonoBehaviour
 {
     [SerializeField] private Key.KeyType keyType;
+    private Animator anim;
+
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     public Key.KeyType GetKeyType()
     {
@@ -12,9 +18,7 @@ public class KeyDoor : MonoBehaviour
     }
     public void OpenDoor()
     {
-        gameObject.SetActive(false);
+       anim.SetTrigger("Open");
     }
-    void Start(){
-        Debug.Log("door started");
-    }
+
 }
