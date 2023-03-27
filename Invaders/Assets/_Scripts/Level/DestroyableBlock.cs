@@ -2,29 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 public class DestroyableBlock : MonoBehaviour
 {
- [SerializeField] private float health, maxHealth;
-
-    [SerializeField] private GameObject damagePopup;
+    [SerializeField] private UnityEvent damage;
 
 
-    void Start()
+    void OnCollisionEnter2D(Collision2D collision2D)
     {
-        health = maxHealth;
-    }
-
-    public void TakeDamage(float damageAmount)
-    {
-
-        health -= damageAmount;
-
-        if (health <= 0)
+        var other = collision2D.collider.GetComponent<DamageBullet>();
+        if (other && collision2D.contacts[0].normal.y > 0)
         {
-            Destroy(gameObject);
+            damage?.Invoke();
         }
-        GameObject points = Instantiate(damagePopup, transform.position, Quaternion.identity);
-        points.transform.localPosition += new Vector3(0, 1.5f, 0);
-        points.GetComponentInChildren<TextMeshPro>().SetText(damageAmount.ToString());
     }
 }
