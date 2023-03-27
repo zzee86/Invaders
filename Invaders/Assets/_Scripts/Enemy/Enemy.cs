@@ -14,7 +14,9 @@ public class Enemy : MonoBehaviour
     public bool isInvulnerable = false;
 
     public event EventHandler bossEnd;
-    //public bool isBoss = false;
+    public bool isBoss = false;
+    [SerializeField] private GameObject key;
+
 
     void Start()
     {
@@ -39,8 +41,10 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
-            // if (isBoss)
-            // {
+            if (isBoss)
+            {
+                Instantiate(key, transform.position, Quaternion.identity);
+            }
             bossEnd?.Invoke(this, EventArgs.Empty);
             // }
         }

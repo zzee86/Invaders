@@ -24,6 +24,7 @@ public class AgentController : MonoBehaviour
 
     public event EventHandler bossStart;
     //Enemy enemy;
+
     private enum State
     {
         Patrolling,
@@ -34,7 +35,7 @@ public class AgentController : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, waypoints[0].position, moveSpeed * Time.deltaTime);
         state = State.Patrolling;
         anim = GetComponent<Animator>();
-       // enemy = GetComponent<Enemy>();
+        // enemy = GetComponent<Enemy>();
     }
 
     // Update is called once per frame
@@ -87,7 +88,7 @@ public class AgentController : MonoBehaviour
     {
         // if (enemy.isBoss)
         // {
-            bossStart?.Invoke(this, EventArgs.Empty);
+        bossStart?.Invoke(this, EventArgs.Empty);
         //}
         // transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
 
@@ -129,6 +130,14 @@ public class AgentController : MonoBehaviour
         playerHeath.TakeDamage(20);
         yield return new WaitForSeconds(0.5f);
         attackCooldown = true;
+    }
+
+    void OnTriggerEnter2D(Collider2D collider2D)
+    {
+        if (collider2D.gameObject.tag == "Player")
+        {
+            Debug.Log("player detectect");
+        }
     }
 
 }
