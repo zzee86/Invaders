@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class AgentController : MonoBehaviour
 {
-
     [SerializeField] private Transform[] waypoints;
     private int index = 0;
     [SerializeField] private float distanceToStartHeadingToNextWaypoint;
@@ -21,6 +21,9 @@ public class AgentController : MonoBehaviour
     private Animator anim;
     private State state;
 
+
+    public event EventHandler bossStart;
+    //Enemy enemy;
     private enum State
     {
         Patrolling,
@@ -31,6 +34,7 @@ public class AgentController : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, waypoints[0].position, moveSpeed * Time.deltaTime);
         state = State.Patrolling;
         anim = GetComponent<Animator>();
+       // enemy = GetComponent<Enemy>();
     }
 
     // Update is called once per frame
@@ -42,8 +46,6 @@ public class AgentController : MonoBehaviour
 
         else
             Chase();
-
-
     }
     void Patrol()
     {
@@ -83,7 +85,10 @@ public class AgentController : MonoBehaviour
 
     void Chase()
     {
-
+        // if (enemy.isBoss)
+        // {
+            bossStart?.Invoke(this, EventArgs.Empty);
+        //}
         // transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
 
         // player on right side of enemy
@@ -96,7 +101,6 @@ public class AgentController : MonoBehaviour
         // player on left side of enemy
         else if (transform.position.x < target.position.x)
         {
-            Debug.Log("LEFT");
             transform.localScale = new Vector3(-1, 1, 1);
             transform.position += Vector3.right * chaseSpeed * Time.deltaTime;
 

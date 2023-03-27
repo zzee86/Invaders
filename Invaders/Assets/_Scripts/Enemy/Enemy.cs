@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-
+using System;
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] float health, maxHealth;
+    public float health, maxHealth;
 
     [SerializeField] private GameObject damagePopup;
 
     public HealthBarSystem healthBarSystem;
     public bool isInvulnerable = false;
+
+    public event EventHandler bossEnd;
+    //public bool isBoss = false;
 
     void Start()
     {
@@ -36,6 +39,10 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            // if (isBoss)
+            // {
+            bossEnd?.Invoke(this, EventArgs.Empty);
+            // }
         }
         GameObject points = Instantiate(damagePopup, transform.position, Quaternion.identity);
         points.transform.localPosition += new Vector3(0, 1.5f, 0);
