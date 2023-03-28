@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         //Persis this object between scene reloads
         DontDestroyOnLoad(gameObject);
         // Mute all audio
-        AudioListener.pause = true;
+        //AudioListener.pause = true;
 
     }
 

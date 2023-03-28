@@ -113,6 +113,7 @@ public class ConnectManager : MonoBehaviourPunCallbacks
     }
     public void MainMenu()
     {
+        PhotonNetwork.Disconnect();
         SceneManager.LoadScene("MainMenu");
     }
 }

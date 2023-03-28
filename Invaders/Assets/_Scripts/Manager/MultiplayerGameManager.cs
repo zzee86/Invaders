@@ -44,7 +44,7 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
     }
     public void updateLeaderboard()
     {
-            LeaderboardManager.SendLeaderboard(1);        
+        LeaderboardManager.SendLeaderboard(1);
     }
 
     public override void OnEnable()
@@ -75,10 +75,10 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
         instance.pauseMenuMultiplayer = pause;
 
     }
-        public void DisplayerWinCanvas(string name)
+    public void DisplayerWinCanvas(string name)
     {
-        winText.SetText(name + "has won");
-        Debug.Log(name + "has won");
+        winText.SetText(name + " has won");
+        Debug.Log(name + " has won");
 
     }
 

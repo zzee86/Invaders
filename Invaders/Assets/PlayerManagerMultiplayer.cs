@@ -24,7 +24,7 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
 
     private string message = "";
 
-    bool leaderboardCall;
+    bool leaderboardCall = false;
 
 
     void Awake()
@@ -96,24 +96,32 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
                 Debug.Log("It matches! " + "winner = " + winner);
                 Victory(winner);
                 //      MultiplayerGameManager.instance.updateLeaderboard();
+
+                if (!pv.IsMine)
+                    return;
+
+
                 CheckLeaderboardCall();
             }
         }
     }
 
+    // Did try with RPC
+
     void CheckLeaderboardCall()
     {
-
         if (!leaderboardCall)
         {
-            MultiplayerGameManager.instance.updateLeaderboard();
             leaderboardCall = true;
+            MultiplayerGameManager.instance.updateLeaderboard();
+            Debug.Log("player manager: leaderboard sent");
         }
         else if (leaderboardCall)
         {
             Debug.Log("update leaderboard already called");
         }
     }
+
 
     private void Victory(string name)
     {
@@ -126,7 +134,7 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
     [PunRPC]
     void RPC_Victory(string name)
     {
-        Debug.Log(winner + " is the winner!");
+        Debug.Log(name + " is the winner in rpc!");
         MultiplayerGameManager.instance.DisplayerWinCanvas(name);
 
     }

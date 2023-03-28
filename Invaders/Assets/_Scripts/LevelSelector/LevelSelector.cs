@@ -10,7 +10,7 @@ public class LevelSelector : MonoBehaviour
 
     void Start()
     {
-         PlayerPrefs.DeleteAll();
+       //  PlayerPrefs.DeleteAll();
     }
     void Update()
     {
