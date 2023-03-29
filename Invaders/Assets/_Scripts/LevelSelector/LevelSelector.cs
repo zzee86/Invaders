@@ -11,6 +11,7 @@ public class LevelSelector : MonoBehaviour
     void Start()
     {
        //  PlayerPrefs.DeleteAll();
+       Time.timeScale = 1;
     }
     void Update()
     {
@@ -43,7 +44,7 @@ public class LevelSelector : MonoBehaviour
         if (unlocked)
         {
             SceneManager.LoadSceneAsync(sceneName);
-            Debug.Log(sceneName);
+            Debug.Log(sceneName + " is unlocked");
         }
     }
 }

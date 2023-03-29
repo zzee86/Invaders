@@ -47,7 +47,6 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         // Mute all audio
         //AudioListener.pause = true;
-
     }
 
     void Update()
@@ -184,7 +183,8 @@ public class GameManager : MonoBehaviour
         //Reload the current scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-    public void LoadScene(string sceneName){
-        SceneManager.LoadScene(sceneName);
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadSceneAsync(sceneName);
     }
 }
