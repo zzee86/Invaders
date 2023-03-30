@@ -1,34 +1,32 @@
-﻿// This script is a Manager that controls the UI HUD (deaths, time, and orbs) for the 
-// project. All HUD UI commands are issued through the static methods of this class
-
+﻿// All UI is held and controlled with this manager
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    //This class holds a static reference to itself to ensure that there will only be
-    //one in existence. This is often referred to as a "singleton" design pattern. Other
-    //scripts access this one through its public static methods
-    static UIManager current;
-
-    public TextMeshProUGUI orbText;         //Text element showing number of orbs
-    public TextMeshProUGUI timeText;        //Text element showing amount of time
-    public TextMeshProUGUI deathText;       //Text element showing number or deaths
-    public GameObject gameOverCanvas;   //Text element showing the Game Over message
+    // Public instance to call any method
+    public static UIManager current;
+    public TextMeshProUGUI orbText;
+    public TextMeshProUGUI timeText;
+    public TextMeshProUGUI deathText;
 
 
+    public GameObject gameOverCanvas;
+
+    // Create Singleton
     void Awake()
     {
-        //If an UIManager exists and it is not this...
         if (current != null && current != this)
         {
-            //...destroy this and exit. There can be only one UIManager
             Destroy(gameObject);
             return;
         }
 
-        //This is the current UIManager and it should persist between scene loads
         current = this;
+
+        // Persist the object between scene reloads and new scenes
+        // And OnSceneLoaded() destroys it when the main menu scene is active
         DontDestroyOnLoad(gameObject);
         current.gameOverCanvas.SetActive(false);
 
@@ -36,46 +34,68 @@ public class UIManager : MonoBehaviour
 
     public static void UpdateOrbUI(int orbCount)
     {
-        //If there is no current UIManager, exit
         if (current == null)
             return;
 
-        //Update the text orb element
         current.orbText.text = orbCount.ToString();
     }
 
     public static void UpdateTimeUI(float time)
     {
-        //If there is no current UIManager, exit
         if (current == null)
             return;
 
-        //Take the time and convert it into the number of minutes and seconds
         int minutes = (int)(time / 60);
         float seconds = time % 60f;
 
-        //Create the string in the appropriate format for the time
         current.timeText.text = minutes.ToString("00") + ":" + seconds.ToString("00");
     }
 
     public static void UpdateDeathUI(int deathCount)
     {
-        //If there is no current UIManager, exit
         if (current == null)
             return;
 
-        //update the player death count element
         current.deathText.text = deathCount.ToString();
     }
 
     public static void DisplayGameOverText()
     {
-        //If there is no current UIManager, exit
         if (current == null)
             return;
 
-        //Show the game over text
+
+        // Show gameover panel and pause the game
         current.gameOverCanvas.SetActive(true);
-		Time.timeScale = 0;
+        Time.timeScale = 0;
+    }
+
+
+    // OnEnable called everytime the gameobject is called
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    // Destroy GameManager On MainMenu To Replay Completed Level
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Scene.name to check which scene was loaded
+        if (scene.name == "MainMenu")
+        {
+
+            // Destroy the GameManager object
+            Destroy(gameObject);
+        }
+    }
+
+    public void DestroyManager()
+    {
+        Destroy(gameObject);
     }
 }

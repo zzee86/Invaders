@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/_Scenes/SinglePlayer/OldLevel1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/_Scenes/SinglePlayer/Level2.unity
+    path: Assets/_Scenes/SinglePlayer/Level2-Old.unity
     guid: 9d9efaa8e3f534de3a2d8a75b3014ee0
   - enabled: 1
     path: Assets/_Scenes/SinglePlayer/Level3.unity
@@ -53,4 +53,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/SinglePlayer/Level2 1.unity
     guid: b0ade8ca29ecd45108ed7c24b2eb50d2
+  - enabled: 1
+    path: Assets/_Scenes/SinglePlayer/Level2.unity
+    guid: 6ace1ab08750541e9b243d56daf87201
   m_configObjects: {}

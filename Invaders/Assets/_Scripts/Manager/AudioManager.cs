@@ -1,22 +1,17 @@
-// This script is a Manager that controls all of the audio for the project. All audio
-// commands are issued through the static methods of this class. Additionally, this 
-// class creates AudioSource "channels" at runtime and manages them
-
+// All audio is held and controlled with this manager
 using UnityEngine;
 using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
-    //This class holds a static reference to itself to ensure that there will only be
-    //one in existence. This is often referred to as a "singleton" design pattern. Other
-    //scripts access this one through its public static methods
-    static AudioManager current;
+    // Public instance to call any method
+    public static AudioManager current;
 
     [Header("Ambient Audio")]
     public AudioClip ambientClip;		//The background ambient sound
     public AudioClip musicClip;         //The background music 
 
-    [Header("Stings")]
+    [Header("Sting Clips")]
     public AudioClip levelStingClip;    //The sting played when the scene loads
     public AudioClip deathStingClip;    //The sting played when the player dies
     public AudioClip winStingClip;      //The sting played when the player wins
@@ -49,20 +44,21 @@ public class AudioManager : MonoBehaviour
     AudioSource playerSource;           //Reference to the generated player Audio Source
     AudioSource voiceSource;            //Reference to the generated voice Audio Source
 
-
+    // Create Singleton
     void Awake()
     {
-        //If an AudioManager exists and it is not this...
         if (current != null && current != this)
         {
-            //...destroy this. There can be only one AudioManager
             Destroy(gameObject);
             return;
         }
-
-        //This is the current AudioManager and it should persist between scene loads
         current = this;
+
+        // Persist the object between scene reloads and new scenes
+        // And OnSceneLoaded() destroys it when the main menu scene is active
         DontDestroyOnLoad(gameObject);
+
+
 
         //Generate the Audio Source "channels" for our game's audio
         ambientSource = gameObject.AddComponent<AudioSource>() as AudioSource;
@@ -216,7 +212,6 @@ public class AudioManager : MonoBehaviour
 
     public static void PlayWonAudio()
     {
-        //If there is no current AudioManager, exit
         if (current == null)
             return;
 
