@@ -943,6 +943,8 @@ MonoBehaviour:
   damagePopup: {fileID: 5702730977154166128, guid: 55de394916764482585b8cffc86ac332, type: 3}
   healthBarSystem: {fileID: 2145550696}
   isInvulnerable: 0
+  isBoss: 0
+  key: {fileID: 0}
 --- !u!1 &170108151
 GameObject:
   m_ObjectHideFlags: 0
@@ -54728,6 +54730,8 @@ MonoBehaviour:
   damagePopup: {fileID: 5702730977154166128, guid: 55de394916764482585b8cffc86ac332, type: 3}
   healthBarSystem: {fileID: 2145550696}
   isInvulnerable: 0
+  isBoss: 0
+  key: {fileID: 0}
 --- !u!4 &1173805323 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4481475307030307689, guid: b14aa3622059041d8966246b9ca728c3, type: 3}
@@ -82032,6 +82036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dustParticles: {fileID: 1990042275984218, guid: 75d1c858241234105a2a11fbfb419183, type: 3}
   Offset: {x: 3.718475, y: -5.3, z: 0}
+  destroyTimer: 2
 --- !u!1 &1425188485
 GameObject:
   m_ObjectHideFlags: 0
@@ -82779,6 +82784,8 @@ MonoBehaviour:
   damagePopup: {fileID: 5702730977154166128, guid: 55de394916764482585b8cffc86ac332, type: 3}
   healthBarSystem: {fileID: 2145550696}
   isInvulnerable: 0
+  isBoss: 0
+  key: {fileID: 0}
 --- !u!114 &1548605714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83502,6 +83509,8 @@ MonoBehaviour:
   damagePopup: {fileID: 5702730977154166128, guid: 55de394916764482585b8cffc86ac332, type: 3}
   healthBarSystem: {fileID: 1660950002}
   isInvulnerable: 0
+  isBoss: 0
+  key: {fileID: 0}
 --- !u!1001 &1647592142
 PrefabInstance:
   m_ObjectHideFlags: 0

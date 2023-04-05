@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
         // And OnSceneLoaded() destroys it when the main menu scene is active
         DontDestroyOnLoad(gameObject);
         // Mute all audio
-        //AudioListener.pause = true;
+        AudioListener.pause = true;
     }
 
     void Update()

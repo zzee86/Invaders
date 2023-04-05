@@ -19,8 +19,10 @@ public class DamageBullet : MonoBehaviour
             enemyComponent.TakeDamage(damageAmount);
 
         }
-        Instantiate(particles, transform.position, Quaternion.identity);
-        Destroy(gameObject);
-        Destroy(particles);
+        GameObject sparks = Instantiate(particles, transform.position, Quaternion.identity);
+
+        // Instantiate(particles, transform.position, Quaternion.identity);
+        // Destroy(gameObject);
+        Destroy(sparks);
     }
 }
