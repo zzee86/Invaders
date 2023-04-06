@@ -23,6 +23,8 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
 
 
     public TextMeshProUGUI winText;
+    public GameObject gameOverCanvas;
+    public GameObject chatWindow;
 
 
     [Header("Leaderbaord")]
@@ -41,6 +43,7 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
         pv = GetComponent<PhotonView>();
         LeaderboardManager = SendLeaderboard.GetComponent<PlayfabLeaderboardManager>();
 
+        gameOverCanvas.SetActive(false);
     }
     public void updateLeaderboard()
     {
@@ -52,6 +55,7 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
         base.OnEnable();
         SceneManager.sceneLoaded += OnSceneLoaded;
         PhotonNetwork.AddCallbackTarget(this);
+        Time.timeScale = 1;
     }
 
     public override void OnDisable()
@@ -65,7 +69,15 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
     void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
         PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerManagerMultiplayer"), Vector3.zero, Quaternion.identity, 0);
+
+        if (scene.name == "Lobby" || scene.name == "MainMenu")
+        {
+            // Destroy the GameManager object
+            Destroy(gameObject);
+        }
     }
+
+
     public static void RegisterPauseMenu(PauseMenuMultiplayer pause)
     {
         //If there is no current Game Manager, exit
@@ -77,9 +89,23 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
     }
     public void DisplayerWinCanvas(string name)
     {
-        winText.SetText(name + " has won");
-        Debug.Log(name + " has won");
+        winText.SetText(name + " Has Won");
+        gameOverCanvas.SetActive(true);
+        chatWindow.SetActive(false);
+        Time.timeScale = 0;
+    }
+    public void LoadScene(string sceneName)
+    {
+        StartCoroutine(deleteManagers());
+        Time.timeScale = 1;
+        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.AutomaticallySyncScene = false;
+        SceneManager.LoadScene(sceneName);
+    }
+    IEnumerator deleteManagers()
+    {
+        Destroy(gameObject);
+        yield return null;
 
     }
-
 }

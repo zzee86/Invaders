@@ -13,6 +13,9 @@ using ExitGames.Client.Photon;
 
 public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallback
 {
+
+    RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All }; //Send event to all clients
+
     PhotonView pv;
     GameObject character;
 
@@ -26,6 +29,7 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
 
     bool leaderboardCall = false;
 
+    int numberOfPlayer;
 
     void Awake()
     {
@@ -100,7 +104,6 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
                 if (!pv.IsMine)
                     return;
 
-
                 CheckLeaderboardCall();
             }
         }
@@ -133,9 +136,7 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
     [PunRPC]
     void RPC_Victory(string name)
     {
-        Debug.Log(name + " is the winner in rpc!");
         MultiplayerGameManager.instance.DisplayerWinCanvas(name);
-
     }
     //Needed for event calls
     public override void OnEnable()
@@ -152,5 +153,20 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
         PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
     }
 
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        numberOfPlayer--;
+        Debug.Log("display screen");
+        Victory(PhotonNetwork.LocalPlayer.NickName);
+
+        if (!pv.IsMine)
+            return;
+
+        CheckLeaderboardCall();
+    }
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        numberOfPlayer++;
+    }
 
 }

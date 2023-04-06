@@ -2441,7 +2441,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1307600182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3502,8 +3502,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df2b2fa4829f747b683108f8f2ce380a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingScreen: {fileID: 1803220144}
-  slider: {fileID: 1640112704}
   welcome: {fileID: 1307600182}
 --- !u!4 &1865772577
 Transform:

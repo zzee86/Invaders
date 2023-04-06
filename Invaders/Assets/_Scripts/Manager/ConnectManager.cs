@@ -39,7 +39,7 @@ public class ConnectManager : MonoBehaviourPunCallbacks
     {
         buttons.SetActive(false);
         ShowStatus("Connecting...");
-
+        Time.timeScale = 1;
         if (PhotonNetwork.IsConnected)
         {
             ShowStatus("Joining Random Room...");
@@ -114,6 +114,8 @@ public class ConnectManager : MonoBehaviourPunCallbacks
     public void MainMenu()
     {
         PhotonNetwork.Disconnect();
+        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.AutomaticallySyncScene = false;
         SceneManager.LoadScene("MainMenu");
     }
 }
