@@ -29,10 +29,21 @@ public class ScoreboardItem : MonoBehaviourPunCallbacks
             if (changedProps.ContainsKey("kills") || changedProps.ContainsKey("deaths"))
             {
                 UpdateStats();
+                // Winner when they get 3 kills
+                // Version not working
+                // if (killsText.text.Equals("3"))
+                // {
+                //     object[] winner = new object[] { PhotonNetwork.NickName, PhotonNetwork.PlayerList[0].ToString() };
+                //     PhotonNetwork.RaiseEvent(WINNER, winner, raiseEventOptions, SendOptions.SendReliable);
+                // }
+
                 if (killsText.text.Equals("3"))
                 {
-                    object[] winner = new object[] { PhotonNetwork.NickName, PhotonNetwork.PlayerList[0].ToString() };
-                    PhotonNetwork.RaiseEvent(WINNER, winner, raiseEventOptions, SendOptions.SendReliable);
+
+                    Debug.Log("user " + targetPlayer.NickName + " got 3");
+
+                    // Raise event with the target player name
+                    PhotonNetwork.RaiseEvent(WINNER, targetPlayer.NickName, RaiseEventOptions.Default, SendOptions.SendReliable);
                 }
             }
         }
@@ -42,6 +53,10 @@ public class ScoreboardItem : MonoBehaviourPunCallbacks
         if (player.CustomProperties.TryGetValue("kills", out object kills))
         {
             killsText.text = kills.ToString();
+            if (killsText.text.Equals("3"))
+            {
+                Debug.Log("user " + player.NickName + " text version " + usernameText.text + " got 3");
+            }
         }
         if (player.CustomProperties.TryGetValue("deaths", out object deaths))
         {

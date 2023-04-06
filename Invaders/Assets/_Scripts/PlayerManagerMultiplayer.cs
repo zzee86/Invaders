@@ -67,7 +67,6 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
     void RPC_GetKill()
     {
         kills++;
-
         Hashtable hash = new Hashtable();
         hash.Add("kills", kills);
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
@@ -79,17 +78,18 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
 
     public void OnEvent(EventData photonEvent)
     {
-
-        //WINNER EVENT - SENT BY LOSING PLAYER
         if (photonEvent.Code == WINNER)
         {
-            object[] data = (object[])photonEvent.CustomData;
-            winner = data[1].ToString().Remove(0, 4).Replace("'", "");
-            message = data[0].ToString() + " King has been killed!";
+            // Previous version not working
+            // object[] data = (object[])photonEvent.CustomData;
+            // winner = data[1].ToString().Remove(0, 4).Replace("'", "");
 
-            Debug.Log("onevent Winner = " + winner);
-            Debug.Log("message = " + message);
-            Debug.Log("PhotonNetwork.Nickname = " + PhotonNetwork.NickName);
+            var data = photonEvent.CustomData;
+
+            winner = (string)data;
+            Debug.Log("should be corrent player " + winner.ToString());
+
+
 
             if (winner == PhotonNetwork.NickName)
             {
@@ -107,7 +107,6 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
     }
 
     // Did try with RPC
-
     void CheckLeaderboardCall()
     {
         if (!leaderboardCall)
