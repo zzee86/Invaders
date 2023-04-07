@@ -77,10 +77,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
 
         //Jump - GetKeyDown used to only register the initial click, not holding the space bar
-        if (Input.GetKeyDown(KeyCode.Space) && grounded)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (jumpCount > 0)
             {
+                Debug.Log("if statement " + jumpCount);
                 Jump();
 
             }
@@ -108,6 +109,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
         anim.SetTrigger("Jump");
         generateDust();
         jumpCount -= 1;
+        Debug.Log("new jump " + jumpCount);
+
         grounded = false;
     }
 
@@ -177,5 +180,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             grounded = true;
         }
         jumpCount = maxJumps;
+        Debug.Log("reset jump " + jumpCount + " max jump " + maxJumps);
+
     }
 }
