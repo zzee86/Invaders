@@ -12,16 +12,16 @@ EditorBuildSettings:
     path: Assets/_Scenes/SinglePlayer/LevelSelection.unity
     guid: 4f8875702dd634c6998179a75b39ff8b
   - enabled: 0
-    path: Assets/_Scenes/SinglePlayer/OldLevel1.unity
+    path: Assets/Scenes/Game1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
-    path: Assets/_Scenes/SinglePlayer/Level2-Old.unity
+    path: 
     guid: 9d9efaa8e3f534de3a2d8a75b3014ee0
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/_Scenes/SinglePlayer/Level4.unity
+    path: 
     guid: 54489b26f9fa744f481433feaa72a091
   - enabled: 1
     path: Assets/_Scenes/Multiplayer/Login.unity
@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/_Scenes/SinglePlayer/Demoscene.unity
     guid: ac0b70732e36040faa1b2196bcdda83d
   - enabled: 0
-    path: Assets/_Scenes/SinglePlayer/04 Building the Player.unity
+    path: 
     guid: 69f970d556b0e417b944cdd1e3f6d412
   - enabled: 1
     path: Assets/_Scenes/Multiplayer/Multiplayer1.unity
@@ -45,10 +45,10 @@ EditorBuildSettings:
     path: Assets/_Scenes/SinglePlayer/Level1Checkpoints.unity
     guid: 9561a329dddf44f2290a8ddde50480c6
   - enabled: 0
-    path: Assets/_Scenes/SinglePlayer/Level1Features.unity
+    path: 
     guid: 2fa07ccad77ef40a8aee497da23c72f1
   - enabled: 0
-    path: Assets/_Scenes/SinglePlayer/Level1Par.unity
+    path: 
     guid: 851fcc1be994d4baf8774d32aa4a82ef
   - enabled: 0
     path: 
@@ -62,4 +62,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/SinglePlayer/Level3.unity
     guid: 80b0e80a2b09447fab71fc22721731be
+  - enabled: 1
+    path: Assets/_Scenes/Multiplayer/Multiplayer2.unity
+    guid: 21b25447cd45d4d96ae1de7c0bd14fc7
   m_configObjects: {}

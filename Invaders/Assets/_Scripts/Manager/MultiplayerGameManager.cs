@@ -25,6 +25,7 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
     public TextMeshProUGUI winText;
     public GameObject gameOverCanvas;
     public GameObject chatWindow;
+    private bool visibleChat = false;
 
 
     [Header("Leaderbaord")]
@@ -44,7 +45,24 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
         LeaderboardManager = SendLeaderboard.GetComponent<PlayfabLeaderboardManager>();
 
         gameOverCanvas.SetActive(false);
+
+        chatWindow.SetActive(visibleChat);
+
     }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            HideChat();
+        }
+    }
+    public void HideChat()
+    {
+        visibleChat = !visibleChat;
+        chatWindow.SetActive(visibleChat);
+    }
+
+
     public void updateLeaderboard()
     {
         LeaderboardManager.SendLeaderboard(1);
