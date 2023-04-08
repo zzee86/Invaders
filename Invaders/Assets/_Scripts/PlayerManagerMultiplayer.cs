@@ -52,6 +52,7 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
         Transform spawnPoints = SpawnManager.current.getSpawnPoint();
         character = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Player"), spawnPoints.position, spawnPoints.rotation, 0, new object[] { pv.ViewID });
     }
+
     public void playerDeath()
     {
         PhotonNetwork.Destroy(character);

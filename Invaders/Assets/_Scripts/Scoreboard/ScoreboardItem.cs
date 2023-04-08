@@ -53,6 +53,7 @@ public class ScoreboardItem : MonoBehaviourPunCallbacks
         if (player.CustomProperties.TryGetValue("kills", out object kills))
         {
             killsText.text = kills.ToString();
+
             if (killsText.text.Equals("3"))
             {
                 Debug.Log("user " + player.NickName + " text version " + usernameText.text + " got 3");

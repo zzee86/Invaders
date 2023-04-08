@@ -48,6 +48,7 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
 
         chatWindow.SetActive(visibleChat);
 
+        AudioListener.pause = true;
     }
     void Update()
     {
@@ -125,5 +126,18 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
         Destroy(gameObject);
         yield return null;
 
+    }
+
+    public void QuitGame()
+    {
+        StartCoroutine(LeaveLobby());
+        Application.Quit();
+    }
+
+    IEnumerator LeaveLobby()
+    {
+        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.AutomaticallySyncScene = false;
+        yield return null;
     }
 }
