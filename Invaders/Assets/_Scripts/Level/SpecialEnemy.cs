@@ -25,6 +25,10 @@ void Start(){
             var copies = Instantiate(bullet, transform.position, Quaternion.identity);
             copies.GetComponent<Rigidbody2D>().velocity = Vector2.right * bulletSpeed;
             timeRemaining = 4;
+            Destroy(copies, 15);
         }
     }
+
+
+
 }

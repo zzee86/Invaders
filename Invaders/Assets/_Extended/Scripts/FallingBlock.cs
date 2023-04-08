@@ -9,7 +9,7 @@ public class FallingBlock : MonoBehaviour
     private Rigidbody2D body;
 
     int playerLayer;
-    
+
     [SerializeField] private float destroyTimer = 2f;
     void Start()
     {
@@ -20,18 +20,19 @@ public class FallingBlock : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == playerLayer)
+        if (collision.gameObject.layer == playerLayer || collision.gameObject.tag == "Bullets")
         {
             AudioManager.PlayRockCrunch();
             Instantiate(dustParticles, transform.position + Offset, Quaternion.identity);
 
             StartCoroutine(fall());
         }
-        else
+        if (collision.gameObject.tag == "Bullets")
         {
             Destroy(gameObject);
+            Destroy(collision.gameObject);
+            Instantiate(dustParticles, transform.position + Offset, Quaternion.identity);
         }
-
     }
 
     IEnumerator fall()
