@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Photon.Realtime;
 using Photon.Pun;
@@ -18,12 +16,15 @@ public class ConnectManager : MonoBehaviourPunCallbacks
 
     private string[] Maps = new string[] { "Multiplayer1", "Multiplayer2" };
 
+   [SerializeField] private PlayfabLeaderboardManager leaderboardManager;
+
     void Awake()
     {
-        //Syncs master scene to everyone else
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.GameVersion = gameVersion;
         ShowStatus("Connecting to Photon Servers...");
+
+        leaderboardManager.GetLeaderboard();
     }
 
     private void Update()
@@ -34,7 +35,6 @@ public class ConnectManager : MonoBehaviourPunCallbacks
             PhotonNetwork.NickName = PlayerPrefs.GetString("PlayerName");
     }
 
-    //Called when Connect Button is clicked
     public void StartGame()
     {
         buttons.SetActive(false);
@@ -45,7 +45,7 @@ public class ConnectManager : MonoBehaviourPunCallbacks
             ShowStatus("Joining Random Room...");
             PhotonNetwork.JoinRandomRoom();
         }
-        else //Connect to Photon Servers
+        else 
         {
             ShowStatus("Connecting...");
             PhotonNetwork.ConnectUsingSettings();
@@ -61,12 +61,10 @@ public class ConnectManager : MonoBehaviourPunCallbacks
             return; //do nothing
         }
 
-        //Show the status message and update it with the text passed
         StatusText.gameObject.SetActive(true);
         StatusText.text = text;
     }
 
-    //If connect Button clicked and Photon server joined, Join a random room 
     public override void OnConnectedToMaster()
     {
         ShowStatus("Connected to Servers");
@@ -76,7 +74,6 @@ public class ConnectManager : MonoBehaviourPunCallbacks
         Debug.Log(PhotonNetwork.NickName);
     }
 
-    //If no room available, create new room
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         Debug.Log(message);
@@ -84,13 +81,11 @@ public class ConnectManager : MonoBehaviourPunCallbacks
         PhotonNetwork.CreateRoom(null, new Photon.Realtime.RoomOptions { MaxPlayers = 2 });
     }
 
-    //If Disconnected or no room made/found, take back to Lobby
     public override void OnDisconnected(DisconnectCause cause)
     {
         ConnectPanel.SetActive(true);
     }
 
-    //When room has been joined
     public override void OnJoinedRoom()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
@@ -104,15 +99,15 @@ public class ConnectManager : MonoBehaviourPunCallbacks
         base.OnPlayerEnteredRoom(newPlayer);
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2 && PhotonNetwork.IsMasterClient)
         {
+            // Select random level
             string scene = Maps[Random.Range(0, 2)].ToString().Replace("'", "");
             Debug.Log("Map name " + Maps[1].ToString().Replace("'", ""));
 
-            //Used instead of SceneManager.LoadScene, Using PhotonsLoadLevel ensures all players load into the new scene. Look at Awake()
             PhotonNetwork.LoadLevel(scene);
-            //LoadScene(scene);
-
         }
     }
+
+    // Disconnect servers
     public void MainMenu()
     {
         PhotonNetwork.Disconnect();
