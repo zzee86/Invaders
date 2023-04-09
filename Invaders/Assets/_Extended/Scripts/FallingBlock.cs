@@ -27,11 +27,6 @@ public class FallingBlock : MonoBehaviour
 
             StartCoroutine(fall());
         }
-        else
-        {
-            Destroy(gameObject);
-        }
-
     }
 
     IEnumerator fall()

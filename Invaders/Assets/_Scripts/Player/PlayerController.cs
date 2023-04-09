@@ -5,6 +5,7 @@ using ExitGames.Client.Photon;
 using UnityEngine.UI;
 using System.Collections;
 
+
 public class PlayerController : MonoBehaviourPunCallbacks
 {
     private Rigidbody2D body;
@@ -38,7 +39,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [SerializeField] private ParticleSystem deathParticles;
 
     GameManager gameManager;
-
 
 
     // Start is called before the first frame update
@@ -93,9 +93,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
         wallSlide();
         wallJump();
     }
-
-
-
     void flip()
     {
         facingRight = !facingRight;
@@ -107,7 +104,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         body.velocity = new Vector2(body.velocity.x, jumpPower);
         anim.SetTrigger("Jump");
-        generateDust();
+
+        if (grounded)
+        {
+            generateDust();
+        }
         jumpCount -= 1;
         Debug.Log("new jump " + jumpCount);
 
