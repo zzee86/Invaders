@@ -45,6 +45,8 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
 
 
         Debug.Log("Player names: " + PlayerPrefs.GetString("PlayerName"));
+
+        SetProperty("kills", null);
     }
 
     void CreateController()
@@ -169,5 +171,12 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
     {
         numberOfPlayer++;
     }
+    private static void SetProperty(string key, object value)
+{
+    ExitGames.Client.Photon.Hashtable table = PhotonNetwork.CurrentRoom.CustomProperties;
+    
+    table[key] = value;
 
+    PhotonNetwork.CurrentRoom.SetCustomProperties(table);
+}
 }

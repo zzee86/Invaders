@@ -22,6 +22,30 @@ public class ScoreboardItem : MonoBehaviourPunCallbacks
         this.player = player;
         UpdateStats();
     }
+
+    void Start()
+    {
+
+        // Look over to reduce unnecessary code
+        foreach (Player player in PhotonNetwork.PlayerList)
+        {
+
+            player.CustomProperties.Clear();
+            if (player.CustomProperties.TryGetValue("kills", out object kills))
+            {
+                kills = 0;
+                killsText.text = kills.ToString();
+            }
+            if (player.CustomProperties.TryGetValue("deaths", out object deaths))
+            {
+                deaths = 0;
+                deathText.text = kills.ToString();
+            }
+
+            killsText.text = "0";
+            deathText.text = "0";
+        }
+    }
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
     {
         if (targetPlayer == player)
@@ -53,11 +77,6 @@ public class ScoreboardItem : MonoBehaviourPunCallbacks
         if (player.CustomProperties.TryGetValue("kills", out object kills))
         {
             killsText.text = kills.ToString();
-
-            if (killsText.text.Equals("3"))
-            {
-                Debug.Log("user " + player.NickName + " text version " + usernameText.text + " got 3");
-            }
         }
         if (player.CustomProperties.TryGetValue("deaths", out object deaths))
         {
