@@ -10,7 +10,8 @@ public class MenuAudioManager : MonoBehaviour
 
     public AudioClip backgroundClip;
     public AudioMixerGroup ambientGroup;
-    AudioSource ambientSource;			
+    AudioSource ambientSource;
+
 
 
     void Awake()
@@ -27,11 +28,8 @@ public class MenuAudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         ambientSource = gameObject.AddComponent<AudioSource>() as AudioSource;
-        
+
         StartLevelAudio();
-
-        Debug.Log("audio awake");
-
     }
     void StartLevelAudio()
     {
@@ -39,8 +37,6 @@ public class MenuAudioManager : MonoBehaviour
         current.ambientSource.clip = current.backgroundClip;
         current.ambientSource.loop = true;
         current.ambientSource.Play();
-Debug.Log("audio started");
-
     }
 
 
@@ -56,8 +52,8 @@ Debug.Log("audio started");
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    
-    // Destroy GameManager On MainMenu To Replay Completed Level
+
+    // Destroy GameManager 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Scene.name to check which scene was loaded
@@ -67,12 +63,11 @@ Debug.Log("audio started");
         //     // Destroy the GameManager object
         //     Destroy(gameObject);
         // }
-            if (scene.name == "Level1" || scene.name == "Level2" || scene.name == "Multiplayer1" || scene.name == "Multiplayer2")
+        if (scene.name == "Level1" || scene.name == "Level2" || scene.name == "Multiplayer1" || scene.name == "Multiplayer2")
         {
 
             // Destroy the GameManager object
             Destroy(gameObject);
-            Debug.Log("destroy object");
         }
     }
 

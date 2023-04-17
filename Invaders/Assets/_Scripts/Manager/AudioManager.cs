@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
-
+using UnityEngine.SceneManagement;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager current;
@@ -145,5 +145,30 @@ public class AudioManager : MonoBehaviour
         current.stingSource.clip = current.winStingClip;
         current.stingSource.Play();
     }
+
+
+        // OnEnable called everytime the gameobject is called
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    // Destroy GameManager On MainMenu To Replay Completed Level
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Scene.name to check which scene was loaded
+        if (scene.name == "MainMenu")
+        {
+
+            // Destroy the GameManager object
+            Destroy(gameObject);
+        }
+    }
+
 
 }
