@@ -87,7 +87,6 @@ public class Shoot : MonoBehaviour
 
     void ShootGun()
     {
-
         GameObject bullets = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
         bullets.GetComponent<Rigidbody2D>().AddForce(bullets.transform.right * bulletSpeed);
         Physics2D.IgnoreLayerCollision(3, 6);

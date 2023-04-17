@@ -112,6 +112,7 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
         gameOverCanvas.SetActive(true);
         chatWindow.SetActive(false);
         Time.timeScale = 0;
+        AudioManager.PlayWonAudio();
     }
     public void LoadScene(string sceneName)
     {

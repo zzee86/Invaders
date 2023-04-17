@@ -19,6 +19,7 @@ public class KeyDoor : MonoBehaviour
     public void OpenDoor()
     {
        anim.SetTrigger("Open");
+       AudioManager.PlayDoorOpenAudio();
     }
 
 }

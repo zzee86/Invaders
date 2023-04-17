@@ -45,13 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ambientClip: {fileID: 8300000, guid: ef3204f3ffc5040079ebee97a51f3bf9, type: 3}
-  musicClip: {fileID: 8300000, guid: 0e5e5220b21cbb24cb45445289715171, type: 3}
-  levelStingClip: {fileID: 8300000, guid: da5a2d5f64bba4bed8b111bc90321579, type: 3}
-  deathStingClip: {fileID: 8300000, guid: 60b51a24836264977999d094348513a3, type: 3}
-  winStingClip: {fileID: 8300000, guid: 8fb46ffce8c8a474d8ccfa66129389d3, type: 3}
+  musicClip: {fileID: 8300000, guid: 5fb04a39efac4421589eb39a6787aae8, type: 3}
+  levelStingClip: {fileID: 8300000, guid: c845cc9f474344831b7693c048ae2f66, type: 3}
+  winStingClip: {fileID: 8300000, guid: d2d8ecc6737954ea7a7c9b8b1865985d, type: 3}
   orbStingClip: {fileID: 8300000, guid: fa6cd8a45cd4343d7a6db3dd74d483db, type: 3}
   doorOpenStingClip: {fileID: 8300000, guid: 31d197fb35743494fbc89553f65d021f, type: 3}
-  orbVoiceClip: {fileID: 8300000, guid: df9a2ecbae44a4f30acf4617630a8ca9, type: 3}
+  orbVoiceClip: {fileID: 8300000, guid: 8d58dfedad7ae4e9d93088d7a9678087, type: 3}
   rock_crunch: {fileID: 8300000, guid: 1652111b28f154210afdd2c2508957a8, type: 3}
   ambientGroup: {fileID: 0}
   musicGroup: {fileID: 0}

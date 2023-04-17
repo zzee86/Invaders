@@ -3220,7 +3220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0f0e6033d03f40b6b36cafec02f6381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundClip: {fileID: 8300000, guid: 46ec4ed652af74f7d9a680ac07e9f8a2, type: 3}
+  backgroundClip: {fileID: 8300000, guid: 234f0ce717452418b850e39adb3b9f06, type: 3}
   ambientGroup: {fileID: 0}
 --- !u!4 &1739236122
 Transform:

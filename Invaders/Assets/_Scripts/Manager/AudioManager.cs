@@ -6,32 +6,32 @@ public class AudioManager : MonoBehaviour
     public static AudioManager current;
 
     [Header("Ambient Audio")]
-    public AudioClip ambientClip;	
-    public AudioClip musicClip;        
+    public AudioClip ambientClip;
+    public AudioClip musicClip;
 
     [Header("Sting Clips")]
-    public AudioClip levelStingClip;    
-    public AudioClip winStingClip;      
-    public AudioClip orbStingClip;    
-    public AudioClip doorOpenStingClip; 
+    public AudioClip levelStingClip;
+    public AudioClip winStingClip;
+    public AudioClip orbStingClip;
+    public AudioClip doorOpenStingClip;
 
-    [Header("Character Audio")]		
-    public AudioClip orbVoiceClip;     
-
+    [Header("Character Audio")]
+    public AudioClip orbVoiceClip;
     public AudioClip rock_crunch;
+
 
     [Header("Mixer Groups")]
     public AudioMixerGroup ambientGroup;
-    public AudioMixerGroup musicGroup;  
-    public AudioMixerGroup stingGroup; 
-    public AudioMixerGroup playerGroup; 
-    public AudioMixerGroup voiceGroup;  
+    public AudioMixerGroup musicGroup;
+    public AudioMixerGroup stingGroup;
+    public AudioMixerGroup playerGroup;
+    public AudioMixerGroup voiceGroup;
 
-    AudioSource ambientSource;			
-    AudioSource musicSource;           
-    AudioSource stingSource;            
-    AudioSource playerSource;           
-    AudioSource voiceSource;          
+    AudioSource ambientSource;
+    AudioSource musicSource;
+    AudioSource stingSource;
+    AudioSource playerSource;
+    AudioSource voiceSource;
 
     void Awake()
     {
@@ -145,4 +145,5 @@ public class AudioManager : MonoBehaviour
         current.stingSource.clip = current.winStingClip;
         current.stingSource.Play();
     }
+
 }
