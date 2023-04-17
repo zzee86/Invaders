@@ -23,9 +23,9 @@ public class FallingTraps : MonoBehaviour
     }
     void DetectPlayer()
     {
-        playerHit = Physics2D.Raycast(transform.position, Vector2.down, 100f, playerLayer);
+        playerHit = Physics2D.Raycast(transform.position, Vector2.down, 20f, playerLayer);
 
-        Debug.DrawRay(transform.position, Vector2.down * 100f, Color.red);
+        Debug.DrawRay(transform.position, Vector2.down * 20f, Color.red);
         if (playerHit)
         {
             body.gravityScale = 1f;
