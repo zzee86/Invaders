@@ -92,6 +92,5 @@ public class Shoot : MonoBehaviour
         Physics2D.IgnoreLayerCollision(3, 6);
         Destroy(bullets, 2);
         //  shakeCamera.Shake();
-
     }
 }
