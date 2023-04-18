@@ -11,7 +11,7 @@ public class AgentController : MonoBehaviour
     [SerializeField] private float moveSpeed;
 
     [SerializeField] private float distanceToStartChasingTarget = 1f;
-    float targetRange = 5f;
+    [SerializeField] private float targetRange = 5f;
     [SerializeField] private Transform target;
     bool attackCooldown = true;
     [SerializeField] private float chaseSpeed = 8f;
@@ -49,6 +49,8 @@ public class AgentController : MonoBehaviour
         else
             Chase();
     }
+
+    
     void Patrol()
     {
         FindTarget();
