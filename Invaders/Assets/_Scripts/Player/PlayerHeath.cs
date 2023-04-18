@@ -31,11 +31,6 @@ public class PlayerHeath : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            TakeDamage(20);
-        }
-
         if (isAlive == false)
         {
             Debug.Log("respawn");
