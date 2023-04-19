@@ -29,9 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Multiplayer/Lobby.unity
     guid: bdadb2829f07b47529d6610f459842e6
-  - enabled: 1
-    path: Assets/_Scenes/SinglePlayer/Demoscene.unity
-    guid: ac0b70732e36040faa1b2196bcdda83d
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
@@ -41,7 +38,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/_Scenes/SinglePlayer/Level1Checkpoints.unity
     guid: 9561a329dddf44f2290a8ddde50480c6
   - enabled: 0
@@ -59,9 +59,12 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/_Scenes/SinglePlayer/Level3.unity
-    guid: 80b0e80a2b09447fab71fc22721731be
+    guid: 5eb77241ccb894cda8ced92d9140fbb9
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
