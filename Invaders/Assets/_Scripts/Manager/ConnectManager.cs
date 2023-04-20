@@ -16,7 +16,7 @@ public class ConnectManager : MonoBehaviourPunCallbacks
 
     private string[] Maps = new string[] { "Multiplayer1", "Multiplayer2" };
 
-   [SerializeField] private PlayfabLeaderboardManager leaderboardManager;
+    [SerializeField] private PlayfabLeaderboardManager leaderboardManager;
 
     void Awake()
     {
@@ -25,12 +25,14 @@ public class ConnectManager : MonoBehaviourPunCallbacks
         ShowStatus("Connecting to Photon Servers...");
 
         leaderboardManager.GetLeaderboard();
+
+        Debug.Log("Player name2 " + PlayerPrefs.GetString("PlayerName"));
+
+        WelcomeMessage.text = "Welcome " + PlayerPrefs.GetString("PlayerName");
     }
 
     private void Update()
     {
-        WelcomeMessage.text = "Welcome " + PlayerPrefs.GetString("PlayerName");
-
         if (PhotonNetwork.NickName == "")
             PhotonNetwork.NickName = PlayerPrefs.GetString("PlayerName");
     }
@@ -45,7 +47,7 @@ public class ConnectManager : MonoBehaviourPunCallbacks
             ShowStatus("Joining Random Room...");
             PhotonNetwork.JoinRandomRoom();
         }
-        else 
+        else
         {
             ShowStatus("Connecting...");
             PhotonNetwork.ConnectUsingSettings();
@@ -71,7 +73,6 @@ public class ConnectManager : MonoBehaviourPunCallbacks
         StartGameButton.SetActive(true);
         WelcomeMessage.text = "Welcome " + PlayerPrefs.GetString("PlayerName");
         PhotonNetwork.NickName = PlayerPrefs.GetString("PlayerName");
-        Debug.Log(PhotonNetwork.NickName);
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
@@ -99,7 +100,7 @@ public class ConnectManager : MonoBehaviourPunCallbacks
         base.OnPlayerEnteredRoom(newPlayer);
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2 && PhotonNetwork.IsMasterClient)
         {
-            // Select random level
+            // Select random level from the options available
             string scene = Maps[Random.Range(0, 2)].ToString().Replace("'", "");
             Debug.Log("Map name " + Maps[1].ToString().Replace("'", ""));
 

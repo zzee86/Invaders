@@ -42,7 +42,7 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/_Scenes/SinglePlayer/Level1Checkpoints.unity
+    path: 
     guid: 9561a329dddf44f2290a8ddde50480c6
   - enabled: 0
     path: 
