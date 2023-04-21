@@ -140,6 +140,7 @@ public class PlayerManagerMultiplayer : MonoBehaviourPunCallbacks, IOnEventCallb
     void RPC_Victory(string name)
     {
         MultiplayerGameManager.instance.DisplayerWinCanvas(name);
+        AudioManager.PlayWonAudio();
     }
     //Needed for event calls
     public override void OnEnable()

@@ -46,15 +46,13 @@ public class AudioManager : MonoBehaviour
 
 
 
-        //Generate the Audio Source "channels" for our game's audio
         ambientSource = gameObject.AddComponent<AudioSource>() as AudioSource;
         musicSource = gameObject.AddComponent<AudioSource>() as AudioSource;
         stingSource = gameObject.AddComponent<AudioSource>() as AudioSource;
         playerSource = gameObject.AddComponent<AudioSource>() as AudioSource;
         voiceSource = gameObject.AddComponent<AudioSource>() as AudioSource;
 
-        //Assign each audio source to its respective mixer group so that it is
-        //routed and controlled by the audio mixer
+
         ambientSource.outputAudioMixerGroup = ambientGroup;
         musicSource.outputAudioMixerGroup = musicGroup;
         stingSource.outputAudioMixerGroup = stingGroup;

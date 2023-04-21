@@ -53,7 +53,7 @@ public class ScoreboardItem : MonoBehaviourPunCallbacks
             if (changedProps.ContainsKey("kills") || changedProps.ContainsKey("deaths"))
             {
                 UpdateStats();
-                if (killsText.text.Equals("3"))
+                if (killsText.text.Equals("10"))
                 {
                     // Raise event with the target player name
                     PhotonNetwork.RaiseEvent(WINNER, targetPlayer.NickName, RaiseEventOptions.Default, SendOptions.SendReliable);
