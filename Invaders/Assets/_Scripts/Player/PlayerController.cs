@@ -81,7 +81,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             if (jumpCount > 0)
             {
-                Debug.Log("if statement " + jumpCount);
                 Jump();
 
             }
@@ -110,8 +109,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
             generateDust();
         }
         jumpCount -= 1;
-        Debug.Log("new jump " + jumpCount);
-
         grounded = false;
     }
 
@@ -181,7 +178,5 @@ public class PlayerController : MonoBehaviourPunCallbacks
             grounded = true;
         }
         jumpCount = maxJumps;
-        Debug.Log("reset jump " + jumpCount + " max jump " + maxJumps);
-
     }
 }

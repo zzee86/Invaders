@@ -10,25 +10,26 @@ public class SpecialEnemy : MonoBehaviour
 
 
     private float timeRemaining = 1.2f;
+    [SerializeField] private float fireRate = 1.2f;
 
 
-void Start(){
-    timeRemaining = 0;
-}
+    void Start()
+    {
+        timeRemaining = 0;
+    }
     void Update()
     {
         if (timeRemaining > 0)
         {
             timeRemaining -= Time.deltaTime;
 
-        } else {
+        }
+        else
+        {
             var copies = Instantiate(bullet, transform.position, Quaternion.identity);
             copies.GetComponent<Rigidbody2D>().velocity = Vector2.right * bulletSpeed;
-            timeRemaining = 1.2f;
+            timeRemaining = fireRate;
             Destroy(copies, 15);
         }
     }
-
-
-
 }
