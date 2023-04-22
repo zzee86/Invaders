@@ -9,7 +9,7 @@ public class SpecialEnemy : MonoBehaviour
     [SerializeField] private float bulletSpeed;
 
 
-    public float timeRemaining = 4;
+    private float timeRemaining = 1.2f;
 
 
 void Start(){
@@ -24,7 +24,7 @@ void Start(){
         } else {
             var copies = Instantiate(bullet, transform.position, Quaternion.identity);
             copies.GetComponent<Rigidbody2D>().velocity = Vector2.right * bulletSpeed;
-            timeRemaining = 4;
+            timeRemaining = 1.2f;
             Destroy(copies, 15);
         }
     }
