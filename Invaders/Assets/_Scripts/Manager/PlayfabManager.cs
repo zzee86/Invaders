@@ -8,18 +8,20 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayfabManager : MonoBehaviour
-{
-    public TextMeshProUGUI messageText;
-    public TMP_InputField RegisterEmailInput;
+{   
+    [Header("Input Fields")]
+     public TMP_InputField RegisterEmailInput;
     public TMP_InputField RegisterPasswordInput;
     public TMP_InputField RegisterUsernameInput;
     public TMP_InputField LoginEmailInput;
     public TMP_InputField LoginPasswordInput;
 
+    
+    public TextMeshProUGUI messageText;
+
     void OnError(PlayFabError error)
     {
         messageText.text = error.ErrorMessage;
-        Debug.Log("Error while logging in/creating account");
         Debug.Log(error.GenerateErrorReport());
     }
 
@@ -82,7 +84,7 @@ public class PlayfabManager : MonoBehaviour
     {
         GetPlayerProfile(result.PlayFabId);
         PlayerPrefs.SetString("PlayFabID", result.PlayFabId);
-        Debug.Log("Successful login");
+        Debug.Log("logged in");
         StartGame();
     }
 
@@ -100,9 +102,6 @@ public class PlayfabManager : MonoBehaviour
         messageText.text = "Password reset link has been sent to your email";
     }
 
-
-
-
     void GetPlayerProfile(string playFabId)
     {
         PlayFabClientAPI.GetPlayerProfile(new GetPlayerProfileRequest()
@@ -117,32 +116,8 @@ public class PlayfabManager : MonoBehaviour
         error => Debug.LogError(error.GenerateErrorReport()));
 
     }
-
-    /*
-        public void SendLeaderboard(int wins)
-        {
-            var request = new UpdatePlayerStatisticsRequest
-            {
-                Statistics = new List<StatisticUpdate>
-                {
-                    new StatisticUpdate
-                    {
-                        StatisticName = "Total-Wins",
-                        Value = wins
-                    }
-                }
-            };
-            PlayFabClientAPI.UpdatePlayerStatistics(request, OnLeaderboardUpdate , OnError); 
-        }
-
-        void OnLeaderboardUpdate(UpdatePlayerStatisticsResult result)
-        {
-            Debug.Log("Successful leaderboard sent");
-        }
-    */
     void StartGame()
     {
         SceneManager.LoadScene("Lobby");
     }
-
 }

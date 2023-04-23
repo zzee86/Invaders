@@ -5,16 +5,15 @@ using TMPro;
 using UnityEngine.SceneManagement;
 public class ConnectManager : MonoBehaviourPunCallbacks
 {
+    private const string gameVersion = "1.0";
+
+    private string[] mapSelection = new string[] { "Multiplayer1", "Multiplayer2" };
 
     [SerializeField] private GameObject ConnectPanel;
     [SerializeField] private GameObject StartGameButton;
     [SerializeField] private TextMeshProUGUI StatusText;
     [SerializeField] private TextMeshProUGUI WelcomeMessage;
     [SerializeField] private GameObject buttons;
-
-    private const string gameVersion = "1.0";
-
-    private string[] Maps = new string[] { "Multiplayer1", "Multiplayer2" };
 
     [SerializeField] private PlayfabLeaderboardManager leaderboardManager;
 
@@ -23,11 +22,7 @@ public class ConnectManager : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.GameVersion = gameVersion;
         ShowStatus("Connecting to Photon Servers...");
-
         leaderboardManager.GetLeaderboard();
-
-        Debug.Log("Player name2 " + PlayerPrefs.GetString("PlayerName"));
-
         WelcomeMessage.text = "Welcome " + PlayerPrefs.GetString("PlayerName");
     }
 
@@ -55,12 +50,11 @@ public class ConnectManager : MonoBehaviourPunCallbacks
         }
     }
 
-
     private void ShowStatus(string text)
     {
         if (StatusText == null)
         {
-            return; //do nothing
+            return;
         }
 
         StatusText.gameObject.SetActive(true);
@@ -75,25 +69,23 @@ public class ConnectManager : MonoBehaviourPunCallbacks
         PhotonNetwork.NickName = PlayerPrefs.GetString("PlayerName");
     }
 
-    public override void OnJoinRandomFailed(short returnCode, string message)
-    {
-        Debug.Log(message);
-        ShowStatus("Creating a new room...");
-        PhotonNetwork.CreateRoom(null, new Photon.Realtime.RoomOptions { MaxPlayers = 2 });
-    }
-
-    public override void OnDisconnected(DisconnectCause cause)
-    {
-        ConnectPanel.SetActive(true);
-    }
-
     public override void OnJoinedRoom()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
         ShowStatus("Created room - waiting for another player.");
     }
 
-    //Once 2 players in a room, master client changes everyone to the game scene
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        ConnectPanel.SetActive(true);
+    }
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        ShowStatus("Creating a new room...");
+        PhotonNetwork.CreateRoom(null, new Photon.Realtime.RoomOptions { MaxPlayers = 2 });
+    }
+
+    // 2 players in a room, then the scene will change 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         PhotonNetwork.AutomaticallySyncScene = true;
@@ -101,9 +93,7 @@ public class ConnectManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2 && PhotonNetwork.IsMasterClient)
         {
             // Select random level from the options available
-            string scene = Maps[Random.Range(0, 2)].ToString().Replace("'", "");
-            Debug.Log("Map name " + Maps[1].ToString().Replace("'", ""));
-
+            string scene = mapSelection[Random.Range(0, 2)].ToString().Replace("'", "");
             PhotonNetwork.LoadLevel(scene);
         }
     }
@@ -112,7 +102,6 @@ public class ConnectManager : MonoBehaviourPunCallbacks
     public void MainMenu()
     {
         PhotonNetwork.Disconnect();
-        PhotonNetwork.LeaveRoom();
         PhotonNetwork.AutomaticallySyncScene = false;
         SceneManager.LoadScene("MainMenu");
     }

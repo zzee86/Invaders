@@ -540,7 +540,6 @@ GameObject:
   - component: {fileID: 329077609}
   - component: {fileID: 329077608}
   - component: {fileID: 329077607}
-  - component: {fileID: 329077606}
   m_Layer: 5
   m_Name: 3
   m_TagString: Untagged
@@ -570,20 +569,6 @@ RectTransform:
   m_AnchoredPosition: {x: -203, y: 112}
   m_SizeDelta: {x: 111.311, y: 111.3091}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &329077606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 329077604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1924c3648dd3e4012a4f1a37c545195b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unlocked: 0
-  unlockImage: {fileID: 683384936}
 --- !u!114 &329077607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,19 +612,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 329077608}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 329077606}
-        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
-        m_MethodName: PressSelection
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Level3
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &329077608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1061,7 +1034,6 @@ GameObject:
   - component: {fileID: 906285621}
   - component: {fileID: 906285620}
   - component: {fileID: 906285619}
-  - component: {fileID: 906285618}
   m_Layer: 5
   m_Name: 5
   m_TagString: Untagged
@@ -1091,20 +1063,6 @@ RectTransform:
   m_AnchoredPosition: {x: 197, y: 112}
   m_SizeDelta: {x: 111.311, y: 111.3091}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &906285618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 906285616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1924c3648dd3e4012a4f1a37c545195b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unlocked: 0
-  unlockImage: {fileID: 1533020391}
 --- !u!114 &906285619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1148,19 +1106,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 906285620}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 906285618}
-        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
-        m_MethodName: PressSelection
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Level4
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &906285620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1211,7 +1157,6 @@ GameObject:
   - component: {fileID: 943611912}
   - component: {fileID: 943611911}
   - component: {fileID: 943611910}
-  - component: {fileID: 943611909}
   m_Layer: 5
   m_Name: 4
   m_TagString: Untagged
@@ -1241,20 +1186,6 @@ RectTransform:
   m_AnchoredPosition: {x: -3, y: 112}
   m_SizeDelta: {x: 111.311, y: 111.3091}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &943611909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 943611907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1924c3648dd3e4012a4f1a37c545195b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unlocked: 0
-  unlockImage: {fileID: 1607018985}
 --- !u!114 &943611910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1298,19 +1229,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 943611911}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 943611909}
-        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
-        m_MethodName: PressSelection
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Level4
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &943611911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1496,7 +1415,6 @@ GameObject:
   - component: {fileID: 1013623251}
   - component: {fileID: 1013623250}
   - component: {fileID: 1013623249}
-  - component: {fileID: 1013623248}
   m_Layer: 5
   m_Name: 6
   m_TagString: Untagged
@@ -1526,20 +1444,6 @@ RectTransform:
   m_AnchoredPosition: {x: 397, y: 112}
   m_SizeDelta: {x: 111.311, y: 111.3091}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1013623248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1013623246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1924c3648dd3e4012a4f1a37c545195b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unlocked: 0
-  unlockImage: {fileID: 1475382451}
 --- !u!114 &1013623249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1583,19 +1487,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1013623250}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1013623248}
-        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
-        m_MethodName: PressSelection
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Level4
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1013623250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2233,7 +2125,6 @@ GameObject:
   - component: {fileID: 1458975618}
   - component: {fileID: 1458975617}
   - component: {fileID: 1458975616}
-  - component: {fileID: 1458975615}
   m_Layer: 5
   m_Name: 7
   m_TagString: Untagged
@@ -2263,20 +2154,6 @@ RectTransform:
   m_AnchoredPosition: {x: 597, y: 112}
   m_SizeDelta: {x: 111.311, y: 111.3091}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1458975615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1458975613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1924c3648dd3e4012a4f1a37c545195b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unlocked: 0
-  unlockImage: {fileID: 1084446711}
 --- !u!114 &1458975616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2320,19 +2197,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1458975617}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1458975615}
-        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
-        m_MethodName: PressSelection
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Level4
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1458975617
 MonoBehaviour:
   m_ObjectHideFlags: 0

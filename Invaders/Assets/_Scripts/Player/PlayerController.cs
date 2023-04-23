@@ -18,23 +18,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
     bool facingRight = true;
     [SerializeField] private ParticleSystem jumpDust;
 
-
-    [Header("Wall Slide")]
-    private bool isWallSliding;
-    private float wallSlideSpeed = 4;
-    [SerializeField] private Transform wallCheck;
-    [SerializeField] private LayerMask wallLayer;
-
-
-    [Header("Wall Jump")]
-    private bool isWallJump;
-    private float wallJumpingDirection;
-    private float wallJumpingTime = 0.2f;
-    private float wallJumpingCounter;
-    private float wallJumpingDuration = 0.4f;
-    private Vector2 wallJumpingPower = new Vector2(8f, 16f);
-
-
     int groundLayer;
     [SerializeField] private ParticleSystem deathParticles;
 
@@ -76,6 +59,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
             flip();
         }
 
+        
+
         //Jump - GetKeyDown used to only register the initial click, not holding the space bar
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -89,8 +74,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
         anim.SetBool("Run", horizontalInput != 0);
         anim.SetBool("Grounded", grounded);
 
-        wallSlide();
-        wallJump();
     }
     void flip()
     {
@@ -110,60 +93,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
         jumpCount -= 1;
         grounded = false;
-    }
-
-    public bool isWalled()
-    {
-        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
-    }
-    private void wallSlide()
-    {
-        if (isWalled() && !grounded)
-        {
-            isWallSliding = true;
-            body.velocity = new Vector2(body.velocity.x, Mathf.Clamp(body.velocity.y, -wallSlideSpeed, float.MaxValue));
-
-            //  shootGun.enabled = false;
-        }
-        else
-        {
-            isWallSliding = false;
-        }
-
-    }
-    private void wallJump()
-    {
-        if (isWallSliding)
-        {
-            isWallJump = false;
-            wallJumpingDirection = -transform.rotation.x;
-
-            wallJumpingCounter = wallJumpingTime;
-            CancelInvoke(nameof(StopWallJumping));
-
-        }
-        else
-        {
-            wallJumpingCounter -= Time.deltaTime;
-        }
-
-        if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f)
-        {
-            isWallJump = true;
-            body.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
-            wallJumpingCounter = 0f;
-            generateDust();
-
-            if (transform.localScale.x != wallJumpingDirection)
-            {
-                flip();
-            }
-            Invoke(nameof(StopWallJumping), wallJumpingDuration);
-        }
-    }
-    private void StopWallJumping()
-    {
-        isWallJump = false;
     }
 
     private void generateDust()

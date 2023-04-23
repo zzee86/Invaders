@@ -7,22 +7,21 @@ public class SyncTimer : MonoBehaviour
     bool startTimer = false;
     double timerIncrementValue;
     double startTime;
-//    [SerializeField] double timer = 20;
-    ExitGames.Client.Photon.Hashtable CustomeValue;
+    ExitGames.Client.Photon.Hashtable timerValue;
 
     void Start()
     {
         if (PhotonNetwork.LocalPlayer.IsMasterClient)
         {
-            CustomeValue = new ExitGames.Client.Photon.Hashtable();
+            timerValue = new ExitGames.Client.Photon.Hashtable();
             startTime = PhotonNetwork.Time;
             startTimer = true;
-            CustomeValue.Add("StartTime", startTime);
-            PhotonNetwork.CurrentRoom.SetCustomProperties(CustomeValue);
+            timerValue.Add("StartTime", startTime);
+            PhotonNetwork.CurrentRoom.SetCustomProperties(timerValue);
         }
         else
         {
-            startTime = double.Parse(PhotonNetwork.CurrentRoom.CustomProperties["StartTime"].ToString());
+            startTime = 0f;
             startTimer = true;
         }
     }
@@ -33,4 +32,5 @@ public class SyncTimer : MonoBehaviour
 
         timerIncrementValue = PhotonNetwork.Time - startTime;
     }
+    
 }

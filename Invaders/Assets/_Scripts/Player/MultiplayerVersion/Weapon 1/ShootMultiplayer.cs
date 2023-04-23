@@ -53,40 +53,43 @@ public class ShootMultiplayer : MonoBehaviourPunCallbacks
         if (!PV.IsMine)
             return;
 
-                //MousePos - Relative to whole screen, Direction - Relative to Player
-        
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        //  direction = mousePos - (Vector2)gun.position;
-        //      Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        // Vector2 direction2 = mousePos - (Vector2)shootPoint.position;
-
-        float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
-
-        // Only flip the weapon
-        if (rotZ < 89 && rotZ > -89)
+        if (PV.IsMine)
         {
-            spriteRenderer.flipY = false;
-        }
+            //MousePos - Relative to whole screen, Direction - Relative to Player
 
-        else
-        {
-            spriteRenderer.flipY = true;
+            Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            //  direction = mousePos - (Vector2)gun.position;
+            //      Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        }
+            // Vector2 direction2 = mousePos - (Vector2)shootPoint.position;
 
-        if (Input.GetMouseButton(0))
-        {
+            float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
 
-            if (Time.time > readyForNextShot)
+            // Only flip the weapon
+            if (rotZ < 89 && rotZ > -89)
             {
-                readyForNextShot = Time.time + 1 / fireRate;
-                ShootGun();
+                spriteRenderer.flipY = false;
+            }
+
+            else
+            {
+                spriteRenderer.flipY = true;
+
+            }
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                if (Time.time > readyForNextShot)
+                {
+                    readyForNextShot = Time.time + 1 / fireRate;
+                    ShootGun();
+                }
             }
         }
-
     }
+
+
 
 
 

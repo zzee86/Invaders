@@ -7,7 +7,6 @@ using TMPro;
 public class ChatManager : MonoBehaviour, IChatClientListener
 {
     #region Setup
-
     [SerializeField] GameObject joinChatButton;
     ChatClient chatClient;
     bool isConnected;
@@ -23,7 +22,6 @@ public class ChatManager : MonoBehaviour, IChatClientListener
         isConnected = true;
         chatClient = new ChatClient(this);
         chatClient.Connect(PhotonNetwork.PhotonServerSettings.AppSettings.AppIdChat, PhotonNetwork.AppVersion, new AuthenticationValues(username));
-        Debug.Log("Connecting");
     }
 
     #endregion Setup
@@ -31,18 +29,11 @@ public class ChatManager : MonoBehaviour, IChatClientListener
     #region General
 
     [SerializeField] GameObject chatPanel;
-    string privateReceiver = "";
-    string currentChat;
     [SerializeField] TMP_InputField chatField;
     [SerializeField] TextMeshProUGUI chatDisplay;
+    string privateReceiver = "";
+    string currentChat;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (isConnected)
@@ -97,7 +88,6 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 
     public void OnConnected()
     {
-        Debug.Log("Connected");
         joinChatButton.SetActive(false);
         username = PhotonNetwork.NickName;
         chatClient.Subscribe(new string[] { "RegionChannel" });
@@ -106,20 +96,17 @@ public class ChatManager : MonoBehaviour, IChatClientListener
     public void OnDisconnected()
     {
         isConnected = false;
-        joinChatButton.SetActive(true);
         chatPanel.SetActive(false);
+        joinChatButton.SetActive(true);
     }
 
     public void OnGetMessages(string channelName, string[] senders, object[] messages)
     {
-        string msgs = "";
+        string message = "";
         for (int i = 0; i < senders.Length; i++)
         {
-            msgs = string.Format("{0}", messages[i]);
-
-            chatDisplay.text += "\n" + msgs;
-
-            Debug.Log(msgs);
+            message = string.Format("{0}", messages[i]);
+            chatDisplay.text += "\n" + message;
         }
 
     }
@@ -134,16 +121,14 @@ public class ChatManager : MonoBehaviour, IChatClientListener
         chatPanel.SetActive(true);
     }
 
-    public void OnUnsubscribed(string[] channels)
-    {
-        throw new System.NotImplementedException();
-    }
-
     public void OnUserSubscribed(string channel, string user)
     {
         throw new System.NotImplementedException();
     }
-
+    public void OnUnsubscribed(string[] channels)
+    {
+        throw new System.NotImplementedException();
+    }
     public void OnUserUnsubscribed(string channel, string user)
     {
         throw new System.NotImplementedException();

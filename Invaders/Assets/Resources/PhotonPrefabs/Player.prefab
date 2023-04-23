@@ -435,10 +435,6 @@ MonoBehaviour:
   maxJumps: 1
   jumpPower: 15
   jumpDust: {fileID: 731783351702078107}
-  wallCheck: {fileID: 7776066832261488198}
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 256
   deathParticles: {fileID: 7731649764326244016, guid: cbdc6ad7ae961415a9c0e2a66b70efe7, type: 3}
 --- !u!114 &5897165730959497748
 MonoBehaviour:
@@ -600,7 +596,7 @@ MonoBehaviour:
   gun: {fileID: 1895585484812287969}
   bulletSpeed: 1500
   shootPoint: {fileID: 1895585486299298357}
-  bullet: {fileID: 1366474461289411049, guid: 9880a9a6f2274441ba790b5d5b8b61c2, type: 3}
+  bullet: {fileID: 1366474461289411049, guid: b20d394638bf14f389c2330a68799d15, type: 3}
   fireRate: 4
 --- !u!1 &1895585484823306829
 GameObject:

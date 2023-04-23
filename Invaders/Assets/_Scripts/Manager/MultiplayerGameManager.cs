@@ -27,6 +27,8 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
     public GameObject chatWindow;
     private bool visibleChat = false;
 
+    public GameObject timerCanvas;
+
 
     [Header("Leaderbaord")]
     [SerializeField] private GameObject SendLeaderboard;
@@ -112,12 +114,13 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
         gameOverCanvas.SetActive(true);
         chatWindow.SetActive(false);
         Time.timeScale = 0;
-        AudioManager.PlayWonAudio();
     }
     public void LoadScene(string sceneName)
     {
         StartCoroutine(deleteManagers());
         Time.timeScale = 1;
+        PhotonNetwork.CurrentRoom.CustomProperties.Clear();
+        Destroy(timerCanvas);
         PhotonNetwork.LeaveRoom();
         PhotonNetwork.AutomaticallySyncScene = false;
         SceneManager.LoadScene(sceneName);
