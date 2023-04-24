@@ -7,7 +7,6 @@ public class ReapearBlock : MonoBehaviour
     private Animator animator;
     [SerializeField] private GameObject dustParticles;
 
-
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -18,8 +17,11 @@ public class ReapearBlock : MonoBehaviour
         if (collider.gameObject.tag == "Player" || collider.gameObject.tag == "Instant Death")
         {
             StartCoroutine(fadingBlock());
-            AudioManager.PlayRockCrunch();
             Instantiate(dustParticles, transform.position, Quaternion.identity);
+        }
+        if (collider.gameObject.tag == "Player")
+        {
+            AudioManager.PlayRockCrunch();
         }
     }
     IEnumerator fadingBlock()

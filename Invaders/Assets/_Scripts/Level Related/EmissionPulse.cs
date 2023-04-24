@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class EmissionPulse : MonoBehaviour
 {
-    public float maxIntensity = 15f;
-    Material material;
-    int emissionProperty;
-    public float damping = 2f;
+    [SerializeField] private float maxIntensity = 15f;
+    private Material material;
+    public int emissionProperty;
+    [SerializeField] private float damping = 2f;
 
 
 
@@ -15,7 +15,6 @@ public class EmissionPulse : MonoBehaviour
         Renderer renderer = GetComponent<Renderer>();
         material = renderer.material;
 
-        // ID of shader
         emissionProperty = Shader.PropertyToID("_EmissionColor");
     }
 
